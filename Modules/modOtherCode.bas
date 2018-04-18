@@ -111,7 +111,7 @@ Public Sub setupHashFiles()
   hashes.war3Hashes(0) = App.path & "\Binaries\WAR3\Warcraft III.exe"
   
   hashes.lockdownPath = App.path & "\Lockdown\"
-  hashes.checkRevisionInfo = App.path & "\CheckRevision.ini"
+  hashes.checkRevisionInfo = App.path & "\CheckRevisionFromWarden.ini"
 End Sub
 
 Public Function getHashes(ByVal product As String, Optional lockdownFileName As String = vbNullString) As HashSearchResult
@@ -132,7 +132,7 @@ Public Function getHashes(ByVal product As String, Optional lockdownFileName As 
   
   If product = "D2DV" Or product = "D2XP" Then
     If Dir$(hashes.checkRevisionInfo) = vbNullString Then
-      result.errorMessage = "missing CheckRevision.ini"
+      result.errorMessage = "missing CheckRevisionFromWarden.ini"
       getHashes = result
       Exit Function
     End If

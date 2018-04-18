@@ -146,7 +146,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
     Dim result As Long
     
     If .product = "D2DV" Or .product = "D2XP" Or .product = "WAR3" Or .product = "W3XP" Then
-      result = Hash_Lib.check_revision(mpqFileTime, mpqFileName, checksumFormula, "CheckRevision.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
+      result = Hash_Lib.check_revision(mpqFileTime, mpqFileName, checksumFormula, App.path & "\CheckRevisionFromWarden.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
     Else
       result = Hash_Lib.checkRevision_ld(hashFiles(0), hashFiles(1), hashFiles(2), checksumFormula, EXEVersion, EXEchecksum, EXEInfoString, hashes.lockdownPath & lockdownFileName, hashFiles(3))
     End If
