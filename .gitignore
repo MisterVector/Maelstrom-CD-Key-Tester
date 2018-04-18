@@ -1,0 +1,11 @@
+Binaries/
+Build/
+extra/
+CD-Keys/
+Tested CD-Keys/
+
+Config.ini
+Maelstrom.exe
+Maelstrom.vbw
+HTTP.txt
+SOCKS4.txt
