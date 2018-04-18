@@ -20,7 +20,7 @@ Public Const DEFAULT_VERBYTE_WAR3             As Long = &H1D
 
 Public Const DEFAULT_SOCKETS                  As Integer = 250
 Public Const DEFAULT_SOCKETS_PER_PROXY        As Integer = 4
-Public Const DEFAULT_BNLS_SERVER              As String = "bnls.mattkv.net"
+Public Const DEFAULT_BNLS_SERVER              As String = "jbls.codespeak.org"
 Public Const DEFAULT_BNLS_PORT                As Integer = 9367
 Public Const DEFAULT_EXP_TESTS_PER_REG_KEY    As Integer = 8
 Public Const DEFAULT_TEST_COUNT_PER_PROXY     As Integer = 25
