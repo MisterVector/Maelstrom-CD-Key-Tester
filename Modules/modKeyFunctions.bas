@@ -385,7 +385,7 @@ Public Sub reportProcessedKeys(pk As ParsedKeys)
   End If
   
   If pk.unreadableKeys > 0 Then
-    AddChat vbRed, "Removed ", vbWhite, pk.invalidKeys, vbRed, " unreadable keys."
+    AddChat vbRed, "Removed ", vbWhite, pk.unreadableKeys, vbRed, " unreadable keys."
   End If
   
   If pk.badLines > 0 Then
