@@ -145,11 +145,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
     
     Dim result As Long
     
-    If .product = "D2DV" Or .product = "D2XP" Or .product = "WAR3" Or .product = "W3XP" Then
-      result = Hash_Lib.check_revision(mpqFileTime, mpqFileName, checksumFormula, App.path & "\CheckRevisionFromWarden.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
-    Else
-      result = Hash_Lib.checkRevision_ld(hashFiles(0), hashFiles(1), hashFiles(2), checksumFormula, EXEVersion, EXEchecksum, EXEInfoString, hashes.lockdownPath & lockdownFileName, hashFiles(3))
-    End If
+    result = Hash_Lib.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\CheckRevisionFromWarden.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
   End With
 
   With packet(Index)
