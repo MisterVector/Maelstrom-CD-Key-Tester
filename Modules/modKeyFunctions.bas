@@ -45,6 +45,7 @@ Public Type ParsedKeys
   duplicateKeys As Long
   unreadableKeys As Long
   badLines As Long
+  badFiles As Long
 End Type
 
 Public Type DecodedKey
@@ -209,6 +210,8 @@ Public Sub loadCDKeys()
 End Sub
 
 Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
+  On Error Resume Next
+
   Dim sf As Folder
 
   For Each sf In keyFolder.SubFolders
@@ -226,9 +229,14 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
         arrFileLines = Split(Input(LOF(1), 1), vbNewLine)
       Close #1
       
-      For i = 0 To UBound(arrFileLines)
-        processKeyLine arrFileLines(i), pk
-      Next i
+      If (Err.Number = 0) Then
+        For i = 0 To UBound(arrFileLines)
+          processKeyLine arrFileLines(i), pk
+        Next i
+      Else
+        Err.Clear
+        pk.badFiles = pk.badFiles + 1
+      End If
     End If
     
     If Not isStandardKeyFile(f.name) Then
@@ -382,6 +390,10 @@ Public Sub reportProcessedKeys(pk As ParsedKeys)
   
   If pk.badLines > 0 Then
     AddChat vbRed, "Removed ", vbWhite, pk.badLines, vbRed, " bad lines."
+  End If
+  
+  If (pk.badFiles > 0) Then
+    AddChat vbRed, "Skipped ", vbWhite, pk.badFiles, vbRed, " bad files."
   End If
 End Sub
 
