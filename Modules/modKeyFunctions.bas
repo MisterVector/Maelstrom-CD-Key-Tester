@@ -377,23 +377,23 @@ End Function
 
 Public Sub reportProcessedKeys(pk As ParsedKeys)
   If pk.duplicateKeys > 0 Then
-    AddChat vbRed, "Removed ", vbWhite, pk.duplicateKeys, vbRed, " duplicate key" & IIf(pk.duplicateKeys > 1, "s", "") & "."
+    AddChat vbRed, "Removed ", vbWhite, pk.duplicateKeys, vbRed, " duplicate key" & IIf(pk.duplicateKeys > 1, "s", vbNullString) & "."
   End If
   
   If pk.invalidKeys > 0 Then
-    AddChat vbRed, "Removed ", vbWhite, pk.invalidKeys, vbRed, " invalid key" & IIf(pk.invalidKeys > 1, "s", "") & "."
+    AddChat vbRed, "Removed ", vbWhite, pk.invalidKeys, vbRed, " invalid key" & IIf(pk.invalidKeys > 1, "s", vbNullString) & "."
   End If
   
   If pk.unreadableKeys > 0 Then
-    AddChat vbRed, "Removed ", vbWhite, pk.unreadableKeys, vbRed, " unreadable key" & IIf(pk.unreadableKeys > 1, "s", "") & "."
+    AddChat vbRed, "Removed ", vbWhite, pk.unreadableKeys, vbRed, " unreadable key" & IIf(pk.unreadableKeys > 1, "s", vbNullString) & "."
   End If
   
   If pk.badLines > 0 Then
-    AddChat vbRed, "Removed ", vbWhite, pk.badLines, vbRed, " bad line" & IIf(pk.badLines > 1, "s", "") & "."
+    AddChat vbRed, "Removed ", vbWhite, pk.badLines, vbRed, " bad line" & IIf(pk.badLines > 1, "s", vbNullString) & "."
   End If
   
   If (pk.badFiles > 0) Then
-    AddChat vbRed, "Skipped ", vbWhite, pk.badFiles, vbRed, " bad file" & IIf(pk.badFiles > 1, "s", "") & "."
+    AddChat vbRed, "Skipped ", vbWhite, pk.badFiles, vbRed, " bad file" & IIf(pk.badFiles > 1, "s", vbNullString) & "."
   End If
 End Sub
 
