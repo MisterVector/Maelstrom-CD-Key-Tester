@@ -6,12 +6,12 @@ Begin VB.Form frmConfig
    ClientHeight    =   7590
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   7230
+   ClientWidth     =   7695
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7590
-   ScaleWidth      =   7230
+   ScaleWidth      =   7695
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
    Begin VB.CheckBox chkSaveWindowPosition 
@@ -47,7 +47,7 @@ Begin VB.Form frmConfig
       EndProperty
       ForeColor       =   &H0000FFFF&
       Height          =   330
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   21
       Top             =   6030
       Width           =   2580
@@ -75,7 +75,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   16
-      Left            =   5400
+      Left            =   5640
       TabIndex        =   17
       Top             =   5640
       Width           =   1455
@@ -103,7 +103,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   15
-      Left            =   4920
+      Left            =   5160
       TabIndex        =   16
       Top             =   5160
       Width           =   375
@@ -112,7 +112,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   14
-      Left            =   6480
+      Left            =   6720
       TabIndex        =   15
       Top             =   4680
       Width           =   375
@@ -121,7 +121,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   13
-      Left            =   4920
+      Left            =   5160
       TabIndex        =   14
       Top             =   4680
       Width           =   375
@@ -130,7 +130,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   11
-      Left            =   5520
+      Left            =   5760
       TabIndex        =   12
       Top             =   4200
       Width           =   1335
@@ -139,7 +139,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   10
-      Left            =   6120
+      Left            =   6360
       TabIndex        =   9
       Top             =   3360
       Width           =   735
@@ -148,7 +148,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   9
-      Left            =   6120
+      Left            =   6360
       TabIndex        =   6
       Top             =   2880
       Width           =   735
@@ -157,7 +157,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   8
-      Left            =   2880
+      Left            =   3120
       TabIndex        =   11
       Top             =   4320
       Width           =   615
@@ -166,7 +166,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   7
-      Left            =   2880
+      Left            =   3120
       TabIndex        =   13
       Top             =   4800
       Width           =   615
@@ -175,7 +175,7 @@ Begin VB.Form frmConfig
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   6
-      Left            =   3000
+      Left            =   3240
       TabIndex        =   8
       Top             =   3360
       Width           =   495
@@ -196,14 +196,14 @@ Begin VB.Form frmConfig
       Left            =   2040
       TabIndex        =   10
       Top             =   3840
-      Width           =   1455
+      Width           =   1695
    End
    Begin VB.TextBox txtConfig 
       BackColor       =   &H00E0E0E0&
       Height          =   285
       IMEMode         =   3  'DISABLE
       Index           =   3
-      Left            =   4920
+      Left            =   5160
       PasswordChar    =   "*"
       TabIndex        =   4
       Top             =   2400
@@ -216,14 +216,14 @@ Begin VB.Form frmConfig
       Left            =   1440
       TabIndex        =   3
       Top             =   2400
-      Width           =   2055
+      Width           =   2295
    End
    Begin VB.TextBox txtConfig 
       BackColor       =   &H00E0E0E0&
       Height          =   285
       IMEMode         =   3  'DISABLE
       Index           =   1
-      Left            =   4920
+      Left            =   5160
       PasswordChar    =   "*"
       TabIndex        =   2
       Top             =   1440
@@ -236,7 +236,7 @@ Begin VB.Form frmConfig
       Left            =   1560
       TabIndex        =   1
       Top             =   1440
-      Width           =   1935
+      Width           =   2175
    End
    Begin VB.ComboBox cmbServer 
       BackColor       =   &H00E0E0E0&
@@ -246,7 +246,7 @@ Begin VB.Form frmConfig
       List            =   "frmConfig.frx":0002
       TabIndex        =   5
       Top             =   2880
-      Width           =   2415
+      Width           =   2655
    End
    Begin VB.CheckBox chkAddDateToTested 
       BackColor       =   &H00404040&
@@ -293,7 +293,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   21
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   45
       Top             =   5640
       Width           =   1695
@@ -313,7 +313,7 @@ Begin VB.Form frmConfig
       EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   375
-      Left            =   1800
+      Left            =   2040
       TabIndex        =   44
       Top             =   6960
       Width           =   2775
@@ -334,7 +334,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   24
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   43
       Top             =   3720
       Width           =   3135
@@ -374,7 +374,7 @@ Begin VB.Form frmConfig
       EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   495
-      Left            =   4920
+      Left            =   5280
       TabIndex        =   41
       Top             =   6840
       Width           =   1815
@@ -394,7 +394,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   18
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   40
       Top             =   4680
       Width           =   1215
@@ -414,7 +414,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   17
-      Left            =   5400
+      Left            =   5640
       TabIndex        =   39
       Top             =   4680
       Width           =   1095
@@ -434,7 +434,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   16
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   38
       Top             =   5160
       Width           =   1215
@@ -454,7 +454,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   15
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   37
       Top             =   4200
       Width           =   1815
@@ -474,7 +474,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   14
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   36
       Top             =   3360
       Width           =   1815
@@ -494,7 +494,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   13
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   35
       Top             =   2880
       Width           =   1575
@@ -554,7 +554,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   10
-      Left            =   1800
+      Left            =   2040
       TabIndex        =   32
       Top             =   3360
       Width           =   1095
@@ -638,7 +638,7 @@ Begin VB.Form frmConfig
       Left            =   240
       TabIndex        =   28
       Top             =   1920
-      Width           =   6615
+      Width           =   6855
    End
    Begin VB.Label lblConfig 
       Alignment       =   2  'Center
@@ -676,7 +676,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   1
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   26
       Top             =   2400
       Width           =   1215
@@ -696,7 +696,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   5
-      Left            =   3720
+      Left            =   3960
       TabIndex        =   25
       Top             =   1440
       Width           =   1095

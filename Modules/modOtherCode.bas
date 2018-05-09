@@ -669,7 +669,9 @@ End Function
 Public Sub initializeGatewayList()
   Dim IPs() As String
 
-  gateways = Array("uswest.battle.net", "useast.battle.net", "europe.battle.net", "asia.battle.net")
+  gateways = Array("uswest.battle.net", "useast.battle.net", "europe.battle.net", "asia.battle.net", _
+                   "connect-usw.classic.blizzard.com", "connect-use.classic.blizzard.com", _
+                   "connect-eur.classic.blizzard.com", "connect-kor.classic.blizzard.com")
 
   For Each gateway In gateways
     IPs = Split(Resolve(gateway))
