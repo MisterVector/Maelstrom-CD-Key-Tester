@@ -39,7 +39,7 @@ Public Sub onProxyFail(Index As Long)
     Dim numMarks
     numMarks = .getDeathMarks()
     
-    If numMarks < config.socketsPerProxy Then
+    If (numMarks < config.socketsPerProxy) Then
       .incrementDeathMarks
     Else
       .resetDeathMarks
@@ -57,7 +57,7 @@ Public Function countProxies() As Long
   Dim count As Long: count = 0
   
   For i = 0 To UBound(arrProxies)
-    If arrProxies(i).getIP() <> vbNullString Then
+    If (arrProxies(i).getIP() <> vbNullString) Then
       count = count + 1
     End If
   Next i
@@ -69,18 +69,18 @@ Public Function getProxy() As clsProxyType
   Dim found As Boolean, proxy As New clsProxyType
   
   For i = proxyIndex To UBound(arrProxies)
-    If arrProxies(i).getIP() <> vbNullString And _
-        arrProxies(i).getCurrentlyUsing() < connectionsPerProxy Then
+    If (arrProxies(i).getIP() <> vbNullString And _
+        arrProxies(i).getCurrentlyUsing() < connectionsPerProxy) Then
       proxyIndex = i
       found = True
       Exit For
     End If
   Next i
   
-  If Not found And proxyIndex > 0 Then
+  If (Not found And proxyIndex > 0) Then
     For i = 0 To proxyIndex - 1
-      If arrProxies(i).getIP() <> vbNullString And _
-          arrProxies(i).getCurrentlyUsing() < connectionsPerProxy Then
+      If (arrProxies(i).getIP() <> vbNullString And _
+          arrProxies(i).getCurrentlyUsing() < connectionsPerProxy) Then
         proxyIndex = i
         Exit For
       End If
@@ -95,10 +95,10 @@ Public Function getProxy() As clsProxyType
     .incrementCurrentlyUsing
   End With
   
-  If checkIfAlive() Then
+  If (checkIfAlive()) Then
     proxyIndex = proxyIndex + 1
     
-    If proxyIndex > UBound(arrProxies) Then
+    If (proxyIndex > UBound(arrProxies)) Then
       proxyIndex = 0
     End If
   Else
@@ -116,8 +116,8 @@ Public Function checkIfAlive() As Boolean
   Dim liveCount As Long
 
   For i = 0 To UBound(arrProxies)
-    If arrProxies(i).getIP() <> vbNullString And _
-        arrProxies(i).getCurrentlyUsing < connectionsPerProxy Then
+    If (arrProxies(i).getIP() <> vbNullString And _
+        arrProxies(i).getCurrentlyUsing < connectionsPerProxy) Then
       liveCount = liveCount + 1
     End If
   Next i
@@ -138,22 +138,22 @@ Public Sub saveGoodProxies()
   Dim IP As String, port As Long, version As String
   
   For i = 0 To UBound(arrProxies)
-    If arrProxies(i).getIP() <> vbNullString Then
+    If (arrProxies(i).getIP() <> vbNullString) Then
       IP = arrProxies(i).getIP()
       port = arrProxies(i).getPort()
       version = arrProxies(i).getVersion()
     
-      If arrProxies(i).getVersion() = "SOCKS4" Then
+      If (arrProxies(i).getVersion() = "SOCKS4") Then
         dicSocks4.Add IP, port
       End If
       
-      If arrProxies(i).getVersion() = "HTTP" Then
+      If (arrProxies(i).getVersion() = "HTTP") Then
         dicHttp.Add IP, port
       End If
     End If
   Next i
   
-  If dicSocks4.count > 0 Then
+  If (dicSocks4.count > 0) Then
     Open App.path & "\SOCKS4.txt" For Output As #1
     
     For Each key In dicSocks4.Keys
@@ -165,7 +165,7 @@ Public Sub saveGoodProxies()
     Close #1
   End If
   
-  If dicHttp.count > 0 Then
+  If (dicHttp.count > 0) Then
     Open App.path & "\HTTP.txt" For Output As #1
     
     For Each key In dicHttp.Keys

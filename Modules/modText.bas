@@ -18,7 +18,7 @@ Public Sub AddChat(ParamArray saElements() As Variant)
   End With
   
   With frmMain.rtbChat
-    If UBound(Split(.text, vbNewLine)) + 1 >= 100 Then
+    If (UBound(Split(.text, vbNewLine)) + 1 >= 100) Then
       .text = vbNullString
     End If
   End With

@@ -6,7 +6,7 @@ Public Const HTCAPTION = 2
 Public Const WM_NCLBUTTONDOWN = &HA1
 
 Public Sub moveEntireForm(fm As Form, Button As Integer)
-  If Button = 1 Then
+  If (Button = 1) Then
     ReleaseCapture
     SendMessage fm.hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
   End If

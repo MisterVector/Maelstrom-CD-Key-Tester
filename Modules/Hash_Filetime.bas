@@ -38,27 +38,27 @@ Dim SysTime As SYSTEMTIME
 Dim SetHour As String
 Dim AP      As String
 
-  If localTime Then
+  If (localTime) Then
     FileTimeToLocalFileTime FT, LocalFT
     FileTimeToSystemTime LocalFT, SysTime
   Else
     FileTimeToSystemTime FT, SysTime
   End If
-  If SysTime.wHour = 0 Then
+  If (SysTime.wHour = 0) Then
     AP = "AM"
     SetHour = "12"
-  ElseIf SysTime.wHour < 12 Then
+  ElseIf (SysTime.wHour < 12) Then
     AP = "AM"
-    SetHour = Trim$(Str$(SysTime.wHour))
-  ElseIf SysTime.wHour = 12 Then
+    SetHour = Trim$(str$(SysTime.wHour))
+  ElseIf (SysTime.wHour = 12) Then
     AP = "PM"
     SetHour = "12"
   Else
     AP = "PM"
-    SetHour = Trim$(Str$(SysTime.wHour))
+    SetHour = Trim$(str$(SysTime.wHour))
   End If
   SysTime.wDayOfWeek = SysTime.wDayOfWeek + 1
-  If Shorten Then
+  If (Shorten) Then
     GetFTTime = Format$(SysTime.wMonth, "00") & "/" & Format$(SysTime.wDay, "00") & "/" & Right$(SysTime.wYear, 2) & " " & SetHour & ":" & Format$(SysTime.wMinute, "00") & ":" & Format$(SysTime.wSecond, "00") & " " & AP
   Else
     GetFTTime = ConvertShortToLong(WeekdayName(SysTime.wDayOfWeek, True)) & ", " & MonthName(SysTime.wMonth, True) & " " & SysTime.wDay & ", " & SysTime.wYear & " at " & SetHour & ":" & Format$(SysTime.wMinute, "00") & ":" & Format$(SysTime.wSecond, "00") & " " & AP

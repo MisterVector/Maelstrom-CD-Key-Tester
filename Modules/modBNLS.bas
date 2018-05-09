@@ -15,7 +15,7 @@ Public Sub RecvBNLS0x10()
   With bnlsPacket
     productId = .GetDWORD
     
-    If productId <> &H0 Then
+    If (productId <> &H0) Then
       Dim verByte As Long, productName As String, configName As String, updated As Boolean
       
       verByte = .GetDWORD
@@ -25,7 +25,7 @@ Public Sub RecvBNLS0x10()
           updated = (verByte <> config.W2BNVerByte)
           productName = "Warcraft II"
           
-          If updated Then
+          If (updated) Then
             config.W2BNVerByte = verByte
             configName = "W2BNVerByte"
           End If
@@ -33,7 +33,7 @@ Public Sub RecvBNLS0x10()
           updated = (verByte <> config.D2DVVerByte)
           productName = "Diablo II"
           
-          If updated Then
+          If (updated) Then
             config.D2DVVerByte = verByte
             configName = "D2DVVerByte"
           End If
@@ -41,13 +41,13 @@ Public Sub RecvBNLS0x10()
           updated = (verByte <> config.WAR3VerByte)
           productName = "Warcraft III"
           
-          If updated Then
+          If (updated) Then
             config.WAR3VerByte = verByte
             configName = "WAR3VerByte"
           End If
       End Select
       
-      If updated Then
+      If (updated) Then
         Dim verByteString As String
       
         verByteString = "0x" & IIf(Len(Hex(verByte)) = 1, "0", vbNullString) & Hex(verByte)

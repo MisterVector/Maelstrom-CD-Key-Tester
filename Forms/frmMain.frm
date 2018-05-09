@@ -2068,8 +2068,8 @@ Private Sub lblReloadProxies_Click()
   
   AddChat vbWhite, proxies.countProxies(), vbYellow, " proxies have been loaded."
   
-  If pl.loadedCount > 0 Then
-    If pl.maxProxiesReached Then
+  If (pl.loadedCount > 0) Then
+    If (pl.maxProxiesReached) Then
       AddChat vbRed, "Max limit of ", vbWhite, pl.loadedCount, vbRed, " proxies reached!"
     End If
   End If
@@ -2078,15 +2078,15 @@ Private Sub lblReloadProxies_Click()
 End Sub
 
 Private Sub lblStart_Click()
-  If isTesting Then
+  If (isTesting) Then
     stopTesting vbYellow, "Testing stopped. click ""start"" to test again."
   Else
-    If Not hasConfig Then
+    If (Not hasConfig) Then
       MsgBox "Cannot start without a valid config.", vbOKOnly & vbInformation, PROGRAM_NAME
       Exit Sub
     End If
   
-    If testedNonExpKeys = totalNonExpKeys Then
+    If (testedNonExpKeys = totalNonExpKeys) Then
       Dim msg As String
       
       msg = IIf(totalNonExpKeys = 0, "There are no keys available to test", "All non-expansion keys have been tested")
@@ -2095,12 +2095,12 @@ Private Sub lblStart_Click()
       Exit Sub
     End If
   
-    If socketsAvailable = 0 Then
+    If (socketsAvailable = 0) Then
       MsgBox "There are no sockets available for testing.", vbOKOnly & vbInformation, PROGRAM_NAME
       Exit Sub
     End If
   
-    If config.sockets < config.socketsPerProxy Then
+    If (config.sockets < config.socketsPerProxy) Then
       config.socketsPerProxy = config.sockets
     End If
     
@@ -2115,20 +2115,20 @@ Private Sub lblStart_Click()
       
       canUseCDKey = (BNETData(i).cdKey <> vbNullString)
       
-      If Not canUseCDKey Then
+      If (Not canUseCDKey) Then
         needsCDKey = True
         canUseCDKey = canTestRegularKeys()
       End If
       
       canUseProxy = (BNETData(i).proxyIP <> vbNullString)
       
-      If Not canUseProxy Then
+      If (Not canUseProxy) Then
         needsProxy = True
         canUseProxy = proxies.canAcquireProxy()
       End If
       
-      If canUseCDKey And canUseProxy Then
-        If needsCDKey Then
+      If (canUseCDKey And canUseProxy) Then
+        If (needsCDKey) Then
           Dim fk As FoundKey
         
           fk = getCDKeyFromList()
@@ -2141,7 +2141,7 @@ Private Sub lblStart_Click()
           End With
         End If
 
-        If needsProxy Then
+        If (needsProxy) Then
           Dim pType As clsProxyType
           Set pType = proxies.getProxy()
           
@@ -2175,7 +2175,7 @@ Private Sub lblStart_Click()
     isTesting = True
     lblStart.Caption = "Stop"
     
-    If socketsUnavailable > 0 Then
+    If (socketsUnavailable > 0) Then
       AddChat vbRed, socketsUnavailable & " sockets were unavailable for use."
     End If
     
@@ -2246,17 +2246,17 @@ Private Sub sckBNCS_DataArrival(Index As Integer, ByVal bytesTotal As Long)
   Dim data As String, pID As Byte, pLen As Long
 
   sckBNCS(Index).GetData data
-  If IsProxyPacket(Index, data) Then Exit Sub
+  If (IsProxyPacket(Index, data)) Then Exit Sub
   
-  If Asc(left(data, 1)) <> &HFF Then
+  If (Asc(left(data, 1)) <> &HFF) Then
     assumeSocketDead Index
     Exit Sub
   End If
   
-  Do While Len(data) > 3
+  Do While (Len(data) > 3)
     pID = Asc(Mid(data, 2, 1))
     CopyMemory pLen, ByVal Mid$(data, 3, 2), 2
-    If pLen < 4 Then Exit Sub
+    If (pLen < 4) Then Exit Sub
   
     packet(Index).SetData Mid(data, 5, pLen)
 
@@ -2308,7 +2308,7 @@ Public Sub assumeSocketDead(Index As Integer)
   
   AddChat vbRed, "Socket #" & Index & ": Connection to " & BNETData(Index).proxyIP & ":" & BNETData(Index).proxyPort & " failed!"
   
-  If config.skipFailedProxies Then
+  If (config.skipFailedProxies) Then
     proxies.onProxyFail BNETData(Index).proxyIndex
   End If
   
@@ -2318,7 +2318,7 @@ Public Sub assumeSocketDead(Index As Integer)
   BNETData(Index).proxyIndex = 0
   BNETData(Index).numTested = 0
 
-  If proxies.canAcquireProxy() Then
+  If (proxies.canAcquireProxy()) Then
     Dim IP As String, port As Long, version As String, proxyIndex As Long, pType As clsProxyType
     Set pType = proxies.getProxy()
     
@@ -2342,7 +2342,7 @@ Public Sub assumeSocketDead(Index As Integer)
     AddChat vbRed, "Socket #" & Index & ": The proxy list has run out."
     markSocketDead Index
   
-    If socketsAvailable = 0 Then
+    If (socketsAvailable = 0) Then
       AddChat vbYellow, "All proxies have been used up."
       lblStart_Click
     End If
@@ -2354,13 +2354,13 @@ Private Sub tmrReconnect_Timer(Index As Integer)
   
   tmrReconnect(Index).Enabled = False
   
-  If config.testCountPerProxy > 0 And BNETData(Index).numTested = config.testCountPerProxy Then
+  If (config.testCountPerProxy > 0 And BNETData(Index).numTested = config.testCountPerProxy) Then
     AddChat vbYellow, "Socket #" & Index & ": Max tests for this proxy reached."
     
     BNETData(Index).numTested = 0
     proxies.decrementProxyUse BNETData(Index).proxyIndex
     
-    If proxies.canAcquireProxy() Then
+    If (proxies.canAcquireProxy()) Then
       Dim IP As String, port As Long, version As String, proxyIndex As Long
       Dim pType As clsProxyType
       Set pType = proxies.getProxy()
@@ -2384,7 +2384,7 @@ Private Sub tmrReconnect_Timer(Index As Integer)
       AddChat vbRed, "Socket #" & Index & ": The proxy list has run out."
       markSocketDead Index
   
-      If socketsAvailable = 0 Then
+      If (socketsAvailable = 0) Then
         AddChat vbYellow, "All connections have been attempted."
         lblStart_Click
         Exit Sub
@@ -2397,8 +2397,8 @@ Private Sub tmrReconnect_Timer(Index As Integer)
     attemptConnection = True
   End If
 
-  If attemptConnection Then
-    If reportConnection Then
+  If (attemptConnection) Then
+    If (reportConnection) Then
       AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to " & IP & ":" & port & "."
     End If
     
@@ -2408,7 +2408,7 @@ Private Sub tmrReconnect_Timer(Index As Integer)
 End Sub
 
 Public Sub checkForQuitShortcut(key As Integer, shift As Integer)
-  If key = 115 And shift = 4 Then EndAll
+  If (key = 115 And shift = 4) Then EndAll
 End Sub
 
 Private Sub tmrWaitLoad_Timer()
@@ -2416,7 +2416,7 @@ Private Sub tmrWaitLoad_Timer()
   
   initializeGatewayList
   
-  If dicGatewayIPs.count = 0 Then
+  If (dicGatewayIPs.count) = 0 Then
     MsgBox "Unable to contact the Battle.Net servers. Maelstrom cannot continue.", vbOKOnly & vbCritical, PROGRAM_NAME
     EndAll
   
@@ -2426,7 +2426,7 @@ Private Sub tmrWaitLoad_Timer()
   bnlsPacket.setDetails sckBNLS, PacketType.BNLS
   setupHashFiles
 
-  If Dir$(App.path & "\Config.ini") = vbNullString Then
+  If (Dir$(App.path & "\Config.ini") = vbNullString) Then
     lblStart.Enabled = True
     makeDefaultValues
     
@@ -2438,7 +2438,7 @@ Private Sub tmrWaitLoad_Timer()
     Dim dicErrors As Dictionary
     Set dicErrors = loadConfig()
 
-    If dicErrors.count > 0 Then
+    If (dicErrors.count > 0) Then
       lblStart.Enabled = False
     
       MsgBox "There were issues while loading the configuration. The config" & vbNewLine _
@@ -2449,11 +2449,11 @@ Private Sub tmrWaitLoad_Timer()
     Else
       hasConfig = True
       
-      If config.cdKeyProfile <> vbNullString Then
+      If (config.cdKeyProfile <> vbNullString) Then
         Dim fullProfileName As String
         fullProfileName = config.cdKeyProfile
       
-        If config.addRealmToProfile Then
+        If (config.addRealmToProfile) Then
           fullProfileName = fullProfileName & " @ " & config.ServerRealm
         End If
       
@@ -2471,28 +2471,28 @@ Private Sub tmrWaitLoad_Timer()
   AddChat vbWhite, config.sockets, vbYellow, " sockets have been loaded. (", vbWhite, config.socketsPerProxy, vbYellow, " per proxy)"
   AddChat vbWhite, totalNonExpKeys, vbYellow, " CD-Keys have been loaded. (", vbWhite, totalExpKeys, vbYellow, " expansion keys)"
 
-  If pl.loadedCount > 0 Then
-    If pl.maxProxiesReached Then
+  If (pl.loadedCount > 0) Then
+    If (pl.maxProxiesReached) Then
       AddChat vbRed, "Max limit of ", vbWhite, pl.loadedCount, vbRed, " proxies reached!"
     End If
   End If
 
-  If config.sockets > 0 Then
+  If (config.sockets > 0) Then
     setupConnectionData config.sockets
   End If
 
   calculateAvailableSockets
   
-  If config.saveWindowPosition Then
+  If (config.saveWindowPosition) Then
     tempValue = ReadINI("Window", "Top", "Config.ini")
     
-    If IsNumericB(tempValue) Then
+    If (IsNumericB(tempValue)) Then
       Me.top = tempValue
     End If
     
     tempValue = ReadINI("Window", "Left", "Config.ini")
     
-    If IsNumericB(tempValue) Then
+    If (IsNumericB(tempValue)) Then
       Me.left = tempValue
     End If
   End If

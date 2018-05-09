@@ -8,8 +8,8 @@ Public Function returnProperTimeString(ByVal Seconds As Long)
   m = ((Seconds \ 60) Mod 60)
   h = ((Seconds \ 24 \ 60) Mod 60)
   
-  If Len(s) = 1 Then s = "0" & s
-  If Len(m) = 1 Then m = "0" & m
+  If (Len(s) = 1) Then s = "0" & s
+  If (Len(m) = 1) Then m = "0" & m
   
   returnProperTimeString = h & ":" & m & ":" & s
 End Function

@@ -101,7 +101,7 @@ Public Sub loadCDKeys()
     frmMain.lblControl(i).Caption = "0.0%"
   Next i
   
-  If Dir$(CDKEYS_FOLDER, 16) = vbNullString Then
+  If (Dir$(CDKEYS_FOLDER, 16) = vbNullString) Then
     MkDir CDKEYS_FOLDER
   Else
     Dim fso As New FileSystemObject
@@ -116,13 +116,13 @@ Public Sub loadCDKeys()
     
     keyFile = App.path & "\" & CDKEYS_FOLDER & "\" & arrDefaultKeyFiles(i)
   
-    If Dir$(keyFile) = vbNullString Then
+    If (Dir$(keyFile) = vbNullString) Then
       Open keyFile For Output As #1
       Close #1
     End If
   Next i
   
-  If pk.dicKeys.count > 0 Then
+  If (pk.dicKeys.count > 0) Then
     Dim w2bnIdx As Long, d2dvIdx As Long, d2xpIdx As Long
     Dim war3Idx As Long, w3xpIdx As Long
     
@@ -132,7 +132,7 @@ Public Sub loadCDKeys()
     war3Idx = 0
     w3xpIdx = 0
     
-    If pk.w2bnCount > 0 Then
+    If (pk.w2bnCount > 0) Then
       ReDim CDKeys.W2BN(pk.w2bnCount - 1)
       CDKeys.W2BNIndex = 0
       CDKeys.W2BNTotal = pk.w2bnCount
@@ -140,7 +140,7 @@ Public Sub loadCDKeys()
       frmMain.lblControl(W2BNTotal).Caption = pk.w2bnCount
     End If
     
-    If pk.d2dvCount > 0 Then
+    If (pk.d2dvCount > 0) Then
       ReDim CDKeys.D2DV(pk.d2dvCount - 1)
       CDKeys.D2DVIndex = 0
       CDKeys.D2DVTotal = pk.d2dvCount
@@ -148,7 +148,7 @@ Public Sub loadCDKeys()
       frmMain.lblControl(D2DVTotal).Caption = pk.d2dvCount
     End If
     
-    If pk.d2xpCount > 0 Then
+    If (pk.d2xpCount > 0) Then
       ReDim CDKeys.D2XP(pk.d2xpCount - 1)
       CDKeys.D2XPIndex = 0
       CDKeys.D2XPTotal = pk.d2xpCount
@@ -156,7 +156,7 @@ Public Sub loadCDKeys()
       frmMain.lblControl(D2XPTotal).Caption = pk.d2xpCount
     End If
     
-    If pk.war3Count > 0 Then
+    If (pk.war3Count > 0) Then
       ReDim CDKeys.WAR3(pk.war3Count - 1)
       CDKeys.WAR3Index = 0
       CDKeys.WAR3Total = pk.war3Count
@@ -164,7 +164,7 @@ Public Sub loadCDKeys()
       frmMain.lblControl(WAR3Total).Caption = pk.war3Count
     End If
     
-    If pk.w3xpCount > 0 Then
+    If (pk.w3xpCount > 0) Then
       ReDim CDKeys.W3XP(pk.w3xpCount - 1)
       CDKeys.W3XPIndex = 0
       CDKeys.W3XPTotal = pk.w3xpCount
@@ -222,7 +222,7 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
   Dim f As File
   
   For Each f In keyFolder.Files
-    If getFileSize(f.path) > 0 Then
+    If (getFileSize(f.path) > 0) Then
       Dim arrFileLines() As String
     
       Open f.path For Input As #1
@@ -239,7 +239,7 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
       End If
     End If
     
-    If Not isStandardKeyFile(f.name) Then
+    If (Not isStandardKeyFile(f.name)) Then
       f.Delete True
     End If
   Next
@@ -253,12 +253,12 @@ Public Sub processKeyLine(ByVal keyLine As String, pk As ParsedKeys)
   lenKey = Len(cleanKey)
   validLength = (lenKey = 16 Or lenKey = 26)
   
-  If validLength Then
-    If isSanitizedKey(cleanKey) Then
+  If (validLength) Then
+    If (isSanitizedKey(cleanKey)) Then
       dk = Decode(cleanKey)
     
-      If dk.successful Then
-        If Not pk.dicKeys.Exists(cleanKey) Then
+      If (dk.successful) Then
+        If (Not pk.dicKeys.Exists(cleanKey)) Then
           pk.dicKeys.Add cleanKey, dk.product
           
           Select Case dk.product
@@ -283,7 +283,7 @@ Public Sub processKeyLine(ByVal keyLine As String, pk As ParsedKeys)
       pk.unreadableKeys = pk.unreadableKeys + 1
     End If
   Else
-    If lenKey > 0 Then
+    If (lenKey > 0) Then
       pk.badLines = pk.badLines + 1
     End If
   End If
@@ -294,12 +294,12 @@ Public Function cleanKeyLine(keyLine As String) As String
 
   parsedKeyLine = UCase(Trim(keyLine))
   
-  If parsedKeyLine <> vbNullString Then
-    If InStr(parsedKeyLine, " ---> ") Then
+  If (parsedKeyLine <> vbNullString) Then
+    If (InStr(parsedKeyLine, " ---> ")) Then
       parsedKeyLine = left(parsedKeyLine, InStr(parsedKeyLine, " ---> ") - 1)
     End If
     
-    If InStr(parsedKeyLine, " ") Then
+    If (InStr(parsedKeyLine, " ")) Then
       Dim splitString() As String, longestLength As Integer, longestString As String
       Dim found As Boolean
       
@@ -314,16 +314,16 @@ Public Function cleanKeyLine(keyLine As String) As String
         line = splitString(i)
         line = Replace(line, "-", vbNullString)
         
-        If line <> vbNullString Then
+        If (line <> vbNullString) Then
           lenLine = Len(line)
           validLength = (lenLine = 16 Or lenLine = 26)
           
-          If validLength Then
+          If (validLength) Then
             parsedKeyLine = line
             found = True
             Exit For
           Else
-            If lenLine > longestLength Then
+            If (lenLine > longestLength) Then
               longestLength = lenLine
               longestString = line
             End If
@@ -331,14 +331,14 @@ Public Function cleanKeyLine(keyLine As String) As String
         End If
       Next i
       
-      If Not found Then
+      If (Not found) Then
         parsedKeyLine = longestString
       End If
     Else
       parsedKeyLine = Replace(parsedKeyLine, "-", vbNullString)
     End If
     
-    If Len(parsedKeyLine) > 26 Then
+    If (Len(parsedKeyLine) > 26) Then
       parsedKeyLine = left(parsedKeyLine, 26)
     End If
   End If
@@ -351,7 +351,7 @@ Public Function isSanitizedKey(ByVal key As String) As Boolean
     Dim ch As String
     ch = UCase(Mid(key, i, 1))
     
-    If (Asc(ch) < 65 Or Asc(ch) > 90) And Not IsNumeric(ch) Then
+    If ((Asc(ch) < 65 Or Asc(ch) > 90) And Not IsNumeric(ch)) Then
       isSanitizedKey = False
       Exit Function
     End If
@@ -366,7 +366,7 @@ Public Function isStandardKeyFile(keyFile As String) As Boolean
   arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt", "WAR3.txt", "W3XP.txt")
 
   For i = 0 To UBound(arrDefaultKeyFiles)
-    If LCase(arrDefaultKeyFiles(i)) = LCase(keyFile) Then
+    If (LCase(arrDefaultKeyFiles(i)) = LCase(keyFile)) Then
       isStandardKeyFile = True
       Exit Function
     End If
@@ -376,19 +376,19 @@ Public Function isStandardKeyFile(keyFile As String) As Boolean
 End Function
 
 Public Sub reportProcessedKeys(pk As ParsedKeys)
-  If pk.duplicateKeys > 0 Then
+  If (pk.duplicateKeys > 0) Then
     AddChat vbRed, "Removed ", vbWhite, pk.duplicateKeys, vbRed, " duplicate key" & IIf(pk.duplicateKeys > 1, "s", vbNullString) & "."
   End If
   
-  If pk.invalidKeys > 0 Then
+  If (pk.invalidKeys > 0) Then
     AddChat vbRed, "Removed ", vbWhite, pk.invalidKeys, vbRed, " invalid key" & IIf(pk.invalidKeys > 1, "s", vbNullString) & "."
   End If
   
-  If pk.unreadableKeys > 0 Then
+  If (pk.unreadableKeys > 0) Then
     AddChat vbRed, "Removed ", vbWhite, pk.unreadableKeys, vbRed, " unreadable key" & IIf(pk.unreadableKeys > 1, "s", vbNullString) & "."
   End If
   
-  If pk.badLines > 0 Then
+  If (pk.badLines > 0) Then
     AddChat vbRed, "Removed ", vbWhite, pk.badLines, vbRed, " bad line" & IIf(pk.badLines > 1, "s", vbNullString) & "."
   End If
   
@@ -398,28 +398,28 @@ Public Sub reportProcessedKeys(pk As ParsedKeys)
 End Sub
 
 Public Function canTestRegularKeys() As Boolean
-  If CDKeys.W2BNIndex > -1 Then canTestRegularKeys = True
-  If CDKeys.D2DVIndex > -1 Then canTestRegularKeys = True
-  If CDKeys.WAR3Index > -1 Then canTestRegularKeys = True
+  If (CDKeys.W2BNIndex > -1) Then canTestRegularKeys = True
+  If (CDKeys.D2DVIndex > -1) Then canTestRegularKeys = True
+  If (CDKeys.WAR3Index > -1) Then canTestRegularKeys = True
 End Function
 
 Public Function canTestExpansion(ByVal product As String) As Boolean
   Select Case product
     Case "WAR3", "W3XP":
-      If CDKeys.W3XPIndex > -1 Then canTestExpansion = True
+      If (CDKeys.W3XPIndex > -1) Then canTestExpansion = True
     Case "D2DV", "D2XP":
-      If CDKeys.D2XPIndex > -1 Then canTestExpansion = True
+      If (CDKeys.D2XPIndex > -1) Then canTestExpansion = True
   End Select
 End Function
 
 Public Function getCDKeyFromList() As FoundKey
   Dim found As Boolean, key As String, fk As FoundKey, i As Long
   
-  If CDKeys.W2BNIndex > -1 Then
+  If (CDKeys.W2BNIndex > -1) Then
     For i = CDKeys.W2BNIndex To CDKeys.W2BNTotal - 1
       key = CDKeys.W2BN(i)
       
-      If key <> vbNullString Then
+      If (key <> vbNullString) Then
         fk.cdKey = key
         fk.product = "W2BN"
         fk.keyIndex = i
@@ -429,16 +429,16 @@ Public Function getCDKeyFromList() As FoundKey
       End If
     Next i
   
-    If Not found Or i = CDKeys.W2BNTotal - 1 Then
+    If (Not found Or i = CDKeys.W2BNTotal - 1) Then
       CDKeys.W2BNIndex = -1
     Else
       CDKeys.W2BNIndex = i + 1
     End If
-  ElseIf CDKeys.D2DVIndex > -1 Then
+  ElseIf (CDKeys.D2DVIndex > -1) Then
     For i = CDKeys.D2DVIndex To CDKeys.D2DVTotal - 1
       key = CDKeys.D2DV(i)
       
-      If key <> vbNullString Then
+      If (key <> vbNullString) Then
         fk.cdKey = key
         fk.product = "D2DV"
         fk.keyIndex = i
@@ -448,16 +448,16 @@ Public Function getCDKeyFromList() As FoundKey
       End If
     Next i
   
-    If Not found Or i = CDKeys.D2DVTotal - 1 Then
+    If (Not found Or i = CDKeys.D2DVTotal - 1) Then
       CDKeys.D2DVIndex = -1
     Else
       CDKeys.D2DVIndex = i + 1
     End If
-  ElseIf CDKeys.WAR3Index > -1 Then
+  ElseIf (CDKeys.WAR3Index > -1) Then
     For i = CDKeys.WAR3Index To CDKeys.WAR3Total - 1
       key = CDKeys.WAR3(i)
       
-      If key <> vbNullString Then
+      If (key <> vbNullString) Then
         fk.cdKey = key
         fk.product = "WAR3"
         fk.keyIndex = i
@@ -467,7 +467,7 @@ Public Function getCDKeyFromList() As FoundKey
       End If
     Next i
   
-    If Not found Or i = CDKeys.WAR3Total - 1 Then
+    If (Not found Or i = CDKeys.WAR3Total - 1) Then
       CDKeys.WAR3Index = -1
     Else
       CDKeys.WAR3Index = i + 1
@@ -482,11 +482,11 @@ Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
 
   Select Case product
     Case "D2DV", "D2XP"
-      If CDKeys.D2XPIndex > -1 Then
+      If (CDKeys.D2XPIndex > -1) Then
         For i = CDKeys.D2XPIndex To CDKeys.D2XPTotal - 1
           key = CDKeys.D2XP(i)
           
-          If key <> vbNullString Then
+          If (key <> vbNullString) Then
             With fk
               .cdKey = key
               .product = "D2XP"
@@ -498,18 +498,18 @@ Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
           End If
         Next i
       
-        If Not found Or i = CDKeys.D2XPTotal - 1 Then
+        If (Not found Or i = CDKeys.D2XPTotal - 1) Then
           CDKeys.D2XPIndex = -1
         Else
           CDKeys.D2XPIndex = i + 1
         End If
       End If
     Case "WAR3", "W3XP"
-      If CDKeys.W3XPIndex > -1 Then
+      If (CDKeys.W3XPIndex > -1) Then
         For i = CDKeys.W3XPIndex To CDKeys.W3XPTotal - 1
           key = CDKeys.W3XP(i)
           
-          If key <> vbNullString Then
+          If (key <> vbNullString) Then
             With fk
               .cdKey = key
               .product = "W3XP"
@@ -521,7 +521,7 @@ Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
           End If
         Next i
       
-        If Not found Or i = CDKeys.W3XPTotal - 1 Then
+        If (Not found Or i = CDKeys.W3XPTotal - 1) Then
           CDKeys.W3XPIndex = -1
         Else
           CDKeys.W3XPIndex = i + 1
@@ -560,45 +560,45 @@ Public Sub exportKeyToFile(ByVal key As String, ByVal product As String, State A
 
   cdKeyFile = App.path & "\"
 
-  If config.cdKeyProfile <> vbNullString Then
+  If (config.cdKeyProfile <> vbNullString) Then
     cdKeyFile = cdKeyFile & "CD-Key Profiles\"
     
-    If Not DirExists(cdKeyFile) Then
+    If (Not DirExists(cdKeyFile)) Then
       MkDir (cdKeyFile)
     End If
     
     cdKeyFile = cdKeyFile & config.cdKeyProfile
     
-    If config.addRealmToProfile Then
+    If (config.addRealmToProfile) Then
       cdKeyFile = cdKeyFile & " @ " & config.ServerRealm
     End If
     
     cdKeyFile = cdKeyFile & "\"
     
-    If Not DirExists(cdKeyFile) Then
+    If (Not DirExists(cdKeyFile)) Then
       MkDir (cdKeyFile)
     End If
   Else
     cdKeyFile = cdKeyFile & CDKEYS_TESTED_DEFAULT_FOLDER & "\"
   
-    If Not DirExists(cdKeyFile) Then
+    If (Not DirExists(cdKeyFile)) Then
       MkDir (cdKeyFile)
     End If
   End If
 
-  If config.addDateToTested Then
+  If (config.addDateToTested) Then
     Dim dateFolder As String
   
     cdKeyFile = cdKeyFile & Format(Now, " mmmm d, yyyy") & "\"
     
-    If Not DirExists(cdKeyFile) Then
+    If (Not DirExists(cdKeyFile)) Then
       MkDir (cdKeyFile)
     End If
   End If
   
   cdKeyFile = cdKeyFile & dirName & "\"
   
-  If Not DirExists(cdKeyFile) Then
+  If (Not DirExists(cdKeyFile)) Then
     MkDir (cdKeyFile)
   End If
   
@@ -729,37 +729,37 @@ Public Sub sendKeysBack()
     
     Select Case product
       Case "W2BN"
-        If CDKeys.W2BNTotal > 0 Then
+        If (CDKeys.W2BNTotal > 0) Then
           arrCDKeys = CDKeys.W2BN
           hasKeys = True
         End If
       Case "D2DV"
-        If CDKeys.D2DVTotal > 0 Then
+        If (CDKeys.D2DVTotal > 0) Then
           arrCDKeys = CDKeys.D2DV
           hasKeys = True
         End If
       Case "D2XP"
-        If CDKeys.D2XPTotal > 0 Then
+        If (CDKeys.D2XPTotal > 0) Then
           arrCDKeys = CDKeys.D2XP
           hasKeys = True
         End If
       Case "WAR3"
-        If CDKeys.WAR3Total > 0 Then
+        If (CDKeys.WAR3Total > 0) Then
           arrCDKeys = CDKeys.WAR3
           hasKeys = True
         End If
       Case "W3XP"
-        If CDKeys.W3XPTotal > 0 Then
+        If (CDKeys.W3XPTotal > 0) Then
           arrCDKeys = CDKeys.W3XP
           hasKeys = True
         End If
     End Select
     
-    If hasKeys Then
+    If (hasKeys) Then
       Open App.path & "\" & CDKEYS_FOLDER & "\" & product & ".txt" For Output As #1
       
       For i = 0 To UBound(arrCDKeys)
-        If arrCDKeys(i) <> vbNullString Then
+        If (arrCDKeys(i) <> vbNullString) Then
           Print #1, arrCDKeys(i)
         End If
       Next i
@@ -794,8 +794,8 @@ End Sub
 
 Public Function assignKeys(Index As Integer) As Boolean
   With BNETData(Index)
-    If .cdKey = vbNullString Then
-      If canTestRegularKeys() Then
+    If (.cdKey = vbNullString) Then
+      If (canTestRegularKeys()) Then
         Dim fk As FoundKey
       
         fk = getCDKeyFromList()
@@ -811,7 +811,7 @@ Public Function assignKeys(Index As Integer) As Boolean
       End If
     End If
 
-    If canTestExpansion(.product) Then
+    If (canTestExpansion(.product)) Then
       Dim fkEx As FoundKey
       fkEx = getCDKeyFromListEx(.product)
       
@@ -833,7 +833,7 @@ End Function
 Public Sub restoreKeysToList()
   For i = 0 To UBound(BNETData)
     With BNETData(i)
-      If .cdKey <> vbNullString And .product <> vbNullString Then
+      If (.cdKey <> vbNullString And .product <> vbNullString) Then
         repopulateKeyList .product, .cdKey
         
         .cdKey = vbNullString
@@ -841,7 +841,7 @@ Public Sub restoreKeysToList()
         .productRegular = vbNullString
       End If
       
-      If .cdKeyExp <> vbNullString And .productExpansion <> vbNullString Then
+      If (.cdKeyExp <> vbNullString And .productExpansion <> vbNullString) Then
         repopulateKeyList .productExpansion, .cdKeyExp
         
         .cdKeyExp = vbNullString
@@ -858,37 +858,37 @@ Private Sub repopulateKeyList(ByVal product As String, ByVal key As String)
     Case "W2BN"
       arrKeys = CDKeys.W2BN
       
-      If CDKeys.W2BNIndex = -1 Then
+      If (CDKeys.W2BNIndex = -1) Then
         CDKeys.W2BNIndex = 0
       End If
     Case "D2DV"
       arrKeys = CDKeys.D2DV
       
-      If CDKeys.D2DVIndex = -1 Then
+      If (CDKeys.D2DVIndex = -1) Then
         CDKeys.D2DVIndex = 0
       End If
     Case "D2XP"
       arrKeys = CDKeys.D2XP
       
-      If CDKeys.D2XPIndex = -1 Then
+      If (CDKeys.D2XPIndex = -1) Then
         CDKeys.D2XPIndex = 0
       End If
     Case "WAR3"
       arrKeys = CDKeys.WAR3
       
-      If CDKeys.WAR3Index = -1 Then
+      If (CDKeys.WAR3Index = -1) Then
         CDKeys.WAR3Index = 0
       End If
     Case "W3XP"
       arrKeys = CDKeys.W3XP
       
-      If CDKeys.W3XPIndex = -1 Then
+      If (CDKeys.W3XPIndex = -1) Then
         CDKeys.W3XPIndex = 0
       End If
   End Select
   
   For i = 0 To UBound(arrKeys)
-    If arrKeys(i) = vbNullString Then
+    If (arrKeys(i) = vbNullString) Then
       arrKeys(i) = key
       Exit For
     End If
@@ -902,7 +902,7 @@ Public Function Decode(ByVal cdKey As String) As DecodedKey
   
   decode_hash_cdkey cdKey, 0, 0, publicVal, product, vbNullString
 
-  If product > 0 Then
+  If (product > 0) Then
     Select Case product
       Case &H4
         dk.product = "W2BN"

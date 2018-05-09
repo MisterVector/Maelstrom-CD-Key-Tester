@@ -32,35 +32,35 @@ Public Sub Skip(Bytes As Long)
   sLen = sLen + Bytes
 End Sub
 
-Public Sub InsertByte(ByVal Value As Byte)
-  sOut = sOut & Chr$(Value)
+Public Sub InsertByte(ByVal value As Byte)
+  sOut = sOut & Chr$(value)
 End Sub
 
-Public Sub InsertWORD(ByVal Value As Integer)
+Public Sub InsertWORD(ByVal value As Integer)
   Dim NewValue As String * 2
-  CopyMemory ByVal NewValue, Value, 2
+  CopyMemory ByVal NewValue, value, 2
   sOut = sOut & NewValue
 End Sub
 
-Public Sub InsertDWORD(ByVal Value As Long)
+Public Sub InsertDWORD(ByVal value As Long)
   Dim NewValue As String * 4
-  CopyMemory ByVal NewValue, Value, 4
+  CopyMemory ByVal NewValue, value, 4
   sOut = sOut & NewValue
 End Sub
 
-Public Sub InsertNTString(ByVal Value As String)
-  sOut = sOut & Value & vbNullChar
+Public Sub InsertNTString(ByVal value As String)
+  sOut = sOut & value & vbNullChar
 End Sub
 
-Public Sub InsertNonNTString(ByVal Value As String)
-  sOut = sOut & Value
+Public Sub InsertNonNTString(ByVal value As String)
+  sOut = sOut & value
 End Sub
 
-Public Sub sendPacket(id As Byte)
+Public Sub sendPacket(ID As Byte)
   Dim packetLengthField As String * 2
   Dim packetTotalLength As Integer, packetHeader As String
   
-  If pType = PacketType.BNCS Then
+  If (pType = PacketType.BNCS) Then
     packetTotalLength = Len(sOut) + 4
   Else
     packetTotalLength = Len(sOut) + 3
@@ -68,13 +68,13 @@ Public Sub sendPacket(id As Byte)
   
   CopyMemory ByVal packetLengthField, packetTotalLength, 2
   
-  If pType = PacketType.BNCS Then
-    packetHeader = Chr$(&HFF) & Chr$(id) & packetLengthField
+  If (pType = PacketType.BNCS) Then
+    packetHeader = Chr$(&HFF) & Chr$(ID) & packetLengthField
   Else
-    packetHeader = packetLengthField & Chr$(id)
+    packetHeader = packetLengthField & Chr$(ID)
   End If
 
-  If socket.State = sckConnected Then
+  If (socket.State = sckConnected) Then
     socket.SendData packetHeader & sOut
   End If
 

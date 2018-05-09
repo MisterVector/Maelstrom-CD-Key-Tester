@@ -53,13 +53,13 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
   With BNETData(Index)
     Dim lockdownFileName As String, hsr As HashSearchResult
     
-    If .product = "W2BN" Then
+    If (.product = "W2BN") Then
       lockdownFileName = left(mpqFileName, Len(mpqFileName) - 4) & ".dll"
     End If
     
     hsr = getHashes(.product, lockdownFileName)
     
-    If Not hsr.hashesExist Then
+    If (Not hsr.hashesExist) Then
       AddChatB vbRed, "Socket #" & Index & ": Check revision failed for " & .product & "!"
       AddChatB vbRed, "Reason: " & hsr.errorMessage & "."
       stopTesting vbYellow, "Address the issue and then hit ""Start"" again."
@@ -69,7 +69,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
     hashFiles = hsr.hashes
     EXEInfoString = String$(crev_max_result, Chr$(0))
   
-    If (Hash_Lib.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0) Then
+    If ((Hash_Lib.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0)) Then
       closeSocket Index
       frmMain.tmrCheckFailed(Index).Enabled = False
         
@@ -79,23 +79,23 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
       testedNonExpKeys = testedNonExpKeys + 1
       postKeysTested .product
       
-      If assignKeys(Index) Then
+      If (assignKeys(Index)) Then
         frmMain.tmrReconnect(Index).Enabled = True
       Else
         AddChat vbRed, "Socket #" & Index & ": The key list has run out."
         markSocketDead Index
         
-        If (testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys) Then
+        If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
           AddChatB vbYellow, "All keys have been tested."
           stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
           Exit Sub
-        ElseIf testedNonExpKeys = totalNonExpKeys Then
+        ElseIf (testedNonExpKeys = totalNonExpKeys) Then
           AddChatB vbYellow, "All non-expansion keys have been tested."
           stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
           Exit Sub
         End If
       
-        If socketsAvailable = 0 Then
+        If (socketsAvailable = 0) Then
           AddChatB vbYellow, "No more connections could be made."
           stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
           Exit Sub
@@ -105,7 +105,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
       Exit Sub
     End If
   
-    If .cdKeyExp <> vbNullString And (.product = "W3XP" Or .product = "D2XP") Then
+    If (.cdKeyExp <> vbNullString And (.product = "W3XP" Or .product = "D2XP")) Then
       If (Hash_Lib.decode_hash_cdkey(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1)) = 0) Then
         closeSocket Index
         frmMain.tmrCheckFailed(Index).Enabled = False
@@ -116,23 +116,23 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         testedExpKeys = testedExpKeys + 1
         postKeysTested .productExpansion
         
-        If assignKeys(Index) Then
+        If (assignKeys(Index)) Then
           frmMain.tmrReconnect(Index).Enabled = True
         Else
           AddChat vbRed, "Socket #" & Index & ": The key list has run out."
           markSocketDead Index
           
-          If (testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys) Then
+          If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
             AddChatB vbYellow, "All keys have been tested."
             stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
             Exit Sub
-          ElseIf testedNonExpKeys = totalNonExpKeys Then
+          ElseIf (testedNonExpKeys = totalNonExpKeys) Then
             AddChatB vbYellow, "All non-expansion keys have been tested."
             stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
             Exit Sub
           End If
         
-          If socketsAvailable = 0 Then
+          If (socketsAvailable = 0) Then
             AddChatB vbYellow, "No more connections could be made."
             stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
             Exit Sub
@@ -186,8 +186,8 @@ Public Sub Recv0x51(Index As Integer)
   product = BNETData(Index).product
   FreeMemory
   
-  If statusCode = &H0 Then
-    If product = "WAR3" Or product = "W3XP" Then
+  If (statusCode = &H0) Then
+    If (product = "WAR3" Or product = "W3XP") Then
         Send0x53 Index
     Else
         Send0x3A Index
@@ -198,10 +198,10 @@ Public Sub Recv0x51(Index As Integer)
     
     Dim inUse As String
   
-    If statusCode = &H201 Or statusCode = &H211 Then
+    If (statusCode = &H201 Or statusCode = &H211) Then
       inUse = packet(Index).getNTString
     
-      If inUse = vbNullString Then
+      If (inUse = vbNullString) Then
         inUse = "Anonymous key owner"
       End If
     End If
@@ -240,23 +240,23 @@ Public Sub Recv0x51(Index As Integer)
     
     Call handleOtherKeys(Index, statusCode, inUse)
     
-    If Not assignKeys(Index) Then
+    If (Not assignKeys(Index)) Then
       Dim testEnded As Boolean
     
       AddChat vbRed, "Socket #" & Index & ": The key list has run out."
       markSocketDead Index
       
-      If (testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys) Then
+      If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
         AddChatB vbYellow, "All keys have been tested."
         stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
         Exit Sub
-      ElseIf testedNonExpKeys = totalNonExpKeys Then
+      ElseIf (testedNonExpKeys = totalNonExpKeys) Then
         AddChatB vbYellow, "All non-expansion keys have been tested."
         stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
         Exit Sub
       End If
     
-      If socketsAvailable = 0 Then
+      If (socketsAvailable = 0) Then
         AddChatB vbYellow, "No more connections could be made."
         stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
         Exit Sub
@@ -293,7 +293,7 @@ Public Sub Recv0x3A(Index As Integer)
               AddChatB vbYellow, config.name & "@" & config.ServerRealm & " does not exist. Maelstrom will create it."
     
               For i = 0 To UBound(BNETData)
-                If i <> Index Then
+                If (i <> Index) Then
                   closeSocket i
                   frmMain.tmrCheckFailed(i).Enabled = False
                   frmMain.tmrReconnect(i).Enabled = False
@@ -330,7 +330,7 @@ Public Sub Recv0x3D(Index As Integer)
     result = .GetDWORD
   End With
   
-  If result = &H0 Then
+  If (result = &H0) Then
     AddChatB vbGreen, "Created the account " & config.name & "@" & config.ServerRealm & "!"
     stopTesting vbYellow, "Click ""Start"" to start testing again."
   Else
@@ -360,32 +360,32 @@ Public Sub Recv0x46(Index As Integer)
 
   dumpedPacket = packet(Index).getPacket
 
-  If InStr(dumpedPacket, "Your account is muted.") > 0 Then isMuted = True
-  If InStr(dumpedPacket, "Your account has had all chat privileges suspended.") > 0 Then isVoided = True
+  If (InStr(dumpedPacket, "Your account is muted.") > 0) Then isMuted = True
+  If (InStr(dumpedPacket, "Your account has had all chat privileges suspended.") > 0) Then isVoided = True
   
-  If isMuted Or isVoided Then
+  If (isMuted Or isVoided) Then
     Call voidedMutedOrJailedKeyEvaluation(Index, isMuted, isVoided)
   Else
     Call perfectKeyEvaluation(Index)
   End If
 
-  If Not assignKeys(Index) Then
+  If (Not assignKeys(Index)) Then
     Dim testEnded As Boolean
   
     AddChat vbRed, "Socket #" & Index & ": The key list has run out."
     markSocketDead Index
     
-    If (testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys) Then
+    If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
       AddChatB vbYellow, "All keys have been tested."
       stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
       Exit Sub
-    ElseIf testedNonExpKeys = totalNonExpKeys Then
+    ElseIf (testedNonExpKeys = totalNonExpKeys) Then
       AddChatB vbYellow, "All non-expansion keys have been tested."
       stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
       Exit Sub
     End If
   
-    If socketsAvailable = 0 Then
+    If (socketsAvailable = 0) Then
       AddChatB vbYellow, "No more connections could be made."
       stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
       Exit Sub
@@ -415,7 +415,7 @@ Public Sub Recv0x52(Index As Integer)
     result = .GetDWORD
   End With
   
-  If result = &H0 Then
+  If (result = &H0) Then
     AddChatB vbGreen, "Created the account " & config.nameW3 & "@" & config.serverRealmW3 & "!"
     stopTesting vbYellow, "Click ""Start"" to begin testing again."
   Else
@@ -434,7 +434,7 @@ Public Sub Send0x53(Index As Integer)
 
   BNETData(Index).nls_P = nls_init(config.nameW3, config.passwordW3)
 
-  If BNETData(Index).nls_P = 0 Then
+  If (BNETData(Index).nls_P = 0) Then
     frmMain.lblStart_EmulateClick
     MsgBox "NLS made a bad call.", vbOKOnly & vbCritical, PROGRAM_NAME
     EndAll
@@ -461,7 +461,7 @@ Public Sub Recv0x53(Index As Integer)
               AddChatB vbYellow, config.nameW3 & "@" & config.serverRealmW3 & " does not exist. Maelstrom will create it."
               
               For i = 0 To UBound(BNETData)
-                If i <> Index Then
+                If (i <> Index) Then
                   closeSocket i
                   frmMain.tmrCheckFailed(i).Enabled = False
                   frmMain.tmrReconnect(i).Enabled = False

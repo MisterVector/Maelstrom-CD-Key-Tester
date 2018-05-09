@@ -773,7 +773,7 @@ Private Const CONFIG_HEX_INDEXES = "13 14 15"
 Private Const CONFIG_DEFAULT_TEXTBOX_IDXS = "5 6 7 8 9 10 11 13 14 15"
 
 Private Sub chkAddDateToTested_Click()
-  If chkAddDateToTested.BackColor <> FRM_BACK_COLOR Then
+  If (chkAddDateToTested.BackColor <> FRM_BACK_COLOR) Then
     chkAddDateToTested.BackColor = FRM_BACK_COLOR
   End If
 End Sub
@@ -787,7 +787,7 @@ Private Sub chkAddDateToTested_MouseMove(Button As Integer, shift As Integer, X 
 End Sub
 
 Private Sub chkAddRealmToProfile_Click()
-  If chkAddRealmToProfile.BackColor <> FRM_BACK_COLOR Then
+  If (chkAddRealmToProfile.BackColor <> FRM_BACK_COLOR) Then
     chkAddRealmToProfile.BackColor = FRM_BACK_COLOR
   End If
 End Sub
@@ -809,7 +809,7 @@ Private Sub chkSaveGoodProxies_MouseMove(Button As Integer, shift As Integer, X 
 End Sub
 
 Private Sub chkSaveGoodProxies_Click()
-  If chkSaveGoodProxies.BackColor <> FRM_BACK_COLOR Then
+  If (chkSaveGoodProxies.BackColor <> FRM_BACK_COLOR) Then
     chkSaveGoodProxies.BackColor = FRM_BACK_COLOR
   End If
 End Sub
@@ -823,7 +823,7 @@ Private Sub chkSkipFailedProxies_MouseMove(Button As Integer, shift As Integer, 
 End Sub
 
 Private Sub chkSkipFailedProxies_Click()
-  If chkSkipFailedProxies.BackColor <> FRM_BACK_COLOR Then
+  If (chkSkipFailedProxies.BackColor <> FRM_BACK_COLOR) Then
     chkSkipFailedProxies.BackColor = FRM_BACK_COLOR
   End If
   
@@ -839,19 +839,19 @@ Private Sub chkSaveWindowPosition_MouseMove(Button As Integer, shift As Integer,
 End Sub
 
 Private Sub chkSaveWindowPosition_Click()
-  If chkSaveWindowPosition.BackColor <> FRM_BACK_COLOR Then
+  If (chkSaveWindowPosition.BackColor <> FRM_BACK_COLOR) Then
     chkSaveWindowPosition.BackColor = FRM_BACK_COLOR
   End If
 End Sub
 
 Private Sub cmbServer_Change()
-  If cmbServer.BackColor <> TXT_BACK_COLOR Then
+  If (cmbServer.BackColor <> TXT_BACK_COLOR) Then
     cmbServer.BackColor = TXT_BACK_COLOR
   End If
 End Sub
 
 Private Sub cmbServer_Click()
-  If cmbServer.BackColor <> TXT_BACK_COLOR Then
+  If (cmbServer.BackColor <> TXT_BACK_COLOR) Then
     cmbServer.BackColor = TXT_BACK_COLOR
   End If
 End Sub
@@ -873,7 +873,7 @@ Private Sub Form_Load()
   txtConfig(CONFIG_USERNAMEW3).text = config.nameW3
   txtConfig(CONFIG_PASSWORDW3).text = config.passwordW3
   
-  If config.server <> vbNullString Then
+  If (config.server <> vbNullString) Then
     cmbServer.text = config.server
     cmbServer.AddItem config.server
   End If
@@ -906,7 +906,7 @@ Private Sub Form_Load()
   chkAddRealmToProfile.value = IIf(config.addRealmToProfile, 1, 0)
   chkSaveWindowPosition.value = IIf(config.saveWindowPosition, 1, 0)
   
-  If chkSkipFailedProxies.value = 0 Then
+  If (chkSkipFailedProxies.value = 0) Then
     chkSaveGoodProxies.Enabled = False
   End If
   
@@ -922,13 +922,13 @@ Private Sub Form_MouseDown(Button As Integer, shift As Integer, X As Single, Y A
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-  If isClosing Then Exit Sub
+  If (isClosing) Then Exit Sub
 
-  If Not hasConfig Then
+  If (Not hasConfig) Then
     Dim msgBoxResult As Integer
     msgBoxResult = MsgBox("Are you sure you want to cancel without a valid configuration?", vbYesNo & vbQuestion, PROGRAM_NAME)
   
-    If msgBoxResult = vbNo Then Cancel = 1
+    If (msgBoxResult = vbNo) Then Cancel = 1
   End If
   
   frmMain.lblStart.Enabled = True
@@ -955,11 +955,11 @@ Private Sub lblOk_Click()
 
   errors = markFormErrors()
   
-  If errors > 0 Then Exit Sub
+  If (errors > 0) Then Exit Sub
   
   oldProfile = config.cdKeyProfile
   
-  If config.addRealmToProfile Then
+  If (config.addRealmToProfile) Then
     oldProfile = oldProfile & " @ " & config.ServerRealm
   End If
   
@@ -1001,29 +1001,29 @@ Private Sub lblOk_Click()
   
   writeConfig
   
-  If hasTestedThisSession And loadedSockets <> config.sockets Then
+  If (hasTestedThisSession And loadedSockets <> config.sockets) Then
     hasTestedThisSession = False
     
     restoreKeysToList
     proxies.resetProxies
   End If
   
-  If loadedSockets <> config.sockets Then
+  If (loadedSockets <> config.sockets) Then
     AddChat vbWhite, config.sockets, vbYellow, " sockets have been loaded. (", vbWhite, config.socketsPerProxy, vbYellow, " per proxy)"
     calculateAvailableSockets
   End If
   
   setupConnectionData config.sockets
   
-  If config.cdKeyProfile <> vbNullString Then
+  If (config.cdKeyProfile <> vbNullString) Then
     Dim fullProfileName As String
     fullProfileName = config.cdKeyProfile
   
-    If config.addRealmToProfile Then
+    If (config.addRealmToProfile) Then
       fullProfileName = fullProfileName & " @ " & config.ServerRealm
     End If
   
-    If oldProfile <> fullProfileName Then
+    If (oldProfile <> fullProfileName) Then
       AddChat vbYellow, "Using CD-Key profile """ & fullProfileName & """."
     End If
   End If
@@ -1059,19 +1059,19 @@ Private Sub lblRestoreDefaults_Click()
   chkAddRealmToProfile.value = IIf(DEFAULT_ADD_REALM_TO_PROFILE, 1, 0)
   chkSaveWindowPosition.value = IIf(DEFAULT_SAVE_WINDOW_POSITION, 1, 0)
   
-  If chkAddDateToTested.BackColor <> FRM_BACK_COLOR Then
+  If (chkAddDateToTested.BackColor <> FRM_BACK_COLOR) Then
     chkAddDateToTested.BackColor = FRM_BACK_COLOR
   End If
   
-  If chkSaveGoodProxies.BackColor <> FRM_BACK_COLOR Then
+  If (chkSaveGoodProxies.BackColor <> FRM_BACK_COLOR) Then
     chkSaveGoodProxies.BackColor = FRM_BACK_COLOR
   End If
   
-  If chkSkipFailedProxies.BackColor <> FRM_BACK_COLOR Then
+  If (chkSkipFailedProxies.BackColor <> FRM_BACK_COLOR) Then
     chkSkipFailedProxies.BackColor = FRM_BACK_COLOR
   End If
   
-  If chkAddRealmToProfile.BackColor <> FRM_BACK_COLOR Then
+  If (chkAddRealmToProfile.BackColor <> FRM_BACK_COLOR) Then
     chkAddRealmToProfile.BackColor = FRM_BACK_COLOR
   End If
   
@@ -1099,7 +1099,7 @@ Private Sub pbQuit_Click()
 End Sub
 
 Private Sub txtConfig_Change(Index As Integer)
-  If txtConfig(Index).BackColor <> TXT_BACK_COLOR Then
+  If (txtConfig(Index).BackColor <> TXT_BACK_COLOR) Then
     txtConfig(Index).BackColor = TXT_BACK_COLOR
   End If
 End Sub
@@ -1112,20 +1112,20 @@ Private Function markFormErrors() As Integer
   Dim o As Control, errors As Integer
   
   For Each o In Me.Controls
-    If TypeOf o Is TextBox Then
+    If (TypeOf o Is TextBox) Then
       Dim t As TextBox, lenRequire As Integer, hasError As Boolean
       hasError = False
       
       Set t = o
       lenRequire = IIf(t.Index = CONFIG_USERNAME Or t.Index = CONFIG_USERNAMEW3 Or t.Index = CONFIG_BNLS_SERVER, 3, IIf(t.Index = CONFIG_CDKEY_PROFILE, 0, 1))
 
-      If Len(t.text) < lenRequire Then
+      If (Len(t.text) < lenRequire) Then
         t.BackColor = TXT_ERROR_COLOR
         errors = errors + 1
         hasError = True
       End If
 
-      If Not hasError Then
+      If (Not hasError) Then
         Dim txtIndex As Integer, numConfig() As String
         
         numConfig = Split(CONFIG_NUMERIC_INDEXES)
@@ -1133,38 +1133,38 @@ Private Function markFormErrors() As Integer
         For i = 0 To UBound(numConfig)
           txtIndex = numConfig(i)
         
-          If t.Index = txtIndex Then
+          If (t.Index = txtIndex) Then
             hasError = True
             
-            If IsNumericB(t.text) Then
+            If (IsNumericB(t.text)) Then
               Dim minNumber As Integer, maxNumber As Integer
               
-              If txtIndex = CONFIG_TEST_COUNT_PER_PROXY Then
+              If (txtIndex = CONFIG_TEST_COUNT_PER_PROXY) Then
                 minNumber = 0
               Else
                 minNumber = 1
               End If
             
-              If txtIndex = CONFIG_SOCKETS Then
+              If (txtIndex = CONFIG_SOCKETS) Then
                 maxNumber = MAX_SOCKETS
-              ElseIf txtIndex = CONFIG_SOCKETS_PER_PROXY Then
+              ElseIf (txtIndex = CONFIG_SOCKETS_PER_PROXY) Then
                 maxNumber = MAX_SOCKETS_PER_PROXY
-              ElseIf txtIndex = CONFIG_EXP_TESTS_PER_REG_KEY Then
+              ElseIf (txtIndex = CONFIG_EXP_TESTS_PER_REG_KEY) Then
                 maxNumber = MAX_EXP_TESTS_PER_REG_KEY
-              ElseIf txtIndex = CONFIG_TEST_COUNT_PER_PROXY Then
+              ElseIf (txtIndex = CONFIG_TEST_COUNT_PER_PROXY) Then
                 maxNumber = MAX_TEST_COUNT_PER_PROXY
-              ElseIf txtIndex = CONFIG_RECONNECT_TIME Then
+              ElseIf (txtIndex = CONFIG_RECONNECT_TIME) Then
                 maxNumber = MAX_RECONNECT_TIME
-              ElseIf txtIndex = CONFIG_CHECK_FAILURE Then
+              ElseIf (txtIndex = CONFIG_CHECK_FAILURE) Then
                 maxNumber = MAX_CHECK_FAILURE
               End If
             
-              If t.text >= minNumber And t.text <= maxNumber Then
+              If (t.text >= minNumber And t.text <= maxNumber) Then
                 hasError = False
               End If
             End If
           
-            If hasError Then
+            If (hasError) Then
               t.BackColor = TXT_ERROR_COLOR
               errors = errors + 1
               Exit For
@@ -1180,16 +1180,16 @@ Private Function markFormErrors() As Integer
           
           txtIndex = hexConfig(i)
         
-          If t.Index = txtIndex Then
+          If (t.Index = txtIndex) Then
             hasError = True
           
-            If IsNumeric("&H" & t.text) Then
-              If ("&H" & t.text) > 0 And ("&H" & t.text) <= MAX_VERBYTE Then
+            If (IsNumeric("&H" & t.text)) Then
+              If (("&H" & t.text) > 0 And ("&H" & t.text) <= MAX_VERBYTE) Then
                 hasError = False
               End If
             End If
             
-            If hasError Then
+            If (hasError) Then
               t.BackColor = TXT_ERROR_COLOR
               errors = errors + 1
               Exit For
@@ -1198,11 +1198,11 @@ Private Function markFormErrors() As Integer
         Next i
       End If
     Else
-      If TypeOf o Is ComboBox Then
+      If (TypeOf o Is ComboBox) Then
         Dim c As ComboBox
         Set c = o
         
-        If Len(c.text) < 3 Or Not isValidServerAddress(c.text) Then
+        If (Len(c.text) < 3 Or Not isValidServerAddress(c.text)) Then
           c.BackColor = TXT_ERROR_COLOR
           errors = errors + 1
         End If
@@ -1210,8 +1210,8 @@ Private Function markFormErrors() As Integer
     End If
   Next
   
-  If Len(txtConfig(CONFIG_CDKEY_PROFILE).text) > 0 And Not _
-    isValidCDKeyProfile(txtConfig(CONFIG_CDKEY_PROFILE).text) Then
+  If (Len(txtConfig(CONFIG_CDKEY_PROFILE).text) > 0 And Not _
+    isValidCDKeyProfile(txtConfig(CONFIG_CDKEY_PROFILE).text)) Then
     txtConfig(CONFIG_CDKEY_PROFILE).BackColor = TXT_ERROR_COLOR
     errors = errors + 1
   End If
@@ -1229,29 +1229,29 @@ Public Sub markErrorLocations(ByVal errors As Dictionary)
     str = errorLocation
     value = errors.Item(errorLocation)
     
-    If Right(str, 1) = "f" Then
+    If (Right(str, 1) = "f") Then
       txtControlIdx = left(str, Len(str) - 1)
       isFill = True
     Else
       txtControlIdx = str
     End If
     
-    If txtControlIdx = CONFIG_SERVER Then
+    If (txtControlIdx = CONFIG_SERVER) Then
       cmbServer.text = value
       cmbServer.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_ERROR_COLOR)
-    ElseIf txtControlIdx = CONFIG_ADD_DATE_TO_TESTED Then
+    ElseIf (txtControlIdx = CONFIG_ADD_DATE_TO_TESTED) Then
       chkAddDateToTested.value = IIf(value, 1, 0)
       chkAddDateToTested.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
-    ElseIf txtControlIdx = CONFIG_SAVE_GOOD_PROXIES Then
+    ElseIf (txtControlIdx = CONFIG_SAVE_GOOD_PROXIES) Then
       chkSaveGoodProxies.value = IIf(value, 1, 0)
       chkSaveGoodProxies.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
-    ElseIf txtControlIdx = CONFIG_SKIP_FAILED_PROXIES Then
+    ElseIf (txtControlIdx = CONFIG_SKIP_FAILED_PROXIES) Then
       chkSkipFailedProxies.value = IIf(value, 1, 0)
       chkSkipFailedProxies.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
-    ElseIf txtControlIdx = CONFIG_ADD_REALM_TO_PROFILE Then
+    ElseIf (txtControlIdx = CONFIG_ADD_REALM_TO_PROFILE) Then
       chkAddRealmToProfile.value = IIf(value, 1, 0)
       chkAddRealmToProfile.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
-    ElseIf txtControlIdx = CONFIG_SAVE_WINDOW_POSITION Then
+    ElseIf (txtControlIdx = CONFIG_SAVE_WINDOW_POSITION) Then
       chkSaveWindowPosition.value = IIf(value, 1, 0)
       chkSaveWindowPosition.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
     Else
