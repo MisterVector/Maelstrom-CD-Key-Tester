@@ -1,14 +1,6 @@
 Attribute VB_Name = "modVars"
-Public Declare Function ShellExecute _
-                            Lib "shell32.dll" _
-                            Alias "ShellExecuteA" ( _
-                            ByVal hwnd As Long, _
-                            ByVal lpOperation As String, _
-                            ByVal lpFile As String, _
-                            ByVal lpParameters As String, _
-                            ByVal lpDirectory As String, _
-                            ByVal nShowCmd As Long) _
-                            As Long
+Public Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpOperation As String, _
+    ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
 
 Public Const PROGRAM_VERSION As String = "4.14"
 Public Const KeyTesterName As String = "Key Tester"
@@ -66,19 +58,19 @@ Public requestProduct As String
 Public updateString As String
 
 Public Type HashSearchResult
-  hashes()     As String
-  hashesExist  As Boolean
-  errorMessage As String
+    hashes()     As String
+    hashesExist  As Boolean
+    errorMessage As String
 End Type
 
 Public Type ServerRealm
-  realm As String
-  realmW3 As String
+    realm As String
+    realmW3 As String
 End Type
 
 Public Type ProxiesLoaded
-  loadedCount As Long
-  maxProxiesReached As Boolean
+    loadedCount As Long
+    maxProxiesReached As Boolean
 End Type
 
 Public loadedSockets As Integer
@@ -99,90 +91,90 @@ Public hasKeys As Boolean
 Public hasConfig As Boolean
 
 Public Type ConfigData
-  name As String
-  password As String
-  nameW3 As String
-  passwordW3 As String
-  server As String
-  bnlsServer As String
-  bnlsPort As Long
-  homeChannel As String
-  testCountPerProxy As Integer
-  socketsPerProxy As Integer
-  sockets As Integer
-  reconnectTime As Integer
-  checkFailure As Integer
-  
-  addDateToTested As Boolean
-  skipFailedProxies As Boolean
-  saveGoodProxies As Boolean
-  addRealmToProfile As Boolean
-  saveWindowPosition As Boolean
-  
-  expansionTestsPerRegularKey As Integer
-  cdKeyProfile As String
-  
-  'These values are generated  by Maelstrom and not loaded from the config
-  serverIP As String
-  ServerRealm As String
-  serverRealmW3 As String
-  
-  'D2XP and W3XP use the same VerByte as their original products
-  W2BNVerByte As Long
-  D2DVVerByte As Long
-  WAR3VerByte As Long
+    name As String
+    password As String
+    nameW3 As String
+    passwordW3 As String
+    server As String
+    bnlsServer As String
+    bnlsPort As Long
+    homeChannel As String
+    testCountPerProxy As Integer
+    socketsPerProxy As Integer
+    sockets As Integer
+    reconnectTime As Integer
+    checkFailure As Integer
+    
+    addDateToTested As Boolean
+    skipFailedProxies As Boolean
+    saveGoodProxies As Boolean
+    addRealmToProfile As Boolean
+    saveWindowPosition As Boolean
+    
+    expansionTestsPerRegularKey As Integer
+    cdKeyProfile As String
+    
+    'These values are generated  by Maelstrom and not loaded from the config
+    serverIP As String
+    ServerRealm As String
+    serverRealmW3 As String
+    
+    'D2XP and W3XP use the same VerByte as their original products
+    W2BNVerByte As Long
+    D2DVVerByte As Long
+    WAR3VerByte As Long
 End Type
 Public config As ConfigData
 
 Public Enum PacketType
-  BNLS
-  BNCS
+    BNLS
+    BNCS
 End Enum
 
 Public Type BNETDataType
-  ' Date from/to BNCS
-  ServerToken     As Long
-  ClientToken     As Long
-  EXEchecksum     As Long
-  EXEVersion      As Long
-  EXEInfoString   As String
-
-  ' Data for Battle.Net
-  cdKey          As String
-  cdKeyIndex     As Long
-  product        As String
-  proxyIP        As String
-  proxyPort      As Long
-  proxyIndex     As Long
-
-  'Custom variables
-  numTested      As Integer
-  proxyVersion   As String
-  
-  isValidated    As Boolean
-   
-  'For expansion key data
-  TestedEXP        As Integer
-  isExpansion      As Boolean
-  cdKeyExp         As String
-  cdKeyExpIndex    As Long
-  savedKeyState    As String
-  
-  productRegular   As String
-  productExpansion As String
-  
-  ' For NLS
-  nls_P          As Long
+    ' Date from/to BNCS
+    ServerToken     As Long
+    ClientToken     As Long
+    EXEchecksum     As Long
+    EXEVersion      As Long
+    EXEInfoString   As String
+    
+    ' Data for Battle.Net
+    cdKey          As String
+    cdKeyIndex     As Long
+    product        As String
+    proxyIP        As String
+    proxyPort      As Long
+    proxyIndex     As Long
+    
+    'Custom variables
+    numTested      As Integer
+    proxyVersion   As String
+    
+    isValidated    As Boolean
+     
+    'For expansion key data
+    TestedEXP        As Integer
+    isExpansion      As Boolean
+    cdKeyExp         As String
+    cdKeyExpIndex    As Long
+    savedKeyState    As String
+    
+    productRegular   As String
+    productExpansion As String
+    
+    ' For NLS
+    nls_P          As Long
 End Type
 Public BNETData() As BNETDataType
 
 Private Type HashDependencies
-  w2bnHashes(3)     As String
-  d2dvHashes(0)     As String
-  d2xpHashes(0)     As String
-  war3Hashes(0)     As String
-  lockdownPath      As String
-  checkRevisionInfo As String
+    w2bnHashes(3)     As String
+    d2dvHashes(0)     As String
+    d2xpHashes(0)     As String
+    war3Hashes(0)     As String
+    lockdownPath      As String
+    checkRevisionInfo As String
 End Type
 Public hashes As HashDependencies
 

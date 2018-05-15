@@ -12,20 +12,21 @@ Private Declare Function EmptyWorkingSet Lib "psapi.dll" (ByVal hProcess As Long
 Private Declare Function SetProcessWorkingSetSize Lib "Kernel32" (ByVal hProcess As Long, ByVal dwMinimumWorkingSetSize As Long _
                                                                 , ByVal dwMaximumWorkingSetSize As Long) As Long
 Public Sub FreeMemory()
-ews_memory
-spw_memory
+    ews_memory
+    spw_memory
 End Sub
 
 Public Function ews_memory() As Long:   ews_memory = EmptyWorkingSet(GetCurrentProcess):                  End Function
 Public Function spw_memory() As Long:   spw_memory = SetProcessWorkingSetSize(GetCurrentProcess, -1, -1): End Function
 
 Public Function P_split(sIP As String) As String
-  On Error Resume Next
+    On Error Resume Next
 
-  Dim splt() As String, i As Byte
+    Dim splt() As String, i As Byte
 
-  splt = Split(sIP, ".")
-  For i = 0 To UBound(splt)
-    P_split = P_split & Chr$(CStr(splt(i)))
-  Next i
+    splt = Split(sIP, ".")
+    
+    For i = 0 To UBound(splt)
+        P_split = P_split & Chr$(CStr(splt(i)))
+    Next i
 End Function
