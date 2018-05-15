@@ -172,10 +172,6 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         .InsertNTString KillNull(EXEInfoString)
         .InsertNTString KeyTesterName
         .sendPacket &H51
-
-        BNETData(Index).EXEInfoString = KillNull(EXEInfoString)
-        BNETData(Index).EXEVersion = EXEVersion
-        BNETData(Index).EXEchecksum = EXEchecksum
     End With
 End Sub
 

@@ -135,9 +135,6 @@ Public Type BNETDataType
     ' Date from/to BNCS
     ServerToken     As Long
     ClientToken     As Long
-    EXEchecksum     As Long
-    EXEVersion      As Long
-    EXEInfoString   As String
     
     ' Data for Battle.Net
     cdKey          As String
