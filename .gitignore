@@ -1,9 +1,9 @@
-Binaries/
-Build/
 extra/
 CD-Keys/
 CD-Key Profiles/
 Tested CD-Keys/
+
+Binaries/*/
 
 Config.ini
 Maelstrom.exe

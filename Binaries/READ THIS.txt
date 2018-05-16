@@ -1,0 +1,5 @@
+You need to provide the hashes for each game you wish to test here.
+
+Just place the hash files in their corresponding folders, and you should be good.
+
+These folders were initially made purposefully blank.
