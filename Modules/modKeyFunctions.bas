@@ -796,25 +796,27 @@ Public Function assignKeys(Index As Integer) As Boolean
         
                 .product = fk.product
                 .productRegular = fk.product
+
+                .isExpansion = False
             Else
                 assignKeys = False
                 Exit Function
             End If
-        End If
-
-        If (canTestExpansion(.product)) Then
-            Dim fkEx As FoundKey
-            fkEx = getCDKeyFromListEx(.product)
-      
-            .cdKeyExp = fkEx.cdKey
-            .cdKeyExpIndex = fkEx.keyIndex
-            
-            .product = fkEx.product
-            .productExpansion = fkEx.product
-            
-            .isExpansion = True
         Else
-            .isExpansion = False
+            If (canTestExpansion(.product)) Then
+                Dim fkEx As FoundKey
+                fkEx = getCDKeyFromListEx(.product)
+
+                .cdKeyExp = fkEx.cdKey
+                .cdKeyExpIndex = fkEx.keyIndex
+
+                .product = fkEx.product
+                .productExpansion = fkEx.product
+
+                .isExpansion = True
+            Else
+                .isExpansion = False
+            End If
         End If
     End With
 
