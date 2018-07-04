@@ -33,7 +33,7 @@ Public Sub Recv0x50(Index As Integer)
     tempFT.dwLowDateTime = packet(Index).GetDWORD
     tempFT.dwHighDateTime = packet(Index).GetDWORD
     
-    mpqFileTime = Hash_Filetime.GetFTTime(tempFT)
+    mpqFileTime = modLIBBNET.GetFTTime(tempFT)
     mpqFileName = packet(Index).getNTString
     
     checksumFormula = packet(Index).getNTString
@@ -69,7 +69,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         hashFiles = hsr.hashes
         EXEInfoString = String$(crev_max_result, Chr$(0))
   
-        If ((Hash_Lib.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0)) Then
+        If ((modLIBBNET.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0)) Then
             closeSocket Index
             frmMain.tmrCheckFailed(Index).Enabled = False
         
@@ -106,7 +106,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         End If
   
         If (.cdKeyExp <> vbNullString And (.product = "W3XP" Or .product = "D2XP")) Then
-            If (Hash_Lib.decode_hash_cdkey(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1)) = 0) Then
+            If (modLIBBNET.decode_hash_cdkey(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1)) = 0) Then
                 closeSocket Index
                 frmMain.tmrCheckFailed(Index).Enabled = False
           
@@ -145,7 +145,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
     
         Dim result As Long
     
-        result = Hash_Lib.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\CheckRevisionFromWarden.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
+        result = modLIBBNET.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\CheckRevisionFromWarden.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
     End With
 
     With packet(Index)
