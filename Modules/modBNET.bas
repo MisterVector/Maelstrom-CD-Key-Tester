@@ -33,7 +33,7 @@ Public Sub Recv0x50(Index As Integer)
     tempFT.dwLowDateTime = packet(Index).GetDWORD
     tempFT.dwHighDateTime = packet(Index).GetDWORD
     
-    mpqFileTime = modLIBBNET.GetFTTime(tempFT)
+    mpqFileTime = GetFTTime(tempFT)
     mpqFileName = packet(Index).getNTString
     
     checksumFormula = packet(Index).getNTString

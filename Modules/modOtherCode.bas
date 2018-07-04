@@ -846,3 +846,16 @@ Public Sub checkForQuitShortcut(fm As Form, key As Integer, shift As Integer)
         End If
     End If
 End Sub
+
+Public Function P_split(sIP As String) As String
+    On Error Resume Next
+
+    Dim splt() As String, i As Byte
+
+    splt = Split(sIP, ".")
+    
+    For i = 0 To UBound(splt)
+        P_split = P_split & Chr$(CStr(splt(i)))
+    Next i
+End Function
+

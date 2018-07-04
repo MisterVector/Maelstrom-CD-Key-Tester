@@ -1,4 +1,4 @@
-Attribute VB_Name = "modLIBBNET"
+Attribute VB_Name = "modBNETAPI"
 Public Declare Function nls_init Lib "libbnet.dll" (ByVal sUsername As String, ByVal sPassword As String) As Long
 Public Declare Sub nls_free Lib "libbnet.dll" (ByVal lNLSPointer As Long)
 Public Declare Function nls_account_logon Lib "libbnet.dll" (ByVal lNLSPointer As Long, ByVal sBufferOut As String) As Long
