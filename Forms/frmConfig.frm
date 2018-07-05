@@ -3,36 +3,17 @@ Begin VB.Form frmConfig
    BackColor       =   &H00404040&
    BorderStyle     =   0  'None
    Caption         =   "Form1"
-   ClientHeight    =   7590
+   ClientHeight    =   7680
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   7695
+   ClientWidth     =   9915
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7590
-   ScaleWidth      =   7695
+   ScaleHeight     =   7680
+   ScaleWidth      =   9915
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
-   Begin VB.CheckBox chkSaveWindowPosition 
-      BackColor       =   &H00404040&
-      Caption         =   "Save Window Position"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   375
-      Left            =   240
-      TabIndex        =   46
-      Top             =   6360
-      Width           =   2655
-   End
    Begin VB.CheckBox chkAddRealmToProfile 
       BackColor       =   &H00404040&
       Caption         =   "Add Realm To Profile"
@@ -47,9 +28,9 @@ Begin VB.Form frmConfig
       EndProperty
       ForeColor       =   &H0000FFFF&
       Height          =   330
-      Left            =   3960
-      TabIndex        =   21
-      Top             =   6030
+      Left            =   240
+      TabIndex        =   17
+      Top             =   6360
       Width           =   2580
    End
    Begin VB.CheckBox chkSkipFailedProxies 
@@ -67,18 +48,18 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Left            =   240
-      TabIndex        =   19
-      Top             =   5640
+      TabIndex        =   14
+      Top             =   5280
       Width           =   2355
    End
    Begin VB.TextBox txtConfig 
       BackColor       =   &H00E0E0E0&
       Height          =   285
       Index           =   16
-      Left            =   5640
-      TabIndex        =   17
-      Top             =   5640
-      Width           =   1455
+      Left            =   1920
+      TabIndex        =   16
+      Top             =   6000
+      Width           =   3375
    End
    Begin VB.CheckBox chkSaveGoodProxies 
       BackColor       =   &H00404040&
@@ -95,158 +76,18 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   345
       Left            =   240
-      TabIndex        =   20
-      Top             =   6000
+      TabIndex        =   15
+      Top             =   5640
       Width           =   2355
    End
    Begin VB.TextBox txtConfig 
       BackColor       =   &H00E0E0E0&
       Height          =   285
-      Index           =   15
-      Left            =   5160
-      TabIndex        =   16
-      Top             =   5160
-      Width           =   375
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   14
-      Left            =   6720
-      TabIndex        =   15
-      Top             =   4680
-      Width           =   375
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   13
-      Left            =   5160
-      TabIndex        =   14
-      Top             =   4680
-      Width           =   375
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   11
-      Left            =   5760
-      TabIndex        =   12
-      Top             =   4200
-      Width           =   1335
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   10
-      Left            =   6360
-      TabIndex        =   9
-      Top             =   3360
-      Width           =   735
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   9
-      Left            =   6360
-      TabIndex        =   6
-      Top             =   2880
-      Width           =   735
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   8
-      Left            =   3120
-      TabIndex        =   11
-      Top             =   4320
-      Width           =   615
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
       Index           =   7
-      Left            =   3120
-      TabIndex        =   13
-      Top             =   4800
-      Width           =   615
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   6
-      Left            =   3240
-      TabIndex        =   8
-      Top             =   3360
-      Width           =   495
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   5
-      Left            =   1200
-      TabIndex        =   7
-      Top             =   3360
-      Width           =   495
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   4
-      Left            =   2040
-      TabIndex        =   10
-      Top             =   3840
-      Width           =   1695
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      IMEMode         =   3  'DISABLE
-      Index           =   3
-      Left            =   5160
-      PasswordChar    =   "*"
-      TabIndex        =   4
-      Top             =   2400
-      Width           =   1935
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   2
-      Left            =   1440
-      TabIndex        =   3
-      Top             =   2400
-      Width           =   2295
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      IMEMode         =   3  'DISABLE
-      Index           =   1
-      Left            =   5160
-      PasswordChar    =   "*"
-      TabIndex        =   2
-      Top             =   1440
-      Width           =   1935
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   0
-      Left            =   1560
-      TabIndex        =   1
-      Top             =   1440
-      Width           =   2175
-   End
-   Begin VB.ComboBox cmbServer 
-      BackColor       =   &H00E0E0E0&
-      Height          =   315
-      ItemData        =   "frmConfig.frx":0000
-      Left            =   1080
-      List            =   "frmConfig.frx":0002
-      TabIndex        =   5
-      Top             =   2880
-      Width           =   2655
+      Left            =   3840
+      TabIndex        =   12
+      Top             =   4560
+      Width           =   1455
    End
    Begin VB.CheckBox chkAddDateToTested 
       BackColor       =   &H00404040&
@@ -263,18 +104,177 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Left            =   240
-      TabIndex        =   18
-      Top             =   5280
+      TabIndex        =   13
+      Top             =   4920
       Width           =   2445
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   14
+      Left            =   9120
+      TabIndex        =   20
+      Top             =   5280
+      Width           =   495
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   15
+      Left            =   9120
+      TabIndex        =   21
+      Top             =   5640
+      Width           =   495
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   13
+      Left            =   9120
+      TabIndex        =   19
+      Top             =   4920
+      Width           =   495
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   11
+      Left            =   7440
+      TabIndex        =   18
+      Top             =   4560
+      Width           =   2175
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      IMEMode         =   3  'DISABLE
+      Index           =   3
+      Left            =   2640
+      PasswordChar    =   "*"
+      TabIndex        =   3
+      Top             =   2520
+      Width           =   2655
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   2
+      Left            =   2640
+      TabIndex        =   2
+      Top             =   2160
+      Width           =   2655
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      IMEMode         =   3  'DISABLE
+      Index           =   1
+      Left            =   2640
+      PasswordChar    =   "*"
+      TabIndex        =   1
+      Top             =   1800
+      Width           =   2655
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   0
+      Left            =   2640
+      TabIndex        =   0
+      Top             =   1440
+      Width           =   2655
+   End
+   Begin VB.ComboBox cmbServer 
+      BackColor       =   &H00E0E0E0&
+      Height          =   315
+      ItemData        =   "frmConfig.frx":0000
+      Left            =   2640
+      List            =   "frmConfig.frx":0002
+      TabIndex        =   4
+      Top             =   2880
+      Width           =   2655
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   4
+      Left            =   7560
+      TabIndex        =   7
+      Top             =   1440
+      Width           =   2055
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   5
+      Left            =   2640
+      TabIndex        =   5
+      Top             =   3240
+      Width           =   735
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   9
+      Left            =   8760
+      TabIndex        =   9
+      Top             =   2160
+      Width           =   855
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   10
+      Left            =   8760
+      TabIndex        =   10
+      Top             =   2520
+      Width           =   855
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   8
+      Left            =   8760
+      TabIndex        =   8
+      Top             =   1800
+      Width           =   855
+   End
+   Begin VB.TextBox txtConfig 
+      BackColor       =   &H00E0E0E0&
+      Height          =   285
+      Index           =   6
+      Left            =   4560
+      TabIndex        =   6
+      Top             =   3240
+      Width           =   735
+   End
+   Begin VB.CheckBox chkSaveWindowPosition 
+      BackColor       =   &H00404040&
+      Caption         =   "Save Window Position"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   375
+      Left            =   5760
+      TabIndex        =   11
+      Top             =   2880
+      Width           =   2655
    End
    Begin VB.PictureBox pbQuit 
       BorderStyle     =   0  'None
       Height          =   450
-      Left            =   6720
+      Left            =   9480
       Picture         =   "frmConfig.frx":0004
       ScaleHeight     =   450
       ScaleWidth      =   465
-      TabIndex        =   22
+      TabIndex        =   26
       Top             =   0
       Width           =   465
    End
@@ -293,231 +293,10 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   21
-      Left            =   3960
-      TabIndex        =   45
-      Top             =   5640
+      Left            =   240
+      TabIndex        =   46
+      Top             =   6000
       Width           =   1695
-   End
-   Begin VB.Label lblRestoreDefaults 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "Restore Defaults"
-      BeginProperty Font 
-         Name            =   "Comic Sans MS"
-         Size            =   15.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   375
-      Left            =   2040
-      TabIndex        =   44
-      Top             =   6960
-      Width           =   2775
-   End
-   Begin VB.Label lblConfig 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "Version Bytes"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   12
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   24
-      Left            =   3960
-      TabIndex        =   43
-      Top             =   3720
-      Width           =   3135
-   End
-   Begin VB.Label lblOk 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "OK"
-      BeginProperty Font 
-         Name            =   "Comic Sans MS"
-         Size            =   20.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   495
-      Left            =   240
-      TabIndex        =   42
-      Top             =   6840
-      Width           =   1575
-   End
-   Begin VB.Label lblCancel 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "CANCEL"
-      BeginProperty Font 
-         Name            =   "Comic Sans MS"
-         Size            =   20.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   495
-      Left            =   5280
-      TabIndex        =   41
-      Top             =   6840
-      Width           =   1815
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft II::"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   18
-      Left            =   3960
-      TabIndex        =   40
-      Top             =   4680
-      Width           =   1215
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Diablo II::"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   17
-      Left            =   5640
-      TabIndex        =   39
-      Top             =   4680
-      Width           =   1095
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft III:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   16
-      Left            =   3960
-      TabIndex        =   38
-      Top             =   5160
-      Width           =   1215
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "VerByte Server:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   15
-      Left            =   3960
-      TabIndex        =   37
-      Top             =   4200
-      Width           =   1815
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Reconnect Time:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   14
-      Left            =   3960
-      TabIndex        =   36
-      Top             =   3360
-      Width           =   1815
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Timeout Time:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   13
-      Left            =   3960
-      TabIndex        =   35
-      Top             =   2880
-      Width           =   1575
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Test Count Per Proxy:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   12
-      Left            =   240
-      TabIndex        =   34
-      Top             =   4320
-      Width           =   2295
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
@@ -532,100 +311,41 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H0000FFFF&
-      Height          =   495
+      Height          =   255
       Index           =   11
       Left            =   240
-      TabIndex        =   33
-      Top             =   4680
-      Width           =   2055
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Per Proxy:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   10
-      Left            =   2040
-      TabIndex        =   32
-      Top             =   3360
-      Width           =   1095
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Sockets:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   9
-      Left            =   240
-      TabIndex        =   31
-      Top             =   3360
-      Width           =   975
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Channel To Join:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   8
-      Left            =   240
-      TabIndex        =   30
-      Top             =   3840
-      Width           =   1815
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Server:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   7
-      Left            =   240
-      TabIndex        =   29
-      Top             =   2880
-      Width           =   855
+      TabIndex        =   45
+      Top             =   4560
+      Width           =   3615
    End
    Begin VB.Label lblConfig 
       Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft III Account"
+      BackColor       =   &H00404040&
+      Caption         =   "Key Test Settings"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   12
+         Size            =   13.5
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   375
+      Index           =   19
+      Left            =   360
+      TabIndex        =   44
+      Top             =   3840
+      Width           =   4935
+   End
+   Begin VB.Label lblConfig 
+      Alignment       =   2  'Center
+      BackColor       =   &H00404040&
+      Caption         =   "Version Byte Settings"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -635,18 +355,98 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Index           =   3
-      Left            =   240
-      TabIndex        =   28
-      Top             =   1920
-      Width           =   6855
+      Left            =   5760
+      TabIndex        =   43
+      Top             =   3840
+      Width           =   3855
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Warcraft II: Version Byte:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   18
+      Left            =   5760
+      TabIndex        =   42
+      Top             =   4920
+      Width           =   2655
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Diablo II: Version Byte:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   17
+      Left            =   5760
+      TabIndex        =   41
+      Top             =   5280
+      Width           =   2775
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Warcraft III Version Byte:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   16
+      Left            =   5760
+      TabIndex        =   40
+      Top             =   5640
+      Width           =   2775
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "BNLS Server:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   15
+      Left            =   5760
+      TabIndex        =   39
+      Top             =   4560
+      Width           =   1575
    End
    Begin VB.Label lblConfig 
       Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "Non-Warcraft III Account"
+      BackColor       =   &H00404040&
+      Caption         =   "General Settings"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
-         Size            =   12
+         Size            =   13.5
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -657,9 +457,9 @@ Begin VB.Form frmConfig
       Height          =   375
       Index           =   2
       Left            =   240
-      TabIndex        =   27
-      Top             =   960
-      Width           =   6615
+      TabIndex        =   38
+      Top             =   840
+      Width           =   9375
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
@@ -676,30 +476,10 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   1
-      Left            =   3960
-      TabIndex        =   26
-      Top             =   2400
+      Left            =   1440
+      TabIndex        =   37
+      Top             =   2520
       Width           =   1215
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Password:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   5
-      Left            =   3960
-      TabIndex        =   25
-      Top             =   1440
-      Width           =   1095
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
@@ -716,14 +496,34 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   255
       Index           =   6
-      Left            =   240
-      TabIndex        =   24
-      Top             =   2400
+      Left            =   1440
+      TabIndex        =   36
+      Top             =   2160
       Width           =   1215
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
-      Caption         =   "Username:"
+      Caption         =   "Warcraft III Password:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   5
+      Left            =   240
+      TabIndex        =   35
+      Top             =   1800
+      Width           =   2295
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Warcraft III Username:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -737,9 +537,209 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   4
       Left            =   240
-      TabIndex        =   23
+      TabIndex        =   34
       Top             =   1440
-      Width           =   1215
+      Width           =   2415
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Server:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   7
+      Left            =   1440
+      TabIndex        =   33
+      Top             =   2880
+      Width           =   855
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Channel To Join:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   8
+      Left            =   5760
+      TabIndex        =   32
+      Top             =   1440
+      Width           =   1815
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Sockets:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   9
+      Left            =   1440
+      TabIndex        =   31
+      Top             =   3240
+      Width           =   975
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Proxy Timeout Time:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   13
+      Left            =   5760
+      TabIndex        =   30
+      Top             =   2160
+      Width           =   2295
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Proxy Reconnect Time:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   14
+      Left            =   5760
+      TabIndex        =   29
+      Top             =   2520
+      Width           =   2535
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Test Count Per Proxy:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   12
+      Left            =   5760
+      TabIndex        =   28
+      Top             =   1800
+      Width           =   2295
+   End
+   Begin VB.Label lblConfig 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Per Proxy:"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   255
+      Index           =   10
+      Left            =   3480
+      TabIndex        =   27
+      Top             =   3240
+      Width           =   1095
+   End
+   Begin VB.Label lblRestoreDefaults 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "Restore Defaults"
+      BeginProperty Font 
+         Name            =   "Comic Sans MS"
+         Size            =   20.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   495
+      Left            =   2280
+      TabIndex        =   23
+      Top             =   6960
+      Width           =   4455
+   End
+   Begin VB.Label lblOk 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "Ok"
+      BeginProperty Font 
+         Name            =   "Comic Sans MS"
+         Size            =   20.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   495
+      Left            =   120
+      TabIndex        =   22
+      Top             =   6960
+      Width           =   1455
+   End
+   Begin VB.Label lblCancel 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "Cancel"
+      BeginProperty Font 
+         Name            =   "Comic Sans MS"
+         Size            =   20.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   495
+      Left            =   7920
+      TabIndex        =   24
+      Top             =   6960
+      Width           =   1815
    End
    Begin VB.Label lblConfig 
       Alignment       =   2  'Center
@@ -758,9 +758,9 @@ Begin VB.Form frmConfig
       Height          =   615
       Index           =   0
       Left            =   120
-      TabIndex        =   0
-      Top             =   240
-      Width           =   6495
+      TabIndex        =   25
+      Top             =   120
+      Width           =   9375
    End
 End
 Attribute VB_Name = "frmConfig"
