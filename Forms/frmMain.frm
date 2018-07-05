@@ -89,6 +89,7 @@ Begin VB.Form frmMain
       _ExtentY        =   5741
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -2082,7 +2083,7 @@ Private Sub lblStart_Click()
         stopTesting vbYellow, "Testing stopped. click ""start"" to test again."
     Else
         If (Not hasConfig) Then
-            MsgBox "Cannot start without a valid config.", vbOKOnly & vbInformation, PROGRAM_NAME
+            MsgBox "Cannot start without a valid config.", vbOKOnly Or vbInformation, PROGRAM_NAME
             Exit Sub
         End If
   
@@ -2091,12 +2092,12 @@ Private Sub lblStart_Click()
       
             msg = IIf(totalNonExpKeys = 0, "There are no keys available to test", "All non-expansion keys have been tested")
     
-            MsgBox msg & ".", vbOKOnly & vbInformation, PROGRAM_NAME
+            MsgBox msg & ".", vbOKOnly Or vbInformation, PROGRAM_NAME
             Exit Sub
         End If
   
         If (socketsAvailable = 0) Then
-            MsgBox "There are no sockets available for testing.", vbOKOnly & vbInformation, PROGRAM_NAME
+            MsgBox "There are no sockets available for testing.", vbOKOnly Or vbInformation, PROGRAM_NAME
             Exit Sub
         End If
   
@@ -2414,7 +2415,7 @@ Private Sub tmrWaitLoad_Timer()
     initializeGatewayList
   
     If (dicGatewayIPs.count) = 0 Then
-        MsgBox "Unable to contact the Battle.Net servers. Maelstrom cannot continue.", vbOKOnly & vbCritical, PROGRAM_NAME
+        MsgBox "Unable to contact the Battle.Net servers. Maelstrom cannot continue.", vbOKOnly Or vbCritical, PROGRAM_NAME
         EndAll
   
         Exit Sub
@@ -2428,7 +2429,7 @@ Private Sub tmrWaitLoad_Timer()
         makeDefaultValues
     
         MsgBox "No default config found. A default config will be created for you." & vbNewLine _
-            & "The config window will open with default values.", vbOKOnly & vbInformation, PROGRAM_NAME
+            & "The config window will open with default values.", vbOKOnly Or vbInformation, PROGRAM_NAME
 
         frmConfig.Show
     Else
@@ -2439,7 +2440,7 @@ Private Sub tmrWaitLoad_Timer()
             lblStart.Enabled = False
     
             MsgBox "There were issues while loading the configuration. The config" & vbNewLine _
-                & "window will now be opened so the issues can be corrected.", vbOKOnly & vbExclamation, PROGRAM_NAME
+                & "window will now be opened so the issues can be corrected.", vbOKOnly Or vbExclamation, PROGRAM_NAME
   
             frmConfig.markErrorLocations dicErrors
             frmConfig.Show

@@ -937,7 +937,7 @@ Private Sub Form_Unload(Cancel As Integer)
 
     If (Not hasConfig) Then
         Dim msgBoxResult As Integer
-        msgBoxResult = MsgBox("Are you sure you want to cancel without a valid configuration?", vbYesNo & vbQuestion, PROGRAM_NAME)
+        msgBoxResult = MsgBox("Are you sure you want to cancel without a valid configuration?", vbYesNo Or vbQuestion, PROGRAM_NAME)
   
         If (msgBoxResult = vbNo) Then Cancel = 1
     End If

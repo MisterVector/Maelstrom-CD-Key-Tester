@@ -206,7 +206,7 @@ Public Sub Recv0x51(Index As Integer)
             Case &H100
                 frmMain.lblStart_EmulateClick
             
-                msgBoxResult = MsgBox("The hashes for " & product & " are out of date. ", vbOKOnly & vbExclamation, PROGRAM_NAME)
+                msgBoxResult = MsgBox("The hashes for " & product & " are out of date. ", vbOKOnly Or vbExclamation, PROGRAM_NAME)
     
                 Exit Sub
             Case &H101
@@ -229,7 +229,7 @@ Public Sub Recv0x51(Index As Integer)
             Case &H102
                 frmMain.lblStart_EmulateClick
           
-                msgBoxResult = MsgBox("The hashes for " & product & " are too new.", vbOKOnly & vbExclamation, PROGRAM_NAME)
+                msgBoxResult = MsgBox("The hashes for " & product & " are too new.", vbOKOnly Or vbExclamation, PROGRAM_NAME)
     
                 Exit Sub
         End Select
@@ -431,7 +431,7 @@ Public Sub Send0x53(Index As Integer)
 
     If (BNETData(Index).nls_P = 0) Then
         frmMain.lblStart_EmulateClick
-        MsgBox "NLS made a bad call.", vbOKOnly & vbCritical, PROGRAM_NAME
+        MsgBox "NLS made a bad call.", vbOKOnly Or vbCritical, PROGRAM_NAME
         EndAll
         Exit Sub
     End If
@@ -440,7 +440,7 @@ Public Sub Send0x53(Index As Integer)
     
     If (nls_account_logon(BNETData(Index).nls_P, nls_A) = 0) Then
         frmMain.lblStart_EmulateClick
-        MsgBox "Unable to create NLS key.", vbOKOnly & vbCritical, PROGRAM_NAME
+        MsgBox "Unable to create NLS key.", vbOKOnly Or vbCritical, PROGRAM_NAME
         EndAll
         Exit Sub
     End If
