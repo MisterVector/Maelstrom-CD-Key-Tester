@@ -768,8 +768,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Const CONFIG_NUMERIC_INDEXES = "5 6 7 8 9 10"
-Private Const CONFIG_HEX_INDEXES = "13 14 15"
+Private Const NUMERIC_TEXTBOX_IDENTIFIER As String = "numeric"
+Private Const HEX_TEXTBOX_IDENTIFIER As String = "hex"
 Private Const CONFIG_DEFAULT_TEXTBOX_IDXS = "5 6 7 8 9 10 11 13 14 15"
 
 Private Sub chkAddDateToTested_Click()
@@ -866,6 +866,17 @@ End Sub
 
 Private Sub Form_Load()
     Dim gateway As Variant
+
+    txtConfig(CONFIG_SOCKETS).Tag = NUMERIC_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_SOCKETS_PER_PROXY).Tag = NUMERIC_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_EXP_TESTS_PER_REG_KEY).Tag = NUMERIC_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_TEST_COUNT_PER_PROXY).Tag = NUMERIC_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_CHECK_FAILURE).Tag = NUMERIC_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_RECONNECT_TIME).Tag = NUMERIC_TEXTBOX_IDENTIFIER
+    
+    txtConfig(CONFIG_VERBYTE_W2BN).Tag = HEX_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_VERBYTE_D2DV).Tag = HEX_TEXTBOX_IDENTIFIER
+    txtConfig(CONFIG_VERBYTE_WAR3).Tag = HEX_TEXTBOX_IDENTIFIER
 
     txtConfig(CONFIG_USERNAME).text = config.name
     txtConfig(CONFIG_PASSWORD).text = config.password
@@ -1041,7 +1052,7 @@ Private Sub lblRestoreDefaults_Click()
     txtConfig(CONFIG_CHECK_FAILURE).text = DEFAULT_CHECK_FAILURE
     txtConfig(CONFIG_RECONNECT_TIME).text = DEFAULT_RECONNECT_TIME
     txtConfig(CONFIG_BNLS_SERVER).text = DEFAULT_BNLS_SERVER
-    
+
     txtConfig(CONFIG_VERBYTE_W2BN).text = Hex(DEFAULT_VERBYTE_W2BN)
     txtConfig(CONFIG_VERBYTE_D2DV).text = Hex(DEFAULT_VERBYTE_D2DV)
     txtConfig(CONFIG_VERBYTE_WAR3).text = Hex(DEFAULT_VERBYTE_WAR3)
@@ -1126,75 +1137,57 @@ Private Function markFormErrors() As Integer
             End If
 
             If (Not hasError) Then
-                Dim txtIndex As Integer, numConfig() As String
-        
-                numConfig = Split(CONFIG_NUMERIC_INDEXES)
-        
-                For i = 0 To UBound(numConfig)
-                    txtIndex = numConfig(i)
-        
-                    If (t.Index = txtIndex) Then
-                        hasError = True
-            
-                        If (IsNumericB(t.text)) Then
-                            Dim minNumber As Integer, maxNumber As Integer
-              
-                            If (txtIndex = CONFIG_TEST_COUNT_PER_PROXY) Then
-                                minNumber = 0
-                            Else
-                                minNumber = 1
-                            End If
-                        
-                            If (txtIndex = CONFIG_SOCKETS) Then
-                                maxNumber = MAX_SOCKETS
-                            ElseIf (txtIndex = CONFIG_SOCKETS_PER_PROXY) Then
-                                maxNumber = MAX_SOCKETS_PER_PROXY
-                            ElseIf (txtIndex = CONFIG_EXP_TESTS_PER_REG_KEY) Then
-                                maxNumber = MAX_EXP_TESTS_PER_REG_KEY
-                            ElseIf (txtIndex = CONFIG_TEST_COUNT_PER_PROXY) Then
-                                maxNumber = MAX_TEST_COUNT_PER_PROXY
-                            ElseIf (txtIndex = CONFIG_RECONNECT_TIME) Then
-                              maxNumber = MAX_RECONNECT_TIME
-                            ElseIf (txtIndex = CONFIG_CHECK_FAILURE) Then
-                                maxNumber = MAX_CHECK_FAILURE
-                            End If
-                        
-                            If (t.text >= minNumber And t.text <= maxNumber) Then
-                                hasError = False
-                            End If
-                        End If
-          
-                        If (hasError) Then
-                            t.BackColor = TXT_ERROR_COLOR
-                            errors = errors + 1
-                            Exit For
-                        End If
-                    End If
-                Next i
-        
-                Dim hexConfig() As String
+                If (t.Tag = NUMERIC_TEXTBOX_IDENTIFIER) Then
+                    If (IsNumericB(t.text)) Then
+                        Dim minNumber As Integer, maxNumber As Integer
 
-                hexConfig = Split(CONFIG_HEX_INDEXES)
-        
-                For i = 0 To UBound(hexConfig)
-                    txtIndex = hexConfig(i)
-        
-                    If (t.Index = txtIndex) Then
-                        hasError = True
-          
-                        If (IsNumeric("&H" & t.text)) Then
-                            If (("&H" & t.text) > 0 And ("&H" & t.text) <= MAX_VERBYTE) Then
-                                hasError = False
-                            End If
+                        If (t.Index = CONFIG_TEST_COUNT_PER_PROXY) Then
+                            minNumber = 0
+                        Else
+                            minNumber = 1
                         End If
-            
-                        If (hasError) Then
-                            t.BackColor = TXT_ERROR_COLOR
-                            errors = errors + 1
-                            Exit For
+
+                        If (t.Index = CONFIG_SOCKETS) Then
+                            maxNumber = MAX_SOCKETS
+                        ElseIf (t.Index = CONFIG_SOCKETS_PER_PROXY) Then
+                            maxNumber = MAX_SOCKETS_PER_PROXY
+                        ElseIf (t.Index = CONFIG_EXP_TESTS_PER_REG_KEY) Then
+                            maxNumber = MAX_EXP_TESTS_PER_REG_KEY
+                        ElseIf (t.Index = CONFIG_TEST_COUNT_PER_PROXY) Then
+                            maxNumber = MAX_TEST_COUNT_PER_PROXY
+                        ElseIf (t.Index = CONFIG_RECONNECT_TIME) Then
+                          maxNumber = MAX_RECONNECT_TIME
+                        ElseIf (t.Index = CONFIG_CHECK_FAILURE) Then
+                            maxNumber = MAX_CHECK_FAILURE
+                        End If
+
+                        If (t.text >= minNumber And t.text <= maxNumber) Then
+                            hasError = False
                         End If
                     End If
-                Next i
+
+                    If (hasError) Then
+                        t.BackColor = TXT_ERROR_COLOR
+                        errors = errors + 1
+                        Exit For
+                    End If
+                End If
+
+                If (t.Tag = HEX_TEXTBOX_IDENTIFIER) Then
+                    hasError = True
+
+                    If (IsNumeric("&H" & t.text)) Then
+                        If (("&H" & t.text) > 0 And ("&H" & t.text) <= MAX_VERBYTE) Then
+                            hasError = False
+                        End If
+                    End If
+
+                    If (hasError) Then
+                        t.BackColor = TXT_ERROR_COLOR
+                        errors = errors + 1
+                        Exit For
+                    End If
+                End If
             End If
         Else
             If (TypeOf o Is ComboBox) Then
