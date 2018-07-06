@@ -2246,7 +2246,7 @@ End Sub
 
 Private Sub sckBNCS_Connect(Index As Integer)
     Select Case BNETData(Index).proxyVersion
-        Case "SOCKS4":  sckBNCS(Index).SendData Chr$(&H4) & Chr$(&H1) & Chr$(&H17) & Chr$(&HE0) & modLIBBNET.P_split(LCase$(config.serverIP)) & vbNullString & Chr$(&H0)
+        Case "SOCKS4":  sckBNCS(Index).SendData Chr$(&H4) & Chr$(&H1) & Chr$(&H17) & Chr$(&HE0) & P_split(LCase$(config.serverIP)) & vbNullString & Chr$(&H0)
         'Case "SOCKS5": 'sckBNCS(Index).SendData Chr$(&H5) & Chr$(&H0)
         Case "HTTP":    sckBNCS(Index).SendData "CONNECT " & config.serverIP & ":6112 HTTP/1.1" & vbCrLf & vbCrLf
   End Select
