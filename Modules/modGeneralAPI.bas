@@ -8,6 +8,7 @@ Private Declare Function SetProcessWorkingSetSize Lib "Kernel32" (ByVal hProcess
                                                                 , ByVal dwMaximumWorkingSetSize As Long) As Long
 Public Declare Sub CopyMemory Lib "Kernel32" Alias "RtlMoveMemory" (ByRef Destination As Any, ByRef Source As Any, ByVal numbytes As Long)
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
+Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpszOp As String, ByVal lpszFile As String, ByVal lpszParams As String, ByVal LpszDir As String, ByVal FsShowCmd As Long) As Long
 
 Public Type FILETIME
     dwLowDateTime       As Long

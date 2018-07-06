@@ -5,6 +5,7 @@ Public Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (By
 Public Const PROGRAM_VERSION As String = "4.14"
 Public Const KeyTesterName As String = "Key Tester"
 Public Const PROGRAM_NAME As String = "Maelstrom CD-Key Tester v" & PROGRAM_VERSION & " by Vector"
+Public Const RELEASES_URL = "https://github.com/MisterVector/Maelstrom-CD-Key-Tester-Legacy/releases"
 
 Public Const DEFAULT_VERBYTE_D2DV             As Long = &HE
 Public Const DEFAULT_VERBYTE_W2BN             As Long = &H4F

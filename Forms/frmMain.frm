@@ -13,6 +13,19 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    ScaleHeight     =   6540
    ScaleWidth      =   11640
+   Begin VB.Timer tmrUpdate 
+      Enabled         =   0   'False
+      Interval        =   450
+      Left            =   1200
+      Top             =   4200
+   End
+   Begin MSWinsockLib.Winsock sckCheckUpdate 
+      Left            =   1200
+      Top             =   3720
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   393216
+   End
    Begin VB.Timer tmrWaitLoad 
       Enabled         =   0   'False
       Interval        =   1
@@ -89,7 +102,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5741
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -2281,6 +2293,24 @@ Private Sub sckBNCS_Error(Index As Integer, ByVal Number As Integer, Description
     Call assumeSocketDead(Index)
 End Sub
 
+Private Sub sckCheckUpdate_Connect()
+    sckCheckUpdate.SendData "GET /projects/maelstrom/Version.txt HTTP/1.1" & vbCrLf _
+                          & "User-Agent: Maelstrom/" & PROGRAM_VERSION & vbCrLf _
+                          & "Host: files.codespeak.org" & vbCrLf & vbCrLf
+End Sub
+
+Private Sub sckCheckUpdate_DataArrival(ByVal bytesTotal As Long)
+    Dim data As String
+    sckCheckUpdate.GetData data
+    
+    updateString = updateString & data
+    tmrUpdate.Enabled = True
+End Sub
+
+Private Sub sckCheckUpdate_Error(ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
+    AddChat vbRed, "Unable to check for update!"
+End Sub
+
 Private Sub tmrBenchmark_Timer()
     curSeconds = curSeconds + 1
   
@@ -2409,6 +2439,34 @@ Public Sub checkForQuitShortcut(key As Integer, shift As Integer)
     If (key = 115 And shift = 4) Then EndAll
 End Sub
 
+Private Sub tmrUpdate_Timer()
+    On Error GoTo err
+  
+    Dim ver As String, updateMsg As String, msgBoxResult As Integer
+  
+    tmrUpdate.Enabled = False
+    ver = Split(updateString, "Content-Type: text/plain" & vbCrLf & vbCrLf)(1)
+
+    If ver > PROGRAM_VERSION Then
+        updateMsg = "There is a new update for Maelstrom!" & vbNewLine & vbNewLine & "Your version: " & PROGRAM_VERSION & " new version: " & ver & vbNewLine & vbNewLine _
+                  & "Would you like to visit the downloads page for updates?"
+    
+        msgBoxResult = MsgBox(updateMsg, vbYesNo Or vbInformation, "New version available!")
+
+        If (msgBoxResult = vbYes) Then
+            ShellExecute 0, "open", RELEASES_URL, "", "", 4
+        End If
+    End If
+  
+err:
+    If err.Number > 0 Then
+        err.Clear
+        AddChat vbRed, "Unable to check for update!"
+    End If
+
+    updateString = vbNullString
+End Sub
+
 Private Sub tmrWaitLoad_Timer()
     tmrWaitLoad.Enabled = False
   
@@ -2494,5 +2552,7 @@ Private Sub tmrWaitLoad_Timer()
             Me.left = tempValue
         End If
     End If
+    
+    sckCheckUpdate.Connect "files.codespeak.org", 80
 End Sub
  
