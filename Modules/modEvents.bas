@@ -92,7 +92,7 @@ Public Sub voidedMutedOrJailedKeyEvaluation(Index As Integer, ByVal isMuted As B
         If (canTestExpansion(.product)) Then keepOriginalKey = True
       
         If (.isExpansion) Then
-            AddChat color, "Socket #" & Index & ": Expansion key is " & LCase(keyState) & "."
+            AddChat color, "Socket #" & Index & ": Expansion key is " & LCase$(keyState) & "."
     
             exportKeyToFile .cdKeyExp, .productExpansion, keyState
             removeCDKeyByIndex .cdKeyExpIndex, .productExpansion
@@ -113,7 +113,7 @@ Public Sub voidedMutedOrJailedKeyEvaluation(Index As Integer, ByVal isMuted As B
                 AddChat color, "Socket #" & Index & ": " & keyState & " key will be used to test expansion."
                 .savedKeyState = keyState
             Else
-                AddChat color, "Socket #" & Index & ": Key is " & LCase(keyState) & "."
+                AddChat color, "Socket #" & Index & ": Key is " & LCase$(keyState) & "."
             End If
         End If
     
@@ -173,7 +173,7 @@ Public Sub handleOtherKeys(Index As Integer, ID As Long, ByVal inUse As String)
                 End Select
 
                 If (.isExpansion) Then
-                    AddChat color, "Socket #" & Index & ": Expansion key is " & IIf(keyState = "Other", "for other product", LCase(keyState)) & "."
+                    AddChat color, "Socket #" & Index & ": Expansion key is " & IIf(keyState = "Other", "for other product", LCase$(keyState)) & "."
                     exportKeyToFile .cdKeyExp, .productExpansion, keyState
                     removeCDKeyByIndex .cdKeyExpIndex, .productExpansion
                     .cdKeyExp = vbNullString
@@ -191,7 +191,7 @@ Public Sub handleOtherKeys(Index As Integer, ID As Long, ByVal inUse As String)
                         End If
                     End If
                 Else
-                    AddChat color, "Socket #" & Index & ": Key is " & IIf(keyState = "other", "for other product", LCase(keyState)) & "."
+                    AddChat color, "Socket #" & Index & ": Key is " & IIf(keyState = "other", "for other product", LCase$(keyState)) & "."
                 End If
 
                 If (Not keepOriginalKey) Then
@@ -291,22 +291,22 @@ End Sub
 
 Public Function IsProxyPacket(Index As Integer, ByVal data As String) As Boolean
     Select Case Mid$(data, 1, 2)
-        Case Chr(&H0) & Chr(&H5A): 'Accepted
+        Case Chr$(&H0) & Chr$(&H5A): 'Accepted
             frmMain.sckBNCS(Index).SendData Chr$(&H1)
             Send0x50 Index
             IsProxyPacket = True
             Exit Function
-        Case Chr(&H0) & Chr(&H5B): 'Denied
+        Case Chr$(&H0) & Chr$(&H5B): 'Denied
             IsProxyPacket = True
-        Case Chr(&H0) & Chr(&H5C): 'Rejected
+        Case Chr$(&H0) & Chr$(&H5C): 'Rejected
             Handle_Proxy = True
-        Case Chr(&H0) & Chr(&H5D): 'Rejected
+        Case Chr$(&H0) & Chr$(&H5D): 'Rejected
             IsProxyPacket = True
     End Select
 
     If (Not IsProxyPacket) Then
         If (InStr(data, " ")) Then
-            If (Mid(data, 10, 3) = "200") Then
+            If (Mid$(data, 10, 3) = "200") Then
                 frmMain.sckBNCS(Index).SendData Chr$(&H1)
                 Send0x50 Index
                 IsProxyPacket = True

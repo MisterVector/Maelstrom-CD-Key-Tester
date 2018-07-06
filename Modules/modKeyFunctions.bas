@@ -229,12 +229,12 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
                 arrFileLines = Split(Input(LOF(1), 1), vbNewLine)
             Close #1
       
-            If (Err.Number = 0) Then
+            If (err.Number = 0) Then
                 For i = 0 To UBound(arrFileLines)
                     processKeyLine arrFileLines(i), pk
                 Next i
             Else
-                Err.Clear
+                err.Clear
                 pk.badFiles = pk.badFiles + 1
             End If
         End If
@@ -292,11 +292,11 @@ End Sub
 Public Function cleanKeyLine(keyLine As String) As String
     Dim parsedKeyLine As String
 
-    parsedKeyLine = UCase(Trim(keyLine))
+    parsedKeyLine = UCase$(Trim$(keyLine))
   
     If (parsedKeyLine <> vbNullString) Then
         If (InStr(parsedKeyLine, " ---> ")) Then
-            parsedKeyLine = left(parsedKeyLine, InStr(parsedKeyLine, " ---> ") - 1)
+            parsedKeyLine = left$(parsedKeyLine, InStr(parsedKeyLine, " ---> ") - 1)
         End If
     
         If (InStr(parsedKeyLine, " ")) Then
@@ -339,7 +339,7 @@ Public Function cleanKeyLine(keyLine As String) As String
         End If
     
         If (Len(parsedKeyLine) > 26) Then
-            parsedKeyLine = left(parsedKeyLine, 26)
+            parsedKeyLine = left$(parsedKeyLine, 26)
         End If
     End If
   
@@ -349,7 +349,7 @@ End Function
 Public Function isSanitizedKey(ByVal key As String) As Boolean
     For i = 1 To Len(key)
         Dim ch As String
-        ch = UCase(Mid(key, i, 1))
+        ch = UCase$(Mid$(key, i, 1))
     
         If ((Asc(ch) < 65 Or Asc(ch) > 90) And Not IsNumeric(ch)) Then
             isSanitizedKey = False
@@ -366,7 +366,7 @@ Public Function isStandardKeyFile(keyFile As String) As Boolean
     arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt", "WAR3.txt", "W3XP.txt")
 
     For i = 0 To UBound(arrDefaultKeyFiles)
-        If (LCase(arrDefaultKeyFiles(i)) = LCase(keyFile)) Then
+        If (LCase$(arrDefaultKeyFiles(i)) = LCase$(keyFile)) Then
             isStandardKeyFile = True
             Exit Function
         End If
@@ -582,7 +582,7 @@ Public Sub exportKeyToFile(ByVal key As String, ByVal product As String, State A
     If (config.addDateToTested) Then
         Dim dateFolder As String
   
-        cdKeyFile = cdKeyFile & Format(Now, " mmmm d, yyyy") & "\"
+        cdKeyFile = cdKeyFile & Format$(Now, " mmmm d, yyyy") & "\"
     
         If (Not DirExists(cdKeyFile)) Then
             MkDir (cdKeyFile)
@@ -598,14 +598,14 @@ Public Sub exportKeyToFile(ByVal key As String, ByVal product As String, State A
     cdKeyFile = cdKeyFile & State & ".txt"
   
     Open cdKeyFile For Append As #1
-        Print #1, UCase(key) & IIf(inUseName <> vbNullString, " ---> " & inUseName, vbNullString)
+        Print #1, UCase$(key) & IIf(inUseName <> vbNullString, " ---> " & inUseName, vbNullString)
     Close #1
 End Sub
 
 Public Function getLabelByKeyState(ByVal product As String, ByVal State As String) As Integer
     Dim labelConstant As Integer
 
-    Select Case LCase(State)
+    Select Case LCase$(State)
         Case "perfect"
             Select Case product
                 Case "W2BN": labelConstant = W2BNPerfect
@@ -706,9 +706,9 @@ Public Sub postKeysTested(ByVal product As String)
             lblKeysPercentIndex = W3XPPercent
     End Select
   
-    frmMain.lblControl(lblKeysPercentIndex).Caption = Format(((keysTested / keysTotal) * 100), "0.0") & "%"
+    frmMain.lblControl(lblKeysPercentIndex).Caption = Format$(((keysTested / keysTotal) * 100), "0.0") & "%"
     frmMain.lblControl(KEYS_TESTED).Caption = testedNonExpKeys + testedExpKeys
-    frmMain.lblControl(PERCENT_TOTAL).Caption = Format(((testedNonExpKeys + testedExpKeys) / (totalNonExpKeys + totalExpKeys)) * 100, "0.0") & "%"
+    frmMain.lblControl(PERCENT_TOTAL).Caption = Format$(((testedNonExpKeys + testedExpKeys) / (totalNonExpKeys + totalExpKeys)) * 100, "0.0") & "%"
 End Sub
 
 Public Sub sendKeysBack()

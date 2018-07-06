@@ -30,7 +30,7 @@ Public Function loadProxies() As ProxiesLoaded
 
             For ii = 0 To UBound(tProxies)
                 If (tProxies(ii) <> vbNullString) Then
-                    tProxies(ii) = Trim(tProxies(ii))
+                    tProxies(ii) = Trim$(tProxies(ii))
                     
                     If (InStr(tProxies(ii), ":")) Then
                         Dim IP As String, port As String
@@ -147,7 +147,7 @@ Public Function getHashes(ByVal product As String, Optional lockdownFileName As 
         End If
     Next i
   
-    If (isLockdown And Len(lockdownFileName) >= 8 And LCase(left(lockdownFileName, 8)) = "lockdown") Then
+    If (isLockdown And Len(lockdownFileName) >= 8 And LCase$(left$(lockdownFileName, 8)) = "lockdown") Then
         If (Dir$(hashes.lockdownPath & lockdownFileName) = vbNullString) Then
         result.errorMessage = "missing lockdown files for " & product
         getHashes = result
@@ -390,7 +390,7 @@ Public Function loadConfig() As Dictionary
         dicErrors.Add CONFIG_CDKEY_PROFILE, config.cdKeyProfile
     End If
   
-    tempValue = UCase(ReadINI("Main", "AddDateToTested", "Config.ini"))
+    tempValue = UCase$(ReadINI("Main", "AddDateToTested", "Config.ini"))
     
     If (tempValue = vbNullString) Then
         dicErrors.Add CONFIG_ADD_DATE_TO_TESTED & "f", DEFAULT_ADD_DATE_TO_TESTED
@@ -404,7 +404,7 @@ Public Function loadConfig() As Dictionary
         End If
     End If
 
-    tempValue = UCase(ReadINI("Main", "SkipFailedProxies", "Config.ini"))
+    tempValue = UCase$(ReadINI("Main", "SkipFailedProxies", "Config.ini"))
   
     If (tempValue = vbNullString) Then
         dicErrors.Add CONFIG_SKIP_FAILED_PROXIES & "f", DEFAULT_SKIP_FAILED_PROXIES
@@ -418,7 +418,7 @@ Public Function loadConfig() As Dictionary
         End If
     End If
   
-    tempValue = UCase(ReadINI("Main", "SaveGoodProxies", "Config.ini"))
+    tempValue = UCase$(ReadINI("Main", "SaveGoodProxies", "Config.ini"))
   
     If (tempValue = vbNullString) Then
         dicErrors.Add CONFIG_SAVE_GOOD_PROXIES & "f", DEFAULT_SAVE_GOOD_PROXIES
@@ -432,7 +432,7 @@ Public Function loadConfig() As Dictionary
         End If
     End If
 
-    tempValue = UCase(ReadINI("Main", "AddRealmToProfile", "Config.ini"))
+    tempValue = UCase$(ReadINI("Main", "AddRealmToProfile", "Config.ini"))
   
     If (tempValue = vbNullString) Then
         dicErrors.Add CONFIG_ADD_REALM_TO_PROFILE & "f", DEFAULT_ADD_REALM_TO_PROFILE
@@ -446,7 +446,7 @@ Public Function loadConfig() As Dictionary
         End If
     End If
   
-    tempValue = UCase(ReadINI("Main", "SaveWindowPosition", "Config.ini"))
+    tempValue = UCase$(ReadINI("Main", "SaveWindowPosition", "Config.ini"))
   
     If (tempValue = vbNullString) Then
         dicErrors.Add CONFIG_SAVE_WINDOW_POSITION & "f", DEFAULT_SAVE_WINDOW_POSITION
@@ -464,7 +464,7 @@ Public Function loadConfig() As Dictionary
     error = True
   
     If (tempValue = vbNullString) Then
-        dicErrors.Add CONFIG_VERBYTE_W2BN & "f", Hex(DEFAULT_VERBYTE_W2BN)
+        dicErrors.Add CONFIG_VERBYTE_W2BN & "f", Hex$(DEFAULT_VERBYTE_W2BN)
     Else
         If (IsNumeric("&H" & tempValue)) Then
             If (("&H" & tempValue) > 0 And ("&H" & tempValue) <= MAX_VERBYTE) Then
@@ -482,7 +482,7 @@ Public Function loadConfig() As Dictionary
     error = True
   
     If (tempValue = vbNullString) Then
-        dicErrors.Add CONFIG_VERBYTE_D2DV & "f", Hex(DEFAULT_VERBYTE_D2DV)
+        dicErrors.Add CONFIG_VERBYTE_D2DV & "f", Hex$(DEFAULT_VERBYTE_D2DV)
     Else
         If (IsNumeric("&H" & tempValue)) Then
             If (("&H" & tempValue) > 0 And ("&H" & tempValue) <= MAX_VERBYTE) Then
@@ -500,7 +500,7 @@ Public Function loadConfig() As Dictionary
     error = True
   
     If (tempValue = vbNullString) Then
-        dicErrors.Add CONFIG_VERBYTE_WAR3 & "f", Hex(DEFAULT_VERBYTE_WAR3)
+        dicErrors.Add CONFIG_VERBYTE_WAR3 & "f", Hex$(DEFAULT_VERBYTE_WAR3)
     Else
         If (IsNumeric("&H" & tempValue)) Then
             If (("&H" & tempValue) > 0 And ("&H" & tempValue) <= MAX_VERBYTE) Then
@@ -538,9 +538,9 @@ Public Sub writeConfig()
         WriteINI "Main", "SkipFailedProxies", IIf(.skipFailedProxies, "Y", "N"), "Config.ini"
         WriteINI "Main", "AddRealmToProfile", IIf(.addRealmToProfile, "Y", "N"), "Config.ini"
         WriteINI "Main", "SaveWindowPosition", IIf(.saveWindowPosition, "Y", "N"), "Config.ini"
-        WriteINI "Main", "W2BNVerByte", Hex(.W2BNVerByte), "Config.ini"
-        WriteINI "Main", "D2DVVerByte", Hex(.D2DVVerByte), "Config.ini"
-        WriteINI "Main", "WAR3VerByte", Hex(.WAR3VerByte), "Config.ini"
+        WriteINI "Main", "W2BNVerByte", Hex$(.W2BNVerByte), "Config.ini"
+        WriteINI "Main", "D2DVVerByte", Hex$(.D2DVVerByte), "Config.ini"
+        WriteINI "Main", "WAR3VerByte", Hex$(.WAR3VerByte), "Config.ini"
     End With
 End Sub
 
@@ -572,7 +572,7 @@ Public Function IsNumericB(ByVal text As String) As Boolean
         For i = 1 To textLength
             Dim ch As String
       
-            ch = UCase(Mid(text, i, 1))
+            ch = UCase$(Mid$(text, i, 1))
       
             If (Not IsNumeric(ch)) Then
                 IsNumericB = False
@@ -753,7 +753,7 @@ Public Function isValidCDKeyProfile(ByVal cdKeyProfile As String) As Boolean
     Dim ch As String
 
     For i = 1 To Len(cdKeyProfile)
-        ch = Mid(cdKeyProfile, i, 1)
+        ch = Mid$(cdKeyProfile, i, 1)
     
         If (ch = "\" Or ch = "\" Or ch = "*" Or ch = """" Or ch = "?" Or _
             ch = ":" Or ch = ">" Or ch = "<" Or ch = "|") Then
@@ -770,7 +770,7 @@ Public Function KillNull(ByVal text As String) As String
   
     pos = InStr(text, Chr$(0))
   
-    KillNull = IIf(pos > 0, Mid(text, 1, pos - 1), text)
+    KillNull = IIf(pos > 0, Mid$(text, 1, pos - 1), text)
 End Function
 
 '// Custom file operations

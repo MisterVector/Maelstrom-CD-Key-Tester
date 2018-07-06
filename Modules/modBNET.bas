@@ -54,7 +54,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         Dim lockdownFileName As String, hsr As HashSearchResult
     
         If (.product = "W2BN") Then
-            lockdownFileName = left(mpqFileName, Len(mpqFileName) - 4) & ".dll"
+            lockdownFileName = left$(mpqFileName, Len(mpqFileName) - 4) & ".dll"
         End If
     
         hsr = getHashes(.product, lockdownFileName)
@@ -393,7 +393,7 @@ Public Sub Recv0x46(Index As Integer)
 End Sub
 
 Public Sub Send0x52(Index As Integer)
-    Dim saltHash As String: saltHash = Space(Len(config.nameW3) + 65)
+    Dim saltHash As String: saltHash = Space$(Len(config.nameW3) + 65)
   
     nls_account_create BNETData(Index).nls_P, saltHash
 
@@ -436,7 +436,7 @@ Public Sub Send0x53(Index As Integer)
         Exit Sub
     End If
 
-    nls_A = Space(Len(config.nameW3) + 33)
+    nls_A = Space$(Len(config.nameW3) + 33)
     
     If (nls_account_logon(BNETData(Index).nls_P, nls_A) = 0) Then
         frmMain.lblStart_EmulateClick

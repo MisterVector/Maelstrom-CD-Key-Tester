@@ -2235,9 +2235,9 @@ Private Sub sckBNLS_DataArrival(ByVal bytesTotal As Long)
     sckBNLS.GetData data
   
     CopyMemory pLen, ByVal Mid$(data, 1, 2), 2
-    pID = Asc(Mid(data, 3, 1))
+    pID = Asc(Mid$(data, 3, 1))
   
-    bnlsPacket.SetData Mid(data, 4)
+    bnlsPacket.SetData Mid$(data, 4)
   
     Select Case pID
         Case &H10: RecvBNLS0x10
@@ -2258,17 +2258,17 @@ Private Sub sckBNCS_DataArrival(Index As Integer, ByVal bytesTotal As Long)
     sckBNCS(Index).GetData data
     If (IsProxyPacket(Index, data)) Then Exit Sub
   
-    If (Asc(left(data, 1)) <> &HFF) Then
+    If (Asc(left$(data, 1)) <> &HFF) Then
         assumeSocketDead Index
         Exit Sub
     End If
   
     Do While (Len(data) > 3)
-        pID = Asc(Mid(data, 2, 1))
+        pID = Asc(Mid$(data, 2, 1))
         CopyMemory pLen, ByVal Mid$(data, 3, 2), 2
         If (pLen < 4) Then Exit Sub
   
-        packet(Index).SetData Mid(data, 5, pLen)
+        packet(Index).SetData Mid$(data, 5, pLen)
 
         Select Case pID
             Case &H25:  Recv0x25 Index   'Ping
@@ -2283,7 +2283,7 @@ Private Sub sckBNCS_DataArrival(Index As Integer, ByVal bytesTotal As Long)
             Case &HA:   Recv0x0A Index   'Enter chat
         End Select
   
-        data = Mid(data, pLen + 1)
+        data = Mid$(data, pLen + 1)
     Loop
 End Sub
 
@@ -2315,7 +2315,7 @@ Private Sub tmrBenchmark_Timer()
     curSeconds = curSeconds + 1
   
     lblControl(TIME_ELAPSED).Caption = returnProperTimeString(curSeconds)
-    lblControl(KEYS_PER_SECOND).Caption = Format(CDbl(Round((testedNonExpKeys + testedExpKeys) / curSeconds, 3)), "0.000")
+    lblControl(KEYS_PER_SECOND).Caption = Format$(CDbl(Round((testedNonExpKeys + testedExpKeys) / curSeconds, 3)), "0.000")
 End Sub
 
 Private Sub tmrCheckBNLS_Timer()

@@ -50,8 +50,8 @@ Public Sub RecvBNLS0x10()
             If (updated) Then
                 Dim verByteString As String
             
-                verByteString = "0x" & IIf(Len(Hex(verByte)) = 1, "0", vbNullString) & Hex(verByte)
-                WriteINI "Main", configName, Hex(verByte), "Config.ini"
+                verByteString = "0x" & IIf(Len(Hex$(verByte)) = 1, "0", vbNullString) & Hex$(verByte)
+                WriteINI "Main", configName, Hex$(verByte), "Config.ini"
               
                 AddChatB vbGreen, "Updated the version byte for " & productName & " to: " & verByteString & "."
             Else

@@ -15,8 +15,8 @@ Public Function ReadINI(ByVal cSection As String, cKey As String, cPath As Strin
     Dim cBuff As String, cLen As Long, tempPath As String
   
     tempPath = App.path & "\" & cPath
-    cBuff = String(255, vbNull)
-    cLen = GetPrivateProfileString(cSection, cKey, Chr(0), cBuff, 255, tempPath)
+    cBuff = String$(255, vbNull)
+    cLen = GetPrivateProfileString(cSection, cKey, Chr$(0), cBuff, 255, tempPath)
   
     If (cLen > 0) Then
         ReadINI = Split(cBuff, Chr$(0))(0)

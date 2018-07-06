@@ -923,9 +923,9 @@ Private Sub Form_Load()
   
     txtConfig(CONFIG_BNLS_SERVER).text = config.bnlsServer
     
-    txtConfig(CONFIG_VERBYTE_W2BN).text = Hex(config.W2BNVerByte)
-    txtConfig(CONFIG_VERBYTE_D2DV).text = Hex(config.D2DVVerByte)
-    txtConfig(CONFIG_VERBYTE_WAR3).text = Hex(config.WAR3VerByte)
+    txtConfig(CONFIG_VERBYTE_W2BN).text = Hex$(config.W2BNVerByte)
+    txtConfig(CONFIG_VERBYTE_D2DV).text = Hex$(config.D2DVVerByte)
+    txtConfig(CONFIG_VERBYTE_WAR3).text = Hex$(config.WAR3VerByte)
 End Sub
 
 Private Sub Form_MouseDown(Button As Integer, shift As Integer, X As Single, Y As Single)
@@ -1053,9 +1053,9 @@ Private Sub lblRestoreDefaults_Click()
     txtConfig(CONFIG_RECONNECT_TIME).text = DEFAULT_RECONNECT_TIME
     txtConfig(CONFIG_BNLS_SERVER).text = DEFAULT_BNLS_SERVER
 
-    txtConfig(CONFIG_VERBYTE_W2BN).text = Hex(DEFAULT_VERBYTE_W2BN)
-    txtConfig(CONFIG_VERBYTE_D2DV).text = Hex(DEFAULT_VERBYTE_D2DV)
-    txtConfig(CONFIG_VERBYTE_WAR3).text = Hex(DEFAULT_VERBYTE_WAR3)
+    txtConfig(CONFIG_VERBYTE_W2BN).text = Hex$(DEFAULT_VERBYTE_W2BN)
+    txtConfig(CONFIG_VERBYTE_D2DV).text = Hex$(DEFAULT_VERBYTE_D2DV)
+    txtConfig(CONFIG_VERBYTE_WAR3).text = Hex$(DEFAULT_VERBYTE_WAR3)
     
     Dim defaultIndexes() As String
     defaultIndexes = Split(CONFIG_DEFAULT_TEXTBOX_IDXS, " ")
@@ -1221,8 +1221,8 @@ Public Sub markErrorLocations(ByVal errors As Dictionary)
         str = errorLocation
         value = errors.Item(errorLocation)
     
-        If (Right(str, 1) = "f") Then
-            txtControlIdx = left(str, Len(str) - 1)
+        If (Right$(str, 1) = "f") Then
+            txtControlIdx = left$(str, Len(str) - 1)
             isFill = True
         Else
             txtControlIdx = str
