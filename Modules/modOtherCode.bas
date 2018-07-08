@@ -679,6 +679,7 @@ Public Function serverToRealm(serverIP As String) As ServerRealm
     For Each gateway In dicGatewayIPs.Keys
         If (gateway = serverIP) Then
             foundGateway = gateway
+            Exit For
         Else
             Dim IP As Variant, IPs As Variant
             IPs = dicGatewayIPs.Item(gateway)
@@ -695,18 +696,18 @@ Public Function serverToRealm(serverIP As String) As ServerRealm
             End If
         End If
     Next
-  
+
     Select Case foundGateway
-        Case "uswest.battle.net"
+        Case "uswest.battle.net", "connect-usw.classic.blizzard.com"
             sr.realm = "USWest"
             sr.realmW3 = "Lordaeron"
-        Case "useast.battle.net"
+        Case "useast.battle.net", "connect-use.classic.blizzard.com"
             sr.realm = "USEast"
             sr.realmW3 = "Azeroth"
-        Case "europe.battle.net"
+        Case "europe.battle.net", "connect-eur.classic.blizzard.com"
             sr.realm = "Europe"
             sr.realmW3 = "Northrend"
-        Case "asia.battle.net"
+        Case "asia.battle.net", "connect-kor.classic.blizzard.com"
             sr.realm = "Asia"
             sr.realmW3 = "Kalimdor"
     End Select
