@@ -170,7 +170,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         End If
 
         .InsertNTString KillNull(EXEInfoString)
-        .InsertNTString KeyTesterName
+        .InsertNTString KEY_TESTER_NAME
         .sendPacket &H51
     End With
 End Sub
