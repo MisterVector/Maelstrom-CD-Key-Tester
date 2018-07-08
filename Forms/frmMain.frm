@@ -2526,7 +2526,11 @@ Private Sub tmrWaitLoad_Timer()
   
     AddChat vbWhite, proxies.countProxies(), vbYellow, " proxies have been loaded."
     AddChat vbWhite, config.sockets, vbYellow, " sockets have been loaded. (", vbWhite, config.socketsPerProxy, vbYellow, " per proxy)"
-    AddChat vbWhite, totalNonExpKeys, vbYellow, " CD-Keys have been loaded. (", vbWhite, totalExpKeys, vbYellow, " expansion keys)"
+    AddChat vbWhite, totalNonExpKeys, vbYellow, " CD-Keys have been loaded."
+
+    If (totalExpKeys > 0) Then
+         AddChat vbWhite, totalExpKeys, vbYellow, " expansion CD-Keys have been loaded."
+    End If
 
     If (pl.loadedCount > 0) Then
         If (pl.maxProxiesReached) Then
