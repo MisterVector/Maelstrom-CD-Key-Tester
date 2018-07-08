@@ -18,14 +18,14 @@ Public Const DEFAULT_BNLS_PORT                As Integer = 9367
 Public Const DEFAULT_EXP_TESTS_PER_REG_KEY    As Integer = 8
 Public Const DEFAULT_TEST_COUNT_PER_PROXY     As Integer = 25
 Public Const DEFAULT_CHECK_FAILURE            As Integer = 10000
-Public Const DEFAULT_RECONNECT_TIME           As Integer = 17000
+Public Const DEFAULT_RECONNECT_TIME           As Integer = 13000
 Public Const DEFAULT_ADD_DATE_TO_TESTED       As Boolean = False
 Public Const DEFAULT_SAVE_GOOD_PROXIES        As Boolean = False
 Public Const DEFAULT_SKIP_FAILED_PROXIES      As Boolean = True
 Public Const DEFAULT_ADD_REALM_TO_PROFILE     As Boolean = False
 Public Const DEFAULT_SAVE_WINDOW_POSITION     As Boolean = True
 
-Public Const MAX_SOCKETS                      As Integer = 5000
+Public Const MAX_SOCKETS                      As Integer = 32767
 Public Const MAX_SOCKETS_PER_PROXY            As Integer = 8
 Public Const MAX_EXP_TESTS_PER_REG_KEY        As Integer = 32767
 Public Const MAX_TEST_COUNT_PER_PROXY         As Integer = 32767
