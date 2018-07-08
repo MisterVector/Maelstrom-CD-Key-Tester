@@ -859,3 +859,17 @@ Public Function P_split(sIP As String) As String
     Next i
 End Function
 
+Public Function isNewVersion(checkVersion As String) As Boolean
+    Dim currentVersionParts() As String, versionParts() As String
+    Dim updated As Boolean
+  
+    currentVersionParts = Split(PROGRAM_VERSION, ".")
+    versionParts = Split(checkVersion, ".")
+    
+    For i = 0 To UBound(versionParts)
+        updated = (CInt(versionParts(i)) > CInt(currentVersionParts(i)))
+        If (updated) Then Exit For
+    Next i
+
+    isNewVersion = updated
+End Function
