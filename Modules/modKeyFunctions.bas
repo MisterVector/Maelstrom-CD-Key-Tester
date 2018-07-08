@@ -41,11 +41,10 @@ Public Type ParsedKeys
     war3Count As Long
     w3xpCount As Long
   
-    invalidKeys As Long
-    duplicateKeys As Long
-    unreadableKeys As Long
-    badLines As Long
     badFiles As Long
+    duplicateKeys As Long
+    invalidKeys As Long
+    skippedLines As Long
 End Type
 
 Public Type DecodedKey
@@ -246,21 +245,21 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
 End Sub
 
 Public Sub processKeyLine(ByVal keyLine As String, pk As ParsedKeys)
-    Dim cleanKey As String, dk As DecodedKey, lenKey As Integer, validLength As Boolean
+    Dim cleanKey As String, dk As DecodedKey, lenKey As Integer
 
     cleanKey = cleanKeyLine(keyLine)
-  
     lenKey = Len(cleanKey)
-    validLength = (lenKey = 16 Or lenKey = 26)
   
-    If (validLength) Then
+    If (lenKey = 16 Or lenKey = 26) Then
         If (isSanitizedKey(cleanKey)) Then
-            dk = Decode(cleanKey)
-    
-            If (dk.successful) Then
-                If (Not pk.dicKeys.Exists(cleanKey)) Then
+            cleanKey = UCase$(cleanKey)
+        
+            If (Not pk.dicKeys.Exists(cleanKey)) Then
+                dk = Decode(cleanKey)
+        
+                If (dk.successful) Then
                     pk.dicKeys.Add cleanKey, dk.product
-          
+        
                     Select Case dk.product
                         Case "W2BN"
                             pk.w2bnCount = pk.w2bnCount + 1
@@ -274,17 +273,17 @@ Public Sub processKeyLine(ByVal keyLine As String, pk As ParsedKeys)
                             pk.w3xpCount = pk.w3xpCount + 1
                     End Select
                 Else
-                    pk.duplicateKeys = pk.duplicateKeys + 1
+                    pk.invalidKeys = pk.invalidKeys + 1
                 End If
             Else
-                pk.invalidKeys = pk.invalidKeys + 1
+                pk.duplicateKeys = pk.duplicateKeys + 1
             End If
         Else
-            pk.unreadableKeys = pk.unreadableKeys + 1
+            pk.skippedLines = pk.skippedLines + 1
         End If
     Else
-        If (lenKey > 0) Then
-            pk.badLines = pk.badLines + 1
+        If (cleanKey <> vbNullString) Then
+            pk.skippedLines = pk.skippedLines + 1
         End If
     End If
 End Sub
@@ -292,7 +291,7 @@ End Sub
 Public Function cleanKeyLine(keyLine As String) As String
     Dim parsedKeyLine As String
 
-    parsedKeyLine = UCase$(Trim$(keyLine))
+    parsedKeyLine = Trim$(keyLine)
   
     If (parsedKeyLine <> vbNullString) Then
         If (InStr(parsedKeyLine, " ---> ")) Then
@@ -384,12 +383,8 @@ Public Sub reportProcessedKeys(pk As ParsedKeys)
         AddChat vbRed, "Removed ", vbWhite, pk.invalidKeys, vbRed, " invalid key" & IIf(pk.invalidKeys > 1, "s", vbNullString) & "."
     End If
   
-    If (pk.unreadableKeys > 0) Then
-        AddChat vbRed, "Removed ", vbWhite, pk.unreadableKeys, vbRed, " unreadable key" & IIf(pk.unreadableKeys > 1, "s", vbNullString) & "."
-    End If
-  
-    If (pk.badLines > 0) Then
-        AddChat vbRed, "Removed ", vbWhite, pk.badLines, vbRed, " bad line" & IIf(pk.badLines > 1, "s", vbNullString) & "."
+    If (pk.skippedLines > 0) Then
+        AddChat vbRed, "Skipped ", vbWhite, pk.skippedLines, vbRed, " line" & IIf(pk.skippedLines > 1, "s", vbNullString) & "."
     End If
   
     If (pk.badFiles > 0) Then
