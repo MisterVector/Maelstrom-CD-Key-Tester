@@ -362,7 +362,7 @@ Begin VB.Form frmConfig
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft II: Version Byte:"
+      Caption         =   "Warcraft II Version Byte:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -382,7 +382,7 @@ Begin VB.Form frmConfig
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
-      Caption         =   "Diablo II: Version Byte:"
+      Caption         =   "Diablo II Version Byte:"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
