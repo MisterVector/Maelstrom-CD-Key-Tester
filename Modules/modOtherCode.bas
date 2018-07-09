@@ -133,7 +133,7 @@ Public Function getHashes(ByVal product As String, Optional lockdownFileName As 
   
     If (product = "D2DV" Or product = "D2XP") Then
         If (Dir$(hashes.checkRevisionInfo) = vbNullString) Then
-        result.errorMessage = "missing CheckRevisionFromWarden.ini"
+        result.errorMessage = "missing VersionCheck.ini"
         getHashes = result
         Exit Function
         End If

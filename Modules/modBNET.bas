@@ -144,8 +144,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         End If
     
         Dim result As Long
-    
-        result = modLIBBNET.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\CheckRevisionFromWarden.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
+        result = modLIBBNET.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\VersionCheck.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
     End With
 
     With packet(Index)
