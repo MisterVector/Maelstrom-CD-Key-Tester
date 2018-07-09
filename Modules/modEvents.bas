@@ -191,7 +191,7 @@ Public Sub handleOtherKeys(Index As Integer, ID As Long, ByVal inUse As String)
                         End If
                     End If
                 Else
-                    AddChat color, "Socket #" & Index & ": Key is " & IIf(keyState = "other", "for other product", LCase$(keyState)) & "."
+                    AddChat color, "Socket #" & Index & ": Key is " & IIf(keyState = "Other", "for other product", LCase$(keyState)) & "."
                 End If
 
                 If (Not keepOriginalKey) Then
