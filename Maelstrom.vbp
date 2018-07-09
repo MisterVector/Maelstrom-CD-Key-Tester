@@ -23,7 +23,6 @@ Module=modWindowFunctions; Modules\modWindowFunctions.bas
 Form=Forms\frmConfig.frm
 Module=modBNETAPI; Modules\modBNETAPI.bas
 Module=modGeneralAPI; Modules\modGeneralAPI.bas
-Module=modLIBBNET; Modules\modLIBBNET.bas
 IconForm="frmMain"
 Startup="frmMain"
 HelpFile=""
