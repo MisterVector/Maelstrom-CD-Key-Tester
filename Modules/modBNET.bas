@@ -225,12 +225,12 @@ Public Sub Recv0x51(Index As Integer)
                 frmMain.tmrCheckBNLS.Enabled = True
             
                 Exit Sub
-            Case &H102
-                frmMain.lblStart_EmulateClick
+            'Case &H102
+                'frmMain.lblStart_EmulateClick
           
-                msgBoxResult = MsgBox("The hashes for " & product & " are too new.", vbOKOnly Or vbExclamation, PROGRAM_NAME)
+                'msgBoxResult = MsgBox("The hashes for " & product & " are too new.", vbOKOnly Or vbExclamation, PROGRAM_NAME)
     
-                Exit Sub
+                'Exit Sub
         End Select
         
         Call handleOtherKeys(Index, statusCode, inUse)
