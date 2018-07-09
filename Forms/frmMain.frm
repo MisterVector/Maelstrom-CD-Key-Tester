@@ -102,7 +102,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5741
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -115,6 +114,26 @@ Begin VB.Form frmMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin VB.Label lblUpdateLabel 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "Check for update"
+      BeginProperty Font 
+         Name            =   "Comic Sans MS"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   495
+      Left            =   7800
+      TabIndex        =   88
+      Top             =   120
+      Width           =   2775
    End
    Begin VB.Label lblReloadProxies 
       Alignment       =   2  'Center
@@ -1804,7 +1823,7 @@ Begin VB.Form frmMain
       Left            =   120
       TabIndex        =   27
       Top             =   120
-      Width           =   11295
+      Width           =   7695
    End
    Begin VB.Label lblControl 
       Alignment       =   2  'Center
@@ -2018,8 +2037,8 @@ Sub minimize_to_tray()
     Shell_NotifyIcon NIM_ADD, nid
 End Sub
 
-Private Sub Form_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(keyCode, shift)
+Private Sub Form_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(keyCode, Shift)
 End Sub
 
 Private Sub Form_Load()
@@ -2031,11 +2050,11 @@ Private Sub Form_Load()
     tmrWaitLoad.Enabled = True
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Dim msg As Long
     Dim sFilter As String
     msg = X / Screen.TwipsPerPixelX
@@ -2058,7 +2077,7 @@ Private Sub lblConfig_Click()
     lblStart.Enabled = False
 End Sub
 
-Private Sub lblControl_MouseDown(Index As Integer, Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub lblControl_MouseDown(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
     moveEntireForm Me, Button
 End Sub
 
@@ -2202,7 +2221,17 @@ Private Sub lblStart_Click()
     End If
 End Sub
 
-Private Sub lblStart_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub lblStart_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Call moveEntireForm(Me, Button)
+End Sub
+
+Private Sub lblUpdateLabel_Click()
+    If (sckCheckUpdate.State = sckClosed) Then
+        sckCheckUpdate.Connect "files.codespeak.org", 80
+    End If
+End Sub
+
+Private Sub lblUpdateLabel_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -2210,7 +2239,7 @@ Private Sub pbMinimize_Click()
     minimize_to_tray
 End Sub
 
-Private Sub pbMinimize_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub pbMinimize_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -2218,12 +2247,12 @@ Private Sub pbQuit_Click()
     EndAll
 End Sub
 
-Private Sub pbQuit_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub pbQuit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub rtbChat_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(keyCode, shift)
+Private Sub rtbChat_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(keyCode, Shift)
 End Sub
 
 Private Sub sckBNLS_Connect()
@@ -2309,7 +2338,9 @@ Private Sub sckCheckUpdate_DataArrival(ByVal bytesTotal As Long)
 End Sub
 
 Private Sub sckCheckUpdate_Error(ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
-    AddChat vbRed, "Unable to check for update!"
+    MsgBox "Unable to check for update!", vbOKOnly Or vbInformation, PROGRAM_NAME
+    tmrCheckUpdate.Enabled = False
+    sckCheckUpdate.Close
 End Sub
 
 Private Sub tmrBenchmark_Timer()
@@ -2436,8 +2467,8 @@ Private Sub tmrReconnect_Timer(Index As Integer)
     End If
 End Sub
 
-Public Sub checkForQuitShortcut(key As Integer, shift As Integer)
-    If (key = 115 And shift = 4) Then EndAll
+Public Sub checkForQuitShortcut(key As Integer, Shift As Integer)
+    If (key = 115 And Shift = 4) Then EndAll
 End Sub
 
 Private Sub tmrCheckUpdate_Timer()
@@ -2457,15 +2488,18 @@ Private Sub tmrCheckUpdate_Timer()
         If (msgBoxResult = vbYes) Then
             ShellExecute 0, "open", RELEASES_URL, "", "", 4
         End If
+    Else
+        MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
     End If
   
 err:
     If err.Number > 0 Then
         err.Clear
-        AddChat vbRed, "Unable to check for update!"
+        MsgBox "Unable to check for update!", vbOKOnly Or vbInformation, PROGRAM_NAME
     End If
 
     updateString = vbNullString
+    sckCheckUpdate.Close
 End Sub
 
 Private Sub tmrWaitLoad_Timer()
@@ -2557,7 +2591,5 @@ Private Sub tmrWaitLoad_Timer()
             Me.left = tempValue
         End If
     End If
-    
-    sckCheckUpdate.Connect "files.codespeak.org", 80
 End Sub
  
