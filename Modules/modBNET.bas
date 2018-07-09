@@ -69,7 +69,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         hashFiles = hsr.hashes
         EXEInfoString = String$(crev_max_result, Chr$(0))
   
-        If ((modLIBBNET.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0)) Then
+        If ((modBNETAPI.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0)) Then
             closeSocket Index
             frmMain.tmrCheckFailed(Index).Enabled = False
         
@@ -106,7 +106,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         End If
   
         If (.cdKeyExp <> vbNullString And (.product = "W3XP" Or .product = "D2XP")) Then
-            If (modLIBBNET.decode_hash_cdkey(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1)) = 0) Then
+            If (modBNETAPI.decode_hash_cdkey(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1)) = 0) Then
                 closeSocket Index
                 frmMain.tmrCheckFailed(Index).Enabled = False
           
@@ -144,7 +144,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         End If
     
         Dim result As Long
-        result = modLIBBNET.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\VersionCheck.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
+        result = modBNETAPI.check_revision(mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\VersionCheck.ini", .product, EXEVersion, EXEchecksum, EXEInfoString)
     End With
 
     With packet(Index)
