@@ -1,4 +1,5 @@
-You need to provide the hashes for each game you wish to test here.
+You need to provide the hashes for each game you wish to test here. You can check
+http://files.codespeak.org/hashes for a list of game hashes to download.
 
 Just place the hash files in their corresponding folders, and you should be good.
 
