@@ -2115,7 +2115,7 @@ Private Sub lblStart_Click()
         stopTesting vbYellow, "Testing stopped. click ""start"" to test again."
     Else
         If (Not hasConfig) Then
-            MsgBox "Cannot start without a valid config.", vbOKOnly Or vbInformation, PROGRAM_NAME
+            MsgBox "Cannot start without a valid config.", vbOKOnly Or vbExclamation, PROGRAM_NAME
             Exit Sub
         End If
   
@@ -2338,7 +2338,7 @@ Private Sub sckCheckUpdate_DataArrival(ByVal bytesTotal As Long)
 End Sub
 
 Private Sub sckCheckUpdate_Error(ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
-    MsgBox "Unable to check for update!", vbOKOnly Or vbInformation, PROGRAM_NAME
+    MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_NAME
     tmrCheckUpdate.Enabled = False
     sckCheckUpdate.Close
 End Sub
@@ -2495,7 +2495,7 @@ Private Sub tmrCheckUpdate_Timer()
 err:
     If err.Number > 0 Then
         err.Clear
-        MsgBox "Unable to check for update!", vbOKOnly Or vbInformation, PROGRAM_NAME
+        MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_NAME
     End If
 
     updateString = vbNullString
