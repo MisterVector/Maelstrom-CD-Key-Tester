@@ -2486,7 +2486,7 @@ Private Sub tmrCheckUpdate_Timer()
         msgBoxResult = MsgBox(updateMsg, vbYesNo Or vbInformation, "New Maelstrom version available!")
 
         If (msgBoxResult = vbYes) Then
-            ShellExecute 0, "open", RELEASES_URL, "", "", 4
+            ShellExecute 0, "open", RELEASES_URL, vbNullString, vbNullString, 4
         End If
     Else
         MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
