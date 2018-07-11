@@ -2539,17 +2539,6 @@ Private Sub tmrWaitLoad_Timer()
             frmConfig.Show
         Else
             hasConfig = True
-      
-            If (config.cdKeyProfile <> vbNullString) Then
-                Dim fullProfileName As String
-                fullProfileName = config.cdKeyProfile
-      
-                If (config.addRealmToProfile) Then
-                    fullProfileName = fullProfileName & " @ " & config.ServerRealm
-                End If
-      
-                AddChat vbYellow, "Using CD-Key profile """ & fullProfileName & """."
-            End If
         End If
     End If
 
@@ -2590,6 +2579,17 @@ Private Sub tmrWaitLoad_Timer()
         If (IsNumericB(tempValue)) Then
             Me.left = tempValue
         End If
+    End If
+    
+    If (config.cdKeyProfile <> vbNullString) Then
+        Dim fullProfileName As String
+        fullProfileName = config.cdKeyProfile
+
+        If (config.addRealmToProfile) Then
+            fullProfileName = fullProfileName & " @ " & config.ServerRealm
+        End If
+
+        AddChat vbYellow, "Using CD-Key profile """ & fullProfileName & """."
     End If
 End Sub
  
