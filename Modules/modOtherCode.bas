@@ -588,7 +588,7 @@ Public Function IsNumericB(ByVal text As String) As Boolean
         For i = 1 To textLength
             Dim ch As String
       
-            ch = UCase$(Mid$(text, i, 1))
+            ch = Mid$(text, i, 1)
       
             If (Not IsNumeric(ch)) Then
                 IsNumericB = False
@@ -854,8 +854,8 @@ Public Sub EndAll()
     Next
 End Sub
 
-Public Sub checkForQuitShortcut(fm As Form, key As Integer, shift As Integer)
-    If (key = 115 And shift = 4) Then
+Public Sub checkForQuitShortcut(fm As Form, key As Integer, Shift As Integer)
+    If (key = 115 And Shift = 4) Then
         If (fm Is frmMain) Then
             EndAll
         Else
