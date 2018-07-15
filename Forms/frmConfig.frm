@@ -46,7 +46,7 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H0000FFFF&
-      Height          =   360
+      Height          =   375
       Left            =   240
       TabIndex        =   17
       Top             =   5640
@@ -65,7 +65,7 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H0000FFFF&
-      Height          =   255
+      Height          =   375
       Left            =   5760
       TabIndex        =   14
       Top             =   2520
@@ -93,7 +93,7 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H0000FFFF&
-      Height          =   315
+      Height          =   375
       Left            =   5760
       TabIndex        =   15
       Top             =   2880
@@ -121,7 +121,7 @@ Begin VB.Form frmConfig
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H0000FFFF&
-      Height          =   255
+      Height          =   375
       Left            =   240
       TabIndex        =   13
       Top             =   6000
@@ -797,11 +797,11 @@ Private Sub chkAddDateToTested_Click()
     End If
 End Sub
 
-Private Sub chkAddDateToTested_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub chkAddDateToTested_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkAddDateToTested_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub chkAddDateToTested_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -811,11 +811,11 @@ Private Sub chkAddRealmToProfile_Click()
     End If
 End Sub
 
-Private Sub chkAddRealmToProfile_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub chkAddRealmToProfile_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkAddRealmToProfile_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub chkAddRealmToProfile_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -825,19 +825,19 @@ Private Sub chkCheckUpdateOnStartup_Click()
     End If
 End Sub
 
-Private Sub chkCheckUpdateOnStartup__KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub chkCheckUpdateOnStartup__KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkCheckUpdateOnStartup_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub chkCheckUpdateOnStartup_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub chkSaveGoodProxies_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub chkSaveGoodProxies_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkSaveGoodProxies_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub chkSaveGoodProxies_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -847,11 +847,11 @@ Private Sub chkSaveGoodProxies_Click()
     End If
 End Sub
 
-Private Sub chkSkipFailedProxies_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub chkSkipFailedProxies_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkSkipFailedProxies_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub chkSkipFailedProxies_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -863,11 +863,11 @@ Private Sub chkSkipFailedProxies_Click()
     chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.value = 1, True, False)
 End Sub
 
-Private Sub chkSaveWindowPosition_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub chkSaveWindowPosition_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkSaveWindowPosition_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub chkSaveWindowPosition_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -889,12 +889,12 @@ Private Sub cmbServer_Click()
     End If
 End Sub
 
-Private Sub cmbServer_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub cmbServer_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub Form_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub Form_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
 Private Sub Form_Load()
@@ -962,7 +962,7 @@ Private Sub Form_Load()
     txtConfig(CONFIG_VERBYTE_WAR3).text = Hex$(config.WAR3VerByte)
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -983,15 +983,15 @@ Private Sub lblCancel_Click()
     Unload Me
 End Sub
 
-Private Sub lblCancel_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub lblCancel_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblConfig_MouseMove(Index As Integer, Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub lblConfig_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblOk_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub lblOk_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1133,15 +1133,15 @@ Private Sub lblRestoreDefaults_Click()
     chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.value = 1, True, False)
 End Sub
 
-Private Sub lblRestoreDefaults_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub lblRestoreDefaults_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub pbQuit_KeyDown(keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub pbQuit_KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub pbQuit_MouseMove(Button As Integer, shift As Integer, X As Single, Y As Single)
+Private Sub pbQuit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1155,8 +1155,8 @@ Private Sub txtConfig_Change(Index As Integer)
     End If
 End Sub
 
-Private Sub txtConfig_KeyDown(Index As Integer, keyCode As Integer, shift As Integer)
-    Call checkForQuitShortcut(Me, keyCode, shift)
+Private Sub txtConfig_KeyDown(Index As Integer, keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
 Private Function markFormErrors() As Integer
