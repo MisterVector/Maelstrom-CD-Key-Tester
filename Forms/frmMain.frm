@@ -102,6 +102,7 @@ Begin VB.Form frmMain
       _ExtentY        =   5741
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -2228,6 +2229,7 @@ End Sub
 Private Sub lblUpdateLabel_Click()
     If (sckCheckUpdate.State = sckClosed) Then
         sckCheckUpdate.Connect "files.codespeak.org", 80
+        manualUpdateCheck = True
     End If
 End Sub
 
@@ -2489,7 +2491,10 @@ Private Sub tmrCheckUpdate_Timer()
             ShellExecute 0, "open", RELEASES_URL, vbNullString, vbNullString, 4
         End If
     Else
-        MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
+        If (manualUpdateCheck) Then
+            MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
+            manualUpdateCheck = False
+        End If
     End If
   
 err:
@@ -2590,6 +2595,12 @@ Private Sub tmrWaitLoad_Timer()
         End If
 
         AddChat vbYellow, "Using CD-Key profile """ & fullProfileName & """."
+    End If
+    
+    If (config.checkUpdateOnStartup) Then
+        If (sckCheckUpdate.State = sckClosed) Then
+            sckCheckUpdate.Connect "files.codespeak.org", 80
+        End If
     End If
 End Sub
  

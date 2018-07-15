@@ -24,6 +24,7 @@ Public Const DEFAULT_SAVE_GOOD_PROXIES        As Boolean = False
 Public Const DEFAULT_SKIP_FAILED_PROXIES      As Boolean = True
 Public Const DEFAULT_ADD_REALM_TO_PROFILE     As Boolean = False
 Public Const DEFAULT_SAVE_WINDOW_POSITION     As Boolean = True
+Public Const DEFAULT_CHECK_UPDATE_ON_STARTUP  As Boolean = True
 
 Public Const MAX_SOCKETS                      As Integer = 32767
 Public Const MAX_SOCKETS_PER_PROXY            As Integer = 8
@@ -90,6 +91,8 @@ Public hasProxies As Boolean
 Public hasKeys As Boolean
 Public hasConfig As Boolean
 
+Public manualUpdateCheck As Boolean
+
 Public Type ConfigData
     name As String
     password As String
@@ -110,6 +113,7 @@ Public Type ConfigData
     saveGoodProxies As Boolean
     addRealmToProfile As Boolean
     saveWindowPosition As Boolean
+    checkUpdateOnStartup As Boolean
     
     expansionTestsPerRegularKey As Integer
     cdKeyProfile As String
