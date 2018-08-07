@@ -1,3 +1,15 @@
+Version 4.2.1 - Released on August 5, 2018
+
+  - Message box icon changes
+    - Invalid config message icon changed from information to critical
+    - Unable to check for update message icon changed from information
+      to exclamation
+  - The CD-Key Profile message is now shown as the last message when
+    Maelstrom starts up
+  - Added a configuration option to check for update on startup,
+    defaulting to on
+  - Checkboxes in the configuration window are more consistent
+
 Version 4.2.0 - Released on July 9, 2018
 
   - The CheckRevision library has been renamed to VersionCheck.dll
