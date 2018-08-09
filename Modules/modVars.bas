@@ -9,7 +9,7 @@ Public Const RELEASES_URL                     As String = "https://github.com/Mi
 
 Public Const DEFAULT_VERBYTE_D2DV             As Long = &HE
 Public Const DEFAULT_VERBYTE_W2BN             As Long = &H4F
-Public Const DEFAULT_VERBYTE_WAR3             As Long = &H1D
+Public Const DEFAULT_VERBYTE_WAR3             As Long = &H1E
 
 Public Const DEFAULT_SOCKETS                  As Integer = 250
 Public Const DEFAULT_SOCKETS_PER_PROXY        As Integer = 4
