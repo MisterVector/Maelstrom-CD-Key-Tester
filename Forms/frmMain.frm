@@ -8,11 +8,11 @@ Begin VB.Form frmMain
    ClientHeight    =   6540
    ClientLeft      =   4125
    ClientTop       =   -225
-   ClientWidth     =   11640
+   ClientWidth     =   11610
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
    ScaleHeight     =   6540
-   ScaleWidth      =   11640
+   ScaleWidth      =   11610
    Begin VB.Timer tmrCheckUpdate 
       Enabled         =   0   'False
       Interval        =   450
@@ -102,7 +102,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5741
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5

@@ -6,12 +6,12 @@ Begin VB.Form frmConfig
    ClientHeight    =   7290
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   9915
+   ClientWidth     =   9930
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7290
-   ScaleWidth      =   9915
+   ScaleWidth      =   9930
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
    Begin VB.CheckBox chkCheckUpdateOnStartup 
@@ -289,12 +289,12 @@ Begin VB.Form frmConfig
    Begin VB.PictureBox pbQuit 
       BorderStyle     =   0  'None
       Height          =   450
-      Left            =   9480
+      Left            =   9420
       Picture         =   "frmConfig.frx":0004
       ScaleHeight     =   450
       ScaleWidth      =   465
       TabIndex        =   26
-      Top             =   0
+      Top             =   -15
       Width           =   465
    End
    Begin VB.Label lblConfig 
@@ -779,7 +779,7 @@ Begin VB.Form frmConfig
       Left            =   120
       TabIndex        =   25
       Top             =   120
-      Width           =   9375
+      Width           =   9255
    End
 End
 Attribute VB_Name = "frmConfig"
