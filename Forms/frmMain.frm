@@ -5,23 +5,23 @@ Begin VB.Form frmMain
    BackColor       =   &H007F7F7F&
    BorderStyle     =   0  'None
    Caption         =   " Maelstrom CD-Key Tester"
-   ClientHeight    =   6540
+   ClientHeight    =   6885
    ClientLeft      =   4125
    ClientTop       =   -225
    ClientWidth     =   11610
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6540
+   ScaleHeight     =   6885
    ScaleWidth      =   11610
    Begin VB.Timer tmrCheckUpdate 
       Enabled         =   0   'False
       Interval        =   450
-      Left            =   1200
-      Top             =   4200
+      Left            =   1560
+      Top             =   5880
    End
    Begin MSWinsockLib.Winsock sckCheckUpdate 
-      Left            =   1200
-      Top             =   3720
+      Left            =   1560
+      Top             =   5400
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -29,23 +29,23 @@ Begin VB.Form frmMain
    Begin VB.Timer tmrWaitLoad 
       Enabled         =   0   'False
       Interval        =   1
-      Left            =   720
-      Top             =   3720
+      Left            =   1080
+      Top             =   5400
    End
    Begin VB.Timer tmrCheckBNLS 
       Enabled         =   0   'False
-      Left            =   720
-      Top             =   4200
+      Left            =   1080
+      Top             =   5880
    End
    Begin VB.Timer tmrBenchmark 
       Enabled         =   0   'False
       Interval        =   1000
-      Left            =   1200
-      Top             =   3240
+      Left            =   1560
+      Top             =   4920
    End
    Begin MSWinsockLib.Winsock sckBNLS 
-      Left            =   720
-      Top             =   3240
+      Left            =   1080
+      Top             =   4920
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -63,8 +63,8 @@ Begin VB.Form frmMain
    End
    Begin MSWinsockLib.Winsock sckBNCS 
       Index           =   0
-      Left            =   240
-      Top             =   3240
+      Left            =   600
+      Top             =   4920
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -83,25 +83,26 @@ Begin VB.Form frmMain
    Begin VB.Timer tmrCheckFailed 
       Enabled         =   0   'False
       Index           =   0
-      Left            =   240
-      Top             =   4200
+      Left            =   600
+      Top             =   5880
    End
    Begin VB.Timer tmrReconnect 
       Enabled         =   0   'False
       Index           =   0
-      Left            =   240
-      Top             =   3720
+      Left            =   600
+      Top             =   5400
    End
    Begin RichTextLib.RichTextBox rtbChat 
-      Height          =   3255
+      Height          =   3135
       Left            =   120
       TabIndex        =   25
-      Top             =   3120
+      Top             =   3600
       Width           =   7095
       _ExtentX        =   12515
-      _ExtentY        =   5741
+      _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -114,6 +115,27 @@ Begin VB.Form frmMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+   End
+   Begin VB.Label lblControl 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "Loading CD-Key Profile..."
+      BeginProperty Font 
+         Name            =   "Comic Sans MS"
+         Size            =   14.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   495
+      Index           =   2
+      Left            =   120
+      TabIndex        =   89
+      Top             =   3120
+      Width           =   11295
    End
    Begin VB.Label lblUpdateLabel 
       Alignment       =   2  'Center
@@ -152,7 +174,7 @@ Begin VB.Form frmMain
       Height          =   375
       Left            =   7320
       TabIndex        =   87
-      Top             =   5400
+      Top             =   5880
       Width           =   1815
    End
    Begin VB.Label lblReloadCDKeys 
@@ -172,7 +194,7 @@ Begin VB.Form frmMain
       Height          =   375
       Left            =   9360
       TabIndex        =   86
-      Top             =   5400
+      Top             =   5880
       Width           =   2055
    End
    Begin VB.Label lblConfig 
@@ -192,7 +214,7 @@ Begin VB.Form frmMain
       Height          =   615
       Left            =   9720
       TabIndex        =   85
-      Top             =   5760
+      Top             =   6240
       Width           =   1335
    End
    Begin VB.Label lblControl 
@@ -212,7 +234,7 @@ Begin VB.Form frmMain
       Index           =   81
       Left            =   7320
       TabIndex        =   84
-      Top             =   3960
+      Top             =   4440
       Width           =   2535
    End
    Begin VB.Line Line13 
@@ -220,40 +242,40 @@ Begin VB.Form frmMain
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   5280
-      Y2              =   5280
+      Y1              =   5760
+      Y2              =   5760
    End
    Begin VB.Line Line12 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   11400
       X2              =   7320
-      Y1              =   4920
-      Y2              =   4920
+      Y1              =   5400
+      Y2              =   5400
    End
    Begin VB.Line Line11 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   3840
-      Y2              =   3840
+      Y1              =   4320
+      Y2              =   4320
    End
    Begin VB.Line Line10 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   4560
-      Y2              =   4560
+      Y1              =   5040
+      Y2              =   5040
    End
    Begin VB.Line Line7 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   4200
-      Y2              =   4200
+      Y1              =   4680
+      Y2              =   4680
    End
    Begin VB.Label lblControl 
       Alignment       =   2  'Center
@@ -274,7 +296,7 @@ Begin VB.Form frmMain
       Index           =   80
       Left            =   10320
       TabIndex        =   83
-      Top             =   4320
+      Top             =   4800
       Width           =   135
    End
    Begin VB.Label lblControl 
@@ -296,7 +318,7 @@ Begin VB.Form frmMain
       Index           =   79
       Left            =   7320
       TabIndex        =   82
-      Top             =   4320
+      Top             =   4800
       Width           =   1935
    End
    Begin VB.Label lblControl 
@@ -318,7 +340,7 @@ Begin VB.Form frmMain
       Index           =   78
       Left            =   10440
       TabIndex        =   81
-      Top             =   4320
+      Top             =   4800
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -340,7 +362,7 @@ Begin VB.Form frmMain
       Index           =   77
       Left            =   9240
       TabIndex        =   80
-      Top             =   4320
+      Top             =   4800
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -383,7 +405,7 @@ Begin VB.Form frmMain
       Index           =   86
       Left            =   10440
       TabIndex        =   78
-      Top             =   5040
+      Top             =   5520
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -404,7 +426,7 @@ Begin VB.Form frmMain
       Index           =   84
       Left            =   10440
       TabIndex        =   77
-      Top             =   4680
+      Top             =   5160
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -424,7 +446,7 @@ Begin VB.Form frmMain
       Index           =   83
       Left            =   7320
       TabIndex        =   76
-      Top             =   5040
+      Top             =   5520
       Width           =   1935
    End
    Begin VB.Label lblControl 
@@ -445,7 +467,7 @@ Begin VB.Form frmMain
       Index           =   82
       Left            =   7320
       TabIndex        =   75
-      Top             =   4680
+      Top             =   5160
       Width           =   1695
    End
    Begin VB.Label lblControl 
@@ -1716,7 +1738,7 @@ Begin VB.Form frmMain
       Index           =   72
       Left            =   10560
       TabIndex        =   55
-      Top             =   3960
+      Top             =   4440
       Width           =   855
    End
    Begin VB.Line Line5 
@@ -1780,7 +1802,7 @@ Begin VB.Form frmMain
       Height          =   615
       Left            =   7680
       TabIndex        =   29
-      Top             =   5760
+      Top             =   6240
       Width           =   1095
    End
    Begin VB.Label lblControl 
@@ -1801,7 +1823,7 @@ Begin VB.Form frmMain
       Index           =   71
       Left            =   7320
       TabIndex        =   28
-      Top             =   3120
+      Top             =   3600
       Width           =   4095
    End
    Begin VB.Label lblControl 
@@ -1840,11 +1862,11 @@ Begin VB.Form frmMain
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00E0E0E0&
-      Height          =   240
+      Height          =   360
       Index           =   75
       Left            =   10200
       TabIndex        =   22
-      Top             =   3600
+      Top             =   4080
       Width           =   135
    End
    Begin VB.Label lblControl 
@@ -1866,7 +1888,7 @@ Begin VB.Form frmMain
       Index           =   74
       Left            =   9240
       TabIndex        =   21
-      Top             =   3600
+      Top             =   4080
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -1888,7 +1910,7 @@ Begin VB.Form frmMain
       Index           =   76
       Left            =   10440
       TabIndex        =   20
-      Top             =   3600
+      Top             =   4080
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -1909,7 +1931,7 @@ Begin VB.Form frmMain
       Index           =   73
       Left            =   7320
       TabIndex        =   19
-      Top             =   3600
+      Top             =   4080
       Width           =   1815
    End
    Begin VB.Label lblControl 
@@ -2593,7 +2615,9 @@ Private Sub tmrWaitLoad_Timer()
             fullProfileName = fullProfileName & " @ " & config.ServerRealm
         End If
 
-        AddChat vbYellow, "Using CD-Key profile """ & fullProfileName & """."
+        lblControl(CDKEY_PROFILE).Caption = "Using CD-Key Profile: " & fullProfileName
+    Else
+        lblControl(CDKEY_PROFILE).Caption = "CD-Key Profile Not Configured"
     End If
     
     If (config.checkUpdateOnStartup) Then

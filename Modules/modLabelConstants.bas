@@ -5,6 +5,8 @@ Attribute VB_Name = "modLabelConstants"
 'label element on my form, and keep track of what index each control is
 
 ' Main form label constants
+Public Const CDKEY_PROFILE = 2
+
 Public Const W2BNPerfect = 26
 Public Const W2BNInUse = 27
 Public Const W2BNMuted = 28

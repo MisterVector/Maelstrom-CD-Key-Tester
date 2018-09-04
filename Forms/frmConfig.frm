@@ -1069,9 +1069,9 @@ Private Sub lblOk_Click()
             fullProfileName = fullProfileName & " @ " & config.ServerRealm
         End If
   
-        If (oldProfile <> fullProfileName) Then
-            AddChat vbYellow, "Using CD-Key profile """ & fullProfileName & """."
-        End If
+        frmMain.lblControl(CDKEY_PROFILE).Caption = "Using CD-Key Profile: " & fullProfileName
+    Else
+        frmMain.lblControl(CDKEY_PROFILE).Caption = "CD-Key Profile Not Configured"
     End If
   
     hasConfig = True
