@@ -102,7 +102,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -134,7 +133,7 @@ Begin VB.Form frmMain
       Index           =   2
       Left            =   120
       TabIndex        =   89
-      Top             =   3120
+      Top             =   720
       Width           =   11295
    End
    Begin VB.Label lblUpdateLabel 
@@ -384,7 +383,7 @@ Begin VB.Form frmMain
       Index           =   64
       Left            =   4080
       TabIndex        =   79
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -488,7 +487,7 @@ Begin VB.Form frmMain
       Index           =   98
       Left            =   10560
       TabIndex        =   74
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -509,7 +508,7 @@ Begin VB.Form frmMain
       Index           =   97
       Left            =   10560
       TabIndex        =   73
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -530,7 +529,7 @@ Begin VB.Form frmMain
       Index           =   96
       Left            =   10560
       TabIndex        =   72
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -551,7 +550,7 @@ Begin VB.Form frmMain
       Index           =   95
       Left            =   10560
       TabIndex        =   71
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -572,7 +571,7 @@ Begin VB.Form frmMain
       Index           =   0
       Left            =   10440
       TabIndex        =   70
-      Top             =   960
+      Top             =   1440
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -593,7 +592,7 @@ Begin VB.Form frmMain
       Index           =   94
       Left            =   10560
       TabIndex        =   69
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -615,7 +614,7 @@ Begin VB.Form frmMain
       Index           =   63
       Left            =   3360
       TabIndex        =   18
-      Top             =   2760
+      Top             =   3240
       Width           =   615
    End
    Begin VB.Label lblControl 
@@ -637,7 +636,7 @@ Begin VB.Form frmMain
       Index           =   62
       Left            =   2520
       TabIndex        =   5
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -658,7 +657,7 @@ Begin VB.Form frmMain
       Index           =   42
       Left            =   8640
       TabIndex        =   67
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -679,7 +678,7 @@ Begin VB.Form frmMain
       Index           =   30
       Left            =   5880
       TabIndex        =   66
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -700,7 +699,7 @@ Begin VB.Form frmMain
       Index           =   12
       Left            =   5760
       TabIndex        =   65
-      Top             =   960
+      Top             =   1440
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -721,7 +720,7 @@ Begin VB.Form frmMain
       Index           =   69
       Left            =   8640
       TabIndex        =   64
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -742,7 +741,7 @@ Begin VB.Form frmMain
       Index           =   51
       Left            =   8640
       TabIndex        =   63
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -763,7 +762,7 @@ Begin VB.Form frmMain
       Index           =   33
       Left            =   8640
       TabIndex        =   62
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -784,7 +783,7 @@ Begin VB.Form frmMain
       Index           =   60
       Left            =   8640
       TabIndex        =   61
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -805,7 +804,7 @@ Begin VB.Form frmMain
       Index           =   57
       Left            =   5880
       TabIndex        =   60
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -826,7 +825,7 @@ Begin VB.Form frmMain
       Index           =   48
       Left            =   5880
       TabIndex        =   59
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -847,7 +846,7 @@ Begin VB.Form frmMain
       Index           =   39
       Left            =   5880
       TabIndex        =   58
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -868,7 +867,7 @@ Begin VB.Form frmMain
       Index           =   66
       Left            =   5880
       TabIndex        =   57
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -889,7 +888,7 @@ Begin VB.Form frmMain
       Index           =   14
       Left            =   8400
       TabIndex        =   56
-      Top             =   720
+      Top             =   1200
       Width           =   1215
    End
    Begin VB.Label lblControl 
@@ -909,7 +908,7 @@ Begin VB.Form frmMain
       Index           =   16
       Left            =   9720
       TabIndex        =   54
-      Top             =   960
+      Top             =   1440
       Width           =   615
    End
    Begin VB.Label lblControl 
@@ -930,7 +929,7 @@ Begin VB.Form frmMain
       Index           =   52
       Left            =   9465
       TabIndex        =   53
-      Top             =   2040
+      Top             =   2520
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -951,7 +950,7 @@ Begin VB.Form frmMain
       Index           =   70
       Left            =   9480
       TabIndex        =   52
-      Top             =   2760
+      Top             =   3240
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -972,7 +971,7 @@ Begin VB.Form frmMain
       Index           =   32
       Left            =   7680
       TabIndex        =   51
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -993,7 +992,7 @@ Begin VB.Form frmMain
       Index           =   61
       Left            =   9465
       TabIndex        =   50
-      Top             =   2400
+      Top             =   2880
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -1014,7 +1013,7 @@ Begin VB.Form frmMain
       Index           =   43
       Left            =   9465
       TabIndex        =   49
-      Top             =   1680
+      Top             =   2160
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -1035,7 +1034,7 @@ Begin VB.Form frmMain
       Index           =   31
       Left            =   6840
       TabIndex        =   48
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1056,7 +1055,7 @@ Begin VB.Form frmMain
       Index           =   50
       Left            =   7665
       TabIndex        =   47
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1077,7 +1076,7 @@ Begin VB.Form frmMain
       Index           =   59
       Left            =   7665
       TabIndex        =   46
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1098,7 +1097,7 @@ Begin VB.Form frmMain
       Index           =   41
       Left            =   7665
       TabIndex        =   45
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1119,7 +1118,7 @@ Begin VB.Form frmMain
       Index           =   28
       Left            =   4080
       TabIndex        =   44
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1140,7 +1139,7 @@ Begin VB.Form frmMain
       Index           =   38
       Left            =   5025
       TabIndex        =   43
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1161,7 +1160,7 @@ Begin VB.Form frmMain
       Index           =   56
       Left            =   5025
       TabIndex        =   42
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1182,7 +1181,7 @@ Begin VB.Form frmMain
       Index           =   65
       Left            =   5025
       TabIndex        =   41
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1203,7 +1202,7 @@ Begin VB.Form frmMain
       Index           =   47
       Left            =   5040
       TabIndex        =   40
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1224,7 +1223,7 @@ Begin VB.Form frmMain
       Index           =   40
       Left            =   6825
       TabIndex        =   39
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1245,7 +1244,7 @@ Begin VB.Form frmMain
       Index           =   58
       Left            =   6825
       TabIndex        =   38
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1266,7 +1265,7 @@ Begin VB.Form frmMain
       Index           =   67
       Left            =   6825
       TabIndex        =   37
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1287,7 +1286,7 @@ Begin VB.Form frmMain
       Index           =   29
       Left            =   5025
       TabIndex        =   36
-      Top             =   1320
+      Top             =   1800
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1308,7 +1307,7 @@ Begin VB.Form frmMain
       Index           =   68
       Left            =   7680
       TabIndex        =   35
-      Top             =   2760
+      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1328,7 +1327,7 @@ Begin VB.Form frmMain
       Index           =   13
       Left            =   6720
       TabIndex        =   34
-      Top             =   960
+      Top             =   1440
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -1348,7 +1347,7 @@ Begin VB.Form frmMain
       Index           =   11
       Left            =   5025
       TabIndex        =   33
-      Top             =   960
+      Top             =   1440
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1368,7 +1367,7 @@ Begin VB.Form frmMain
       Index           =   15
       Left            =   7680
       TabIndex        =   32
-      Top             =   960
+      Top             =   1440
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1389,7 +1388,7 @@ Begin VB.Form frmMain
       Index           =   49
       Left            =   6840
       TabIndex        =   31
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1409,7 +1408,7 @@ Begin VB.Form frmMain
       Index           =   10
       Left            =   4200
       TabIndex        =   30
-      Top             =   960
+      Top             =   1440
       Width           =   615
    End
    Begin VB.Label lblControl 
@@ -1431,7 +1430,7 @@ Begin VB.Form frmMain
       Index           =   9
       Left            =   3285
       TabIndex        =   24
-      Top             =   960
+      Top             =   1440
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -1453,7 +1452,7 @@ Begin VB.Form frmMain
       Index           =   8
       Left            =   2505
       TabIndex        =   23
-      Top             =   960
+      Top             =   1440
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1475,7 +1474,7 @@ Begin VB.Form frmMain
       Index           =   55
       Left            =   4080
       TabIndex        =   17
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1497,7 +1496,7 @@ Begin VB.Form frmMain
       Index           =   54
       Left            =   3360
       TabIndex        =   16
-      Top             =   2400
+      Top             =   2880
       Width           =   615
    End
    Begin VB.Label lblControl 
@@ -1519,7 +1518,7 @@ Begin VB.Form frmMain
       Index           =   46
       Left            =   4080
       TabIndex        =   15
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1541,7 +1540,7 @@ Begin VB.Form frmMain
       Index           =   45
       Left            =   3360
       TabIndex        =   14
-      Top             =   2040
+      Top             =   2520
       Width           =   615
    End
    Begin VB.Label lblControl 
@@ -1563,7 +1562,7 @@ Begin VB.Form frmMain
       Index           =   37
       Left            =   4080
       TabIndex        =   13
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1585,7 +1584,7 @@ Begin VB.Form frmMain
       Index           =   36
       Left            =   3360
       TabIndex        =   12
-      Top             =   1680
+      Top             =   2160
       Width           =   615
    End
    Begin VB.Label lblControl 
@@ -1607,7 +1606,7 @@ Begin VB.Form frmMain
       Index           =   34
       Left            =   9465
       TabIndex        =   11
-      Top             =   1320
+      Top             =   1800
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -1629,7 +1628,7 @@ Begin VB.Form frmMain
       Index           =   27
       Left            =   3360
       TabIndex        =   10
-      Top             =   1320
+      Top             =   1800
       Width           =   660
    End
    Begin VB.Label lblControl 
@@ -1651,7 +1650,7 @@ Begin VB.Form frmMain
       Index           =   44
       Left            =   2520
       TabIndex        =   9
-      Top             =   2040
+      Top             =   2520
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1673,7 +1672,7 @@ Begin VB.Form frmMain
       Index           =   26
       Left            =   2520
       TabIndex        =   8
-      Top             =   1320
+      Top             =   1800
       Width           =   780
    End
    Begin VB.Label lblControl 
@@ -1695,7 +1694,7 @@ Begin VB.Form frmMain
       Index           =   35
       Left            =   2520
       TabIndex        =   7
-      Top             =   1680
+      Top             =   2160
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1717,7 +1716,7 @@ Begin VB.Form frmMain
       Index           =   53
       Left            =   2520
       TabIndex        =   6
-      Top             =   2400
+      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1747,8 +1746,8 @@ Begin VB.Form frmMain
       Index           =   11
       X1              =   120
       X2              =   11400
-      Y1              =   2280
-      Y2              =   2280
+      Y1              =   2760
+      Y2              =   2760
    End
    Begin VB.Line Line4 
       BorderColor     =   &H00404040&
@@ -1756,8 +1755,8 @@ Begin VB.Form frmMain
       Index           =   10
       X1              =   120
       X2              =   11400
-      Y1              =   1920
-      Y2              =   1920
+      Y1              =   2400
+      Y2              =   2400
    End
    Begin VB.Line Line3 
       BorderColor     =   &H00404040&
@@ -1765,8 +1764,8 @@ Begin VB.Form frmMain
       Index           =   9
       X1              =   120
       X2              =   11400
-      Y1              =   1560
-      Y2              =   1560
+      Y1              =   2040
+      Y2              =   2040
    End
    Begin VB.Line Line2 
       BorderColor     =   &H00404040&
@@ -1774,8 +1773,8 @@ Begin VB.Form frmMain
       Index           =   13
       X1              =   120
       X2              =   11400
-      Y1              =   3000
-      Y2              =   3000
+      Y1              =   3480
+      Y2              =   3480
    End
    Begin VB.Line Line1 
       BorderColor     =   &H00404040&
@@ -1783,8 +1782,8 @@ Begin VB.Form frmMain
       Index           =   12
       X1              =   120
       X2              =   11400
-      Y1              =   2640
-      Y2              =   2640
+      Y1              =   3120
+      Y2              =   3120
    End
    Begin VB.Label lblStart 
       BackStyle       =   0  'Transparent
@@ -1952,7 +1951,7 @@ Begin VB.Form frmMain
       Index           =   7
       Left            =   120
       TabIndex        =   4
-      Top             =   2760
+      Top             =   3240
       Width           =   1815
    End
    Begin VB.Label lblControl 
@@ -1973,7 +1972,7 @@ Begin VB.Form frmMain
       Index           =   6
       Left            =   120
       TabIndex        =   3
-      Top             =   2400
+      Top             =   2880
       Width           =   1215
    End
    Begin VB.Label lblControl 
@@ -1994,7 +1993,7 @@ Begin VB.Form frmMain
       Index           =   3
       Left            =   120
       TabIndex        =   2
-      Top             =   1320
+      Top             =   1800
       Width           =   1815
    End
    Begin VB.Label lblControl 
@@ -2015,7 +2014,7 @@ Begin VB.Form frmMain
       Index           =   5
       Left            =   120
       TabIndex        =   1
-      Top             =   2040
+      Top             =   2520
       Width           =   1455
    End
    Begin VB.Label lblControl 
@@ -2036,7 +2035,7 @@ Begin VB.Form frmMain
       Index           =   4
       Left            =   120
       TabIndex        =   0
-      Top             =   1680
+      Top             =   2160
       Width           =   1815
    End
 End
