@@ -2065,7 +2065,7 @@ End Sub
 Private Sub Form_Load()
     Dim top As Long, left As Long, tempValue As String
 
-    AddChat vbYellow, "Welcome to Maelstrom CD-Key Tester v" & PROGRAM_VERSION & " by Vector."
+    AddChat vbYellow, "Welcome to Maelstrom CD-Key Tester ", vbWhite, "v" & PROGRAM_VERSION, vbYellow, " by Vector."
     lblControl(1).Caption = PROGRAM_NAME
   
     tmrWaitLoad.Enabled = True
@@ -2212,7 +2212,7 @@ Private Sub lblStart_Click()
                 IP = BNETData(i).proxyIP
                 port = BNETData(i).proxyPort
     
-                AddChat vbYellow, "Socket #" & i & ": Attempting to connect to " & IP & ":" & port & "."
+                AddChat vbYellow, "Socket #" & i & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
                 tmrCheckFailed(i).Enabled = True
                 connectSocket i
             Else
@@ -2230,7 +2230,7 @@ Private Sub lblStart_Click()
         lblStart.Caption = "Stop"
     
         If (socketsUnavailable > 0) Then
-            AddChat vbRed, socketsUnavailable & " sockets were unavailable for use."
+            AddChat vbWhite, socketsUnavailable, vbRed, " sockets were unavailable for use."
         End If
     
         lblReloadProxies.Enabled = False
@@ -2388,7 +2388,7 @@ Public Sub assumeSocketDead(Index As Integer)
     tmrCheckFailed(Index).Enabled = False
     closeSocket Index
       
-    AddChat vbRed, "Socket #" & Index & ": Connection to " & BNETData(Index).proxyIP & ":" & BNETData(Index).proxyPort & " failed!"
+    AddChat vbRed, "Socket #" & Index & ": Connection to ", vbWhite, BNETData(Index).proxyIP & ":" & BNETData(Index).proxyPort, vbRed, " failed!"
       
     If (config.skipFailedProxies) Then
         proxies.onProxyFail BNETData(Index).proxyIndex
@@ -2416,7 +2416,7 @@ Public Sub assumeSocketDead(Index As Integer)
         BNETData(Index).proxyVersion = version
         BNETData(Index).proxyIndex = proxyIndex
 
-        AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to " & IP & ":" & port & "."
+        AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
     
         connectSocket Index
         tmrCheckFailed(Index).Enabled = True
@@ -2481,7 +2481,7 @@ Private Sub tmrReconnect_Timer(Index As Integer)
 
     If (attemptConnection) Then
         If (reportConnection) Then
-            AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to " & IP & ":" & port & "."
+            AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
         End If
     
         connectSocket Index

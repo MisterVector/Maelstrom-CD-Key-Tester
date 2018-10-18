@@ -284,7 +284,7 @@ Public Sub Recv0x3A(Index As Integer)
             Send0x14 Index
             Send0xAC Index
         Case &H1: 'Creating account
-            AddChatB vbYellow, config.name & "@" & config.ServerRealm & " does not exist. Maelstrom will create it."
+            AddChatB vbWhite, config.name & "@" & config.ServerRealm, vbYellow, " does not exist. Maelstrom will create it."
     
             For i = 0 To UBound(BNETData)
                 If (i <> Index) Then
@@ -297,10 +297,10 @@ Public Sub Recv0x3A(Index As Integer)
             Send0x3D Index
         Case &H2: 'Bad password
     
-            AddChat vbRed, "Invalid password for " & config.name & "@" & config.ServerRealm & "."
+            AddChat vbRed, "Invalid password for ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "."
             stopTesting vbYellow, "Change the password and then click ""Start"" again."
         Case &H6: 'Account closed
-            AddChat vbRed, "The account " & config.name & "@" & config.ServerRealm & " has been banned."
+            AddChat vbRed, "The account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, " has been banned."
             stopTesting vbYellow, "Change the account name and then click ""Start"" again."
     End Select
 End Sub
@@ -325,13 +325,13 @@ Public Sub Recv0x3D(Index As Integer)
     End With
   
     If (result = &H0) Then
-        AddChatB vbGreen, "Created the account " & config.name & "@" & config.ServerRealm & "!"
+        AddChatB vbGreen, "Created the account ", vbWhite, config.name & "@" & config.ServerRealm, vbGreen, "!"
         stopTesting vbYellow, "Click ""Start"" to start testing again."
     Else
         Dim reason As String
         reason = accountIdToReason(result, False)
     
-        AddChatB vbRed, "Unable to create the account " & config.name & "@" & config.ServerRealm & "!"
+        AddChatB vbRed, "Unable to create the account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "!"
         AddChatB vbRed, "Reason: " & reason & "."
   
         stopTesting vbYellow, "Fix the issue with the account and click ""Start"" again."
@@ -410,13 +410,13 @@ Public Sub Recv0x52(Index As Integer)
     End With
   
     If (result = &H0) Then
-        AddChatB vbGreen, "Created the account " & config.nameW3 & "@" & config.serverRealmW3 & "!"
+        AddChatB vbGreen, "Created the account ", vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbWhite, "!"
         stopTesting vbYellow, "Click ""Start"" to begin testing again."
     Else
         Dim reason As String
         reason = accountIdToReason(result, True)
   
-        AddChatB vbRed, "Could not create the account " & config.nameW3 & "@" & config.serverRealmW3 & "!"
+        AddChatB vbRed, "Could not create the account ", vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbRed, "!"
         AddChatB vbRed, "Reason: " & reason & "."
   
         stopTesting vbYellow, "Fix the issue with the account and click ""Start"" again."
@@ -453,7 +453,7 @@ Public Sub Recv0x53(Index As Integer)
     Select Case packet(Index).GetDWORD
         Case &H0: Send0x54 Index   'Passed
         Case &H1: 'Account Not made
-            AddChatB vbYellow, config.nameW3 & "@" & config.serverRealmW3 & " does not exist. Maelstrom will create it."
+            AddChatB vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbYellow, " does not exist. Maelstrom will create it."
               
             For i = 0 To UBound(BNETData)
                 If (i <> Index) Then
