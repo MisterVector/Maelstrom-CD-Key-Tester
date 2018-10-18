@@ -1,3 +1,11 @@
+Version 4.2.2 - Released on October 18, 2018
+
+  - Updated Warcraft III version byte to 0x1E
+  - Adjusted the X button on main form and configuration form to remove
+    any open space on the right side
+  - Guide renamed to ReadMe for consistency
+  - Some text stands out more
+
 Version 4.2.1 - Released on August 5, 2018
 
   - Message box icon changes
