@@ -102,7 +102,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -2134,7 +2133,7 @@ End Sub
 
 Private Sub lblStart_Click()
     If (isTesting) Then
-        stopTesting vbYellow, "Testing stopped. click ""start"" to test again."
+        stopTesting vbYellow, "Testing stopped. click ", vbWhite, "start", vbYellow, " to test again."
     Else
         If (Not hasConfig) Then
             MsgBox "Cannot start without a valid config.", vbOKOnly Or vbExclamation, PROGRAM_NAME

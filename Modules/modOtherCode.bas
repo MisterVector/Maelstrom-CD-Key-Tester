@@ -810,7 +810,7 @@ oops:
     getFileSize = 0
 End Function
 
-Public Sub stopTesting(ByVal color As Long, ByVal msg As String)
+Public Sub stopTesting(ParamArray saElements() As Variant)
     isTesting = False
   
     frmMain.tmrCheckBNLS.Enabled = False
@@ -830,7 +830,19 @@ Public Sub stopTesting(ByVal color As Long, ByVal msg As String)
   
     frmMain.lblStart.Caption = "Start"
   
-    AddChatB color, msg
+    With frmMain.rtbChat
+        .SelStart = Len(.text)
+        .SelLength = 0
+        .SelColor = vbWhite
+        .SelText = "[" & Time() & "] "
+    
+        For i = 0 To UBound(saElements) Step 2
+            .SelStart = Len(.text)
+            .SelLength = 0
+            .SelColor = saElements(i)
+            .SelText = saElements(i + 1) & IIf(i + 1 = UBound(saElements), vbNewLine, vbNullString)
+        Next i
+    End With
 End Sub
 
 Public Sub EndAll()

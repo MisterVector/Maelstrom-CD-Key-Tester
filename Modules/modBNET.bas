@@ -62,7 +62,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         If (Not hsr.hashesExist) Then
             AddChatB vbRed, "Socket #" & Index & ": Check revision failed for " & .product & "!"
             AddChatB vbRed, "Reason: " & hsr.errorMessage & "."
-            stopTesting vbYellow, "Address the issue and then hit ""Start"" again."
+            stopTesting vbYellow, "Address the issue and then hit ", vbWhite, "Start", vbYellow, " again."
             Exit Sub
         End If
     
@@ -87,17 +87,17 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         
                 If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
                     AddChatB vbYellow, "All keys have been tested."
-                    stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+                    stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
                     Exit Sub
                 ElseIf (testedNonExpKeys = totalNonExpKeys) Then
                     AddChatB vbYellow, "All non-expansion keys have been tested."
-                    stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+                    stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
                     Exit Sub
                 End If
       
                 If (socketsAvailable = 0) Then
                     AddChatB vbYellow, "No more connections could be made."
-                    stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
+                    stopTesting vbYellow, "Add more proxies and then click ", vbWhite, "Reload Proxies", vbYellow, "."
                     Exit Sub
                 End If
             End If
@@ -124,17 +124,17 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
           
                     If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
                         AddChatB vbYellow, "All keys have been tested."
-                        stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+                        stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
                         Exit Sub
                     ElseIf (testedNonExpKeys = totalNonExpKeys) Then
                         AddChatB vbYellow, "All non-expansion keys have been tested."
-                        stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+                        stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
                         Exit Sub
                     End If
         
                     If (socketsAvailable = 0) Then
                         AddChatB vbYellow, "No more connections could be made."
-                        stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
+                        stopTesting vbYellow, "Add more proxies and then click ", vbWhite, "Reload Proxies", vbYellow, "."
                         Exit Sub
                     End If
                 End If
@@ -243,17 +243,17 @@ Public Sub Recv0x51(Index As Integer)
           
             If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
                 AddChatB vbYellow, "All keys have been tested."
-                stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+                stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
                 Exit Sub
             ElseIf (testedNonExpKeys = totalNonExpKeys) Then
                 AddChatB vbYellow, "All non-expansion keys have been tested."
-                stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+                stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
                 Exit Sub
             End If
         
             If (socketsAvailable = 0) Then
                 AddChatB vbYellow, "No more connections could be made."
-                stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
+                stopTesting vbYellow, "Add more proxies and then click ", vbWhite, "Reload Proxies", vbYellow, "."
                 Exit Sub
             End If
         
@@ -298,10 +298,10 @@ Public Sub Recv0x3A(Index As Integer)
         Case &H2: 'Bad password
     
             AddChat vbRed, "Invalid password for ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "."
-            stopTesting vbYellow, "Change the password and then click ""Start"" again."
+            stopTesting vbYellow, "Change the password and then click ", vbWhite, "Start", vbYellow, " again."
         Case &H6: 'Account closed
             AddChat vbRed, "The account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, " has been banned."
-            stopTesting vbYellow, "Change the account name and then click ""Start"" again."
+            stopTesting vbYellow, "Change the account name and then click ", vbWhite, "Start", vbYellow, " again."
     End Select
 End Sub
 
@@ -326,7 +326,7 @@ Public Sub Recv0x3D(Index As Integer)
   
     If (result = &H0) Then
         AddChatB vbGreen, "Created the account ", vbWhite, config.name & "@" & config.ServerRealm, vbGreen, "!"
-        stopTesting vbYellow, "Click ""Start"" to start testing again."
+        stopTesting vbYellow, "Click ", vbWhite, "Start", vbYellow, " to start testing again."
     Else
         Dim reason As String
         reason = accountIdToReason(result, False)
@@ -334,7 +334,7 @@ Public Sub Recv0x3D(Index As Integer)
         AddChatB vbRed, "Unable to create the account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "!"
         AddChatB vbRed, "Reason: " & reason & "."
   
-        stopTesting vbYellow, "Fix the issue with the account and click ""Start"" again."
+        stopTesting vbYellow, "Fix the issue with the account and click ", vbWhite, "Start", vbYellow, " again."
     End If
 End Sub
 
@@ -371,17 +371,17 @@ Public Sub Recv0x46(Index As Integer)
     
         If ((testedNonExpKeys + testedExpKeys) = (totalNonExpKeys + totalExpKeys)) Then
             AddChatB vbYellow, "All keys have been tested."
-            stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+            stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
             Exit Sub
         ElseIf (testedNonExpKeys = totalNonExpKeys) Then
             AddChatB vbYellow, "All non-expansion keys have been tested."
-            stopTesting vbYellow, "Add more keys and then click ""Reload CD-Keys""."
+            stopTesting vbYellow, "Add more keys and then click ", vbWhite, "Reload CD-Keys", vbYellow, "."
             Exit Sub
         End If
   
         If (socketsAvailable = 0) Then
             AddChatB vbYellow, "No more connections could be made."
-            stopTesting vbYellow, "Add more proxies and then click ""Reload Proxies""."
+            stopTesting vbYellow, "Add more proxies and then click ", vbWhite, "Reload Proxies", vbYellow, "."
             Exit Sub
         End If
   
@@ -411,7 +411,7 @@ Public Sub Recv0x52(Index As Integer)
   
     If (result = &H0) Then
         AddChatB vbGreen, "Created the account ", vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbWhite, "!"
-        stopTesting vbYellow, "Click ""Start"" to begin testing again."
+        stopTesting vbYellow, "Click ", vbWhite, "Start", vbYellow, " to begin testing again."
     Else
         Dim reason As String
         reason = accountIdToReason(result, True)
@@ -419,7 +419,7 @@ Public Sub Recv0x52(Index As Integer)
         AddChatB vbRed, "Could not create the account ", vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbRed, "!"
         AddChatB vbRed, "Reason: " & reason & "."
   
-        stopTesting vbYellow, "Fix the issue with the account and click ""Start"" again."
+        stopTesting vbYellow, "Fix the issue with the account and click ", vbWhite, "Start", vbYellow, " again."
     End If
 End Sub
 

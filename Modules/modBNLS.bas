@@ -58,7 +58,7 @@ Public Sub RecvBNLS0x10()
                 msgBoxResult = MsgBox("The version byte for " & productName & " could not be updated.", vbOKOnly Or vbExclamation, PROGRAM_NAME)
             End If
             
-            stopTesting vbYellow, "Click ""Start"" to begin testing again."
+            stopTesting vbYellow, "Click ", vbWhite, "Start", vbYellow, " to begin testing again."
         Else
             AddChatB vbRed, "Failed to update version byte for product: " & requestProduct & "."
         End If
