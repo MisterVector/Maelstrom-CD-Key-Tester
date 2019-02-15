@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "mswinsck.ocx"
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H007F7F7F&
    BorderStyle     =   0  'None
@@ -102,6 +102,7 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -2497,10 +2498,10 @@ Private Sub tmrCheckUpdate_Timer()
     On Error GoTo err
   
     Dim versionToCheck As String, updateMsg As String, msgBoxResult As Integer
-  
+
     tmrCheckUpdate.Enabled = False
-    versionToCheck = Split(updateString, "Content-Type: text/plain" & vbCrLf & vbCrLf)(1)
-    
+    versionToCheck = Split(updateString, vbCrLf & vbCrLf)(1)
+
     If (isNewVersion(versionToCheck)) Then
         updateMsg = "There is a new update for Maelstrom!" & vbNewLine & vbNewLine & "Your version: " & PROGRAM_VERSION & " new version: " & versionToCheck & vbNewLine & vbNewLine _
                   & "Would you like to visit the downloads page for updates?"
