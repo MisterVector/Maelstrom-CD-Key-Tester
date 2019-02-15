@@ -2,7 +2,7 @@ Attribute VB_Name = "modVars"
 Public Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpOperation As String, _
     ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Long) As Long
 
-Public Const PROGRAM_VERSION                  As String = "4.2.2"
+Public Const PROGRAM_VERSION                  As String = "4.2.3"
 Public Const KEY_TESTER_NAME                  As String = "Key Tester"
 Public Const PROGRAM_NAME                     As String = "Maelstrom CD-Key Tester v" & PROGRAM_VERSION & " by Vector"
 Public Const RELEASES_URL                     As String = "https://github.com/MisterVector/Maelstrom-CD-Key-Tester-Legacy/releases"

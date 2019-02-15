@@ -1,3 +1,11 @@
+Version 4.2.3 - Released on February 15, 2019
+
+  - Fixed update check code
+  - Instead of using quotes to emphasize certain words after the
+    tester is stopped, the color white is used instead
+  - Fixed some casing in a message when the tester is stopped
+  - Fixed Diablo II/Expansion checkrevision
+
 Version 4.2.2 - Released on October 18, 2018
 
   - Updated Warcraft III version byte to 0x1E
