@@ -4,10 +4,6 @@ This is a program designed to test multiple CD-Keys using both SOCKS4 and HTTP p
 to over-use proxies resulting in early proxy death. It can also test both regular and expansion keys for
 Warcraft III and Diablo II.
 
-# Legacy Version
-
-This version is a legacy version. It is maintained because there is no suitable alternative yet.
-
 # What is this extra/ doing in .gitignore?
 
 The reason that .gitignore has an entry called `extra/` is so you can create a folder called "extra" in your
