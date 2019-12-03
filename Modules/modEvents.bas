@@ -300,7 +300,7 @@ Public Function IsProxyPacket(Index As Integer, ByVal data As String) As Boolean
         Case Chr$(&H0) & Chr$(&H5B): 'Denied
             IsProxyPacket = True
         Case Chr$(&H0) & Chr$(&H5C): 'Rejected
-            Handle_Proxy = True
+            IsProxyPacket = True
         Case Chr$(&H0) & Chr$(&H5D): 'Rejected
             IsProxyPacket = True
     End Select
