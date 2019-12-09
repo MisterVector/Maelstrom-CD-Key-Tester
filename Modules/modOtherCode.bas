@@ -33,11 +33,12 @@ Public Function loadProxies() As ProxiesLoaded
                     tProxies(ii) = Trim$(tProxies(ii))
                     
                     If (InStr(tProxies(ii), ":")) Then
-                        Dim IP As String, port As String
-                
-                        IP = Split(tProxies(ii), ":")(0)
-                        port = Split(tProxies(ii), ":")(1)
-            
+                        Dim IP As String, port As String, parts() As String
+                        
+                        parts = Split(tProxies(ii), ":")
+                        IP = parts(0)
+                        port = parts(1)
+                        
                         If (IsNumeric(port) And IsNumeric(Replace(IP, ".", vbNullString))) Then
                             If (port <= 65535 And port > 0) Then
                                 If (Not dicTemp.Exists(IP)) Then
