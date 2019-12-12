@@ -895,10 +895,10 @@ Public Function Decode(ByVal cdKey As String) As DecodedKey
             Case &H4
                 dk.product = "W2BN"
                 dk.successful = True
-            Case &H6, &H7
+            Case &H6, &H7, &H18
                 dk.product = "D2DV"
                 dk.successful = True
-            Case &HA, &HC
+            Case &HA, &HC, &H19
                 dk.product = "D2XP"
                 dk.successful = True
             Case &HE, &HF
