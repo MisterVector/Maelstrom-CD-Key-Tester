@@ -291,26 +291,40 @@ Public Sub closeSocket(ByVal Index As Integer)
 End Sub
 
 Public Function IsProxyPacket(Index As Integer, ByVal data As String) As Boolean
-    Select Case Mid$(data, 1, 2)
-        Case Chr$(&H0) & Chr$(&H5A): 'Accepted
+    If (BNETData(Index).acceptedAuth) Then
+        If (Mid$(data, 1, 2) = Chr$(&H5) & Chr$(&H0)) Then
             frmMain.sckBNCS(Index).SendData Chr$(&H1)
             Send0x50 Index
-            IsProxyPacket = True
-            Exit Function
-        Case Chr$(&H0) & Chr$(&H5B): 'Denied
-            IsProxyPacket = True
-        Case Chr$(&H0) & Chr$(&H5C): 'Rejected
-            IsProxyPacket = True
-        Case Chr$(&H0) & Chr$(&H5D): 'Rejected
-            IsProxyPacket = True
-    End Select
-
-    If (Not IsProxyPacket) Then
-        If (InStr(data, " ")) Then
-            If (Mid$(data, 10, 3) = "200") Then
+        End If
+        
+        BNETData(Index).acceptedAuth = False
+        IsProxyPacket = True
+    Else
+        Select Case Mid$(data, 1, 2)
+            Case Chr$(&H0) & Chr$(&H5A): 'Accepted
                 frmMain.sckBNCS(Index).SendData Chr$(&H1)
                 Send0x50 Index
                 IsProxyPacket = True
+                Exit Function
+            Case Chr$(&H0) & Chr$(&H5B): 'Denied
+                IsProxyPacket = True
+            Case Chr$(&H0) & Chr$(&H5C): 'Rejected
+                IsProxyPacket = True
+            Case Chr$(&H0) & Chr$(&H5D): 'Rejected
+                IsProxyPacket = True
+            Case Chr$(&H5) & Chr$(&H0)   'Accepted 0x00 method (SOCKS5)
+                BNETData(Index).acceptedAuth = True
+                frmMain.sckBNCS(Index).SendData Chr$(&H5) & Chr$(&H1) & Chr$(&H0) & Chr$(&H1) & P_split(config.serverIP) & portToBytes(6112)
+                IsProxyPacket = True
+        End Select
+    
+        If (Not IsProxyPacket) Then
+            If (InStr(data, " ")) Then
+                If (Mid$(data, 10, 3) = "200") Then
+                    frmMain.sckBNCS(Index).SendData Chr$(&H1)
+                    Send0x50 Index
+                    IsProxyPacket = True
+                End If
             End If
         End If
     End If

@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "mswinsck.ocx"
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
+Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
 Begin VB.Form frmMain 
    BackColor       =   &H007F7F7F&
    BorderStyle     =   0  'None
@@ -2300,7 +2300,7 @@ End Sub
 Private Sub sckBNCS_Connect(Index As Integer)
     Select Case BNETData(Index).proxyVersion
         Case "SOCKS4":  sckBNCS(Index).SendData Chr$(&H4) & Chr$(&H1) & Chr$(&H17) & Chr$(&HE0) & P_split(LCase$(config.serverIP)) & vbNullString & Chr$(&H0)
-        'Case "SOCKS5": 'sckBNCS(Index).SendData Chr$(&H5) & Chr$(&H0)
+        Case "SOCKS5":  sckBNCS(Index).SendData Chr$(&H5) & Chr$(&H1) & Chr$(&H0)
         Case "HTTP":    sckBNCS(Index).SendData "CONNECT " & config.serverIP & ":6112 HTTP/1.1" & vbCrLf & vbCrLf
   End Select
 End Sub
@@ -2400,6 +2400,7 @@ Public Sub assumeSocketDead(Index As Integer)
     BNETData(Index).proxyVersion = vbNullString
     BNETData(Index).proxyIndex = 0
     BNETData(Index).numTested = 0
+    BNETData(Index).acceptedAuth = False
     
     If (proxies.canAcquireProxy()) Then
         Dim IP As String, port As Long, version As String, proxyIndex As Long, pType As clsProxyType

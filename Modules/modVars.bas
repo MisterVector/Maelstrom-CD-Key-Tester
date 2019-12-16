@@ -164,6 +164,9 @@ Public Type BNETDataType
     productRegular   As String
     productExpansion As String
     
+    'Data for SOCKS5 proxies
+    acceptedAuth     As Boolean
+    
     ' For NLS
     nls_P          As Long
 End Type

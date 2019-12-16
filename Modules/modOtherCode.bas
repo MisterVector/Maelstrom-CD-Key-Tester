@@ -1,11 +1,22 @@
 Attribute VB_Name = "modOtherCode"
+Public Type PortLong
+    n As Long
+End Type
+
+Public Type PortBytes
+    n1 As Byte
+    n2 As Byte
+    n3 As Byte
+    n4 As Byte
+End Type
+
 Public Function loadProxies() As ProxiesLoaded
     Dim proxyVersions() As Variant, dicTemp As New Dictionary, proxyCount As Long
     Dim maxProxiesReached As Boolean, pl As ProxiesLoaded
   
     proxyCount = 0
   
-    proxyVersions = Array("SOCKS4", "HTTP")
+    proxyVersions = Array("SOCKS4", "SOCKS5", "HTTP")
   
     For i = 0 To UBound(proxyVersions)
         Dim proxyVersion As String, proxyFile As String
@@ -876,6 +887,16 @@ Public Sub checkForQuitShortcut(fm As Form, key As Integer, Shift As Integer)
         End If
     End If
 End Sub
+
+Public Function portToBytes(port As Long) As String
+    Dim pLong As PortLong, pBytes As PortBytes
+
+    pLong.n = port
+    
+    LSet pBytes = pLong
+    
+    portToBytes = Chr$(pBytes.n2) & Chr$(pBytes.n1)
+End Function
 
 Public Function P_split(sIP As String) As String
     On Error Resume Next
