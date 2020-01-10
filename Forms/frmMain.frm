@@ -102,7 +102,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -2099,6 +2098,10 @@ Private Sub lblConfig_Click()
     lblStart.Enabled = False
 End Sub
 
+Private Sub lblConfig_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Call moveEntireForm(Me, Button)
+End Sub
+
 Private Sub lblControl_MouseDown(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
     moveEntireForm Me, Button
 End Sub
@@ -2116,6 +2119,10 @@ Private Sub lblReloadCDKeys_Click()
     calculateAvailableSockets
 End Sub
 
+Private Sub lblReloadCDKeys_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Call moveEntireForm(Me, Button)
+End Sub
+
 Private Sub lblReloadProxies_Click()
     Dim pl As ProxiesLoaded
     
@@ -2130,6 +2137,10 @@ Private Sub lblReloadProxies_Click()
     End If
     
     calculateAvailableSockets
+End Sub
+
+Private Sub lblReloadProxies_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Call moveEntireForm(Me, Button)
 End Sub
 
 Private Sub lblStart_Click()
@@ -2403,19 +2414,19 @@ Public Sub assumeSocketDead(Index As Integer)
     BNETData(Index).acceptedAuth = False
     
     If (proxies.canAcquireProxy()) Then
-        Dim IP As String, port As Long, version As String, proxyIndex As Long, pType As clsProxyType
+        Dim IP As String, port As Long, Version As String, proxyIndex As Long, pType As clsProxyType
         Set pType = proxies.getProxy()
     
         With pType
             IP = .getIP()
             port = .getPort()
-            version = .getVersion()
+            Version = .getVersion()
             proxyIndex = .getIndex()
         End With
     
         BNETData(Index).proxyIP = IP
         BNETData(Index).proxyPort = port
-        BNETData(Index).proxyVersion = version
+        BNETData(Index).proxyVersion = Version
         BNETData(Index).proxyIndex = proxyIndex
 
         AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
@@ -2445,20 +2456,20 @@ Private Sub tmrReconnect_Timer(Index As Integer)
         proxies.decrementProxyUse BNETData(Index).proxyIndex
     
         If (proxies.canAcquireProxy()) Then
-            Dim IP As String, port As Long, version As String, proxyIndex As Long
+            Dim IP As String, port As Long, Version As String, proxyIndex As Long
             Dim pType As clsProxyType
             Set pType = proxies.getProxy()
       
             With pType
                 IP = .getIP()
                 port = .getPort()
-                version = .getVersion()
+                Version = .getVersion()
                 proxyIndex = .getIndex()
             End With
     
             BNETData(Index).proxyIP = IP
             BNETData(Index).proxyPort = port
-            BNETData(Index).proxyVersion = version
+            BNETData(Index).proxyVersion = Version
             BNETData(Index).proxyIndex = proxyIndex
     
             attemptConnection = True
