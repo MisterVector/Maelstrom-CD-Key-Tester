@@ -238,7 +238,7 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
             End If
         End If
     
-        If (Not isStandardKeyFile(f.name)) Then
+        If (Not isStandardKeyFilePath(f.path)) Then
             f.Delete True
         End If
     Next
@@ -359,19 +359,20 @@ Public Function isSanitizedKey(ByVal key As String) As Boolean
     isSanitizedKey = True
 End Function
 
-Public Function isStandardKeyFile(keyFile As String) As Boolean
-    Dim arrDefaultKeyFiles() As Variant, pk As ParsedKeys
+Public Function isStandardKeyFilePath(keyFilePath As String) As Boolean
+    Dim arrDefaultKeyFiles() As Variant, defaultKeyFilePath As String, pk As ParsedKeys
   
+    defaultKeyFilePath = App.path & "\" & CDKEYS_FOLDER
     arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt", "WAR3.txt", "W3XP.txt")
 
     For i = 0 To UBound(arrDefaultKeyFiles)
-        If (LCase$(arrDefaultKeyFiles(i)) = LCase$(keyFile)) Then
-            isStandardKeyFile = True
+        If (LCase$(defaultKeyFilePath & "\" & arrDefaultKeyFiles(i)) = LCase$(keyFilePath)) Then
+            isStandardKeyFilePath = True
             Exit Function
         End If
     Next i
   
-    isStandardKeyFile = False
+    isStandardKeyFilePath = False
 End Function
 
 Public Sub reportProcessedKeys(pk As ParsedKeys)
