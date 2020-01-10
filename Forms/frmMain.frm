@@ -2126,6 +2126,14 @@ End Sub
 Private Sub lblReloadProxies_Click()
     Dim pl As ProxiesLoaded
     
+    For i = 0 To UBound(BNETData)
+        With BNETData(i)
+            .proxyIP = vbNullString
+            .proxyPort = 0
+            .proxyVersion = vbNullString
+        End With
+    Next i
+    
     pl = loadProxies()
     
     AddChat vbWhite, proxies.countProxies(), vbYellow, " proxies have been loaded."
