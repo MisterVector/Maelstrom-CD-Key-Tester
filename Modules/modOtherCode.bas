@@ -906,7 +906,7 @@ Public Function P_split(sIP As String) As String
     splt = Split(sIP, ".")
     
     For i = 0 To UBound(splt)
-        P_split = P_split & Chr$(CStr(splt(i)))
+        P_split = P_split & Chr$(splt(i))
     Next i
 End Function
 
