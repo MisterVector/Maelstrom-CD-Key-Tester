@@ -1,16 +1,16 @@
 Version 4.2.3 - Released on February 15, 2019
 
   - Fixed update check code
-  - Instead of using quotes to emphasize certain words after the
-    tester is stopped, the color white is used instead
+  - Instead of using quotes to emphasize certain words after the tester is stopped, the
+    color white is used instead
   - Fixed some casing in a message when the tester is stopped
   - Fixed Diablo II/Expansion checkrevision
 
 Version 4.2.2 - Released on October 18, 2018
 
   - Updated Warcraft III version byte to 0x1E
-  - Adjusted the X button on main form and configuration form to remove
-    any open space on the right side
+  - Adjusted the X button on main form and configuration form to remove any open space on the
+    right side
   - Guide renamed to ReadMe for consistency
   - Some text stands out more
 
@@ -18,12 +18,9 @@ Version 4.2.1 - Released on August 5, 2018
 
   - Message box icon changes
     - Invalid config message icon changed from information to critical
-    - Unable to check for update message icon changed from information
-      to exclamation
-  - The CD-Key Profile message is now shown as the last message when
-    Maelstrom starts up
-  - Added a configuration option to check for update on startup,
-    defaulting to on
+    - Unable to check for update message icon changed from information to exclamation
+  - The CD-Key Profile message is now shown as the last message when Maelstrom starts up
+  - Added a configuration option to check for update on startup, defaulting to on
   - Checkboxes in the configuration window are more consistent
 
 Version 4.2.0 - Released on July 9, 2018
@@ -49,8 +46,8 @@ Version 4.2.0 - Released on July 9, 2018
     - connect-usw.classic.blizzard.com
     - connect-eur.classic.blizzard.com
     - connect-kor.classic.blizzard.com
-  - Fixed a bug causing non-expansion keys that were not tested as
-    perfect, muted, voided or jailed to be used to test expansion keys
+  - Fixed a bug causing non-expansion keys that were not tested as perfect, muted, voided or
+    jailed to be used to test expansion keys
   - The starcraft hashes are no longer referenced in the checkrevision .ini file
   - The configuration window has been redesigned for organization
   - Internal changes made to speed up some aspects of Maelstrom
@@ -59,10 +56,10 @@ Version 4.2.0 - Released on July 9, 2018
   - Default setting changes
     - Reconnect time set to 13 seconds from 17 seconds
     - Max sockets set to 32,767 instead of 5,000
-  - Re-added the update checker, but activated by clicking "Check for update" on the
-    top-right of the main form
-  - Some keys were causing the error "Hashes for W2BN are too new" so these keys will
-    now be treated as "Other Product"
+  - Re-added the update checker, but activated by clicking "Check for update" on the top-right
+    of the main form
+  - Some keys were causing the error "Hashes for W2BN are too new" so these keys will now be
+    treated as "Other Product"
   - Changelog changes
     - Spaced version notes to be more consistent and readable
     - Changed "Last modified on" to "Released on" to be more accurate
@@ -133,8 +130,8 @@ Version 4.0 - Released on August 2, 2016
       count and added testing percentage, time elapsed, and CD-Keys per second to the GUI
     - Since time elapsed and CD-Keys per second are now on the main GUI, the benchmarking
       window and its config value have been removed
-    - Themed the information on the right side of the text box the same as the
-      information on the top
+    - Themed the information on the right side of the text box the same as the information
+      on the top
   - When saving CD-Keys back to the CD-Key files, Maelstrom will now only save the CD-Keys
     for products that were actually loaded
   - Fixed some elements on the main form from not being able to move the GUI by clicking
@@ -144,15 +141,15 @@ Version 4.0 - Released on August 2, 2016
   - Maelstrom cannot start with an invalid config
   - Added "Reload Proxies", "Reload CD-Keys" and "Config" to the main form
   - Improved several areas of Maelstrom for performance
-  - When testing, the buttons on the bottom right are disabled instead of displaying
-    a message stating they are unavailable
+  - When testing, the buttons on the bottom right are disabled instead of displaying a message
+    stating they are unavailable
   - When testing expansion CD-Keys the count of both expansion and the regular CD-Key will
     be accurate once the regular CD-Key is no longer used
   - Fixed some inconsistencies while testing expansion keys, potentially fixing an
     issue where testing expansion keys would put the regular key in the wrong result file
   - CD-Keys for "other product" were not saved properly
-  - Maelstrom will remove multiple IP addresses of the same proxy it finds when loading
-    all the proxies, regardless of protocol type
+  - Maelstrom will remove multiple IP addresses of the same proxy it finds when loading all
+    the proxies, regardless of protocol type
   - Added option to remove bad proxies when closing Maelstrom
   - Maelstrom can now create accounts that don't exist
   - The feature to add date to tested was incorrect
@@ -164,10 +161,9 @@ Version 4.0 - Released on August 2, 2016
   - When "Start" is clicked Maelstrom will check if there are no regular keys to test
     and if there are no available sockets when testing
   - The main window location is now remembered when closing Maelstrom
-  - The username wasn't properly shown when password for non-Warcraft III account
-    was invalid
-  - Changed the messages for Warcraft III and non-Warcraft III account creation messages
-    to use the correct Battle.Net realm notation (Created the Account <Account>@<Realm>)
+  - The username wasn't properly shown when password for non-Warcraft III account was invalid
+  - Changed the messages for Warcraft III and non-Warcraft III account creation messages to
+    use the correct Battle.Net realm notation (Created the Account <Account>@<Realm>)
   - Added missing messages for when an original key is used to test expansion keys
   - Color coded the message for when a muted, voided or jailed original key is used
     to test expansion keys
@@ -191,8 +187,8 @@ Version 4.0 - Released on August 2, 2016
   - SOCKS5.txt is no longer generated (broken implementation disabled)
   - Most message boxes have been replaced by messages in the rich text box
   - Changed color of in-use text
-  - Hash file location is validated when Maelstrom starts testing and testing will fail
-    if the required files aren't present
+  - Hash file location is validated when Maelstrom starts testing and testing will fail if the
+    required files aren't present
   - BNLS is now used for obtaining updated version bytes if the game version is invalid
   - When the hashes are invalid or too new Maelstrom will offer to link you to a page with
     current hashes
@@ -219,8 +215,8 @@ Version 4.0 - Released on August 2, 2016
       - Version bytes are now always stored in the config are are no longer in
         the [Override] section, so it has been removed
       - Values that were either 1 or 0 are now Y or N
-  - The Maelstrom 3.42 Migration.vbs file is supplied to convert the existing environment
-    to Maelstrom 4.0+
+  - The Maelstrom 3.42 Migration.vbs file is supplied to convert the existing environment to
+    Maelstrom 4.0+
   - The "Tested Keys" folder has been renamed to "Tested CD-Keys"
   - The count of keys tested per proxy did not reset when a proxy failed
   - Readme has been re-written as a Rich-Text document including images
@@ -247,20 +243,24 @@ Version 3.32 - Released on January 18, 2012
 
 Version 3.31 - Released on January 17, 2012
 
-  - Fixed a major bug that would give Type Mismatch to some users, preventing them from using Maelstrom
+  - Fixed a major bug that would give Type Mismatch to some users, preventing them from
+    using Maelstrom
   - Updated changelog format to show newer versions first
 
 Version 3.3 - Released on December 1, 2011
 
-  - Fixed not showing how many invalid keys were removed if every key of a certain product was invalid
+  - Fixed not showing how many invalid keys were removed if every key of a certain product
+    was invalid
   - On reload of CD-Keys, the amount of keys tested + percent label are reset
   - Maelstrom no longer requests the list of default channels when logging into battle.net
   - Expansion key testing was broken, and is now fixed
   - Added an AddChat on load
-  - Number of tested keys was duplicated on testing expansion keys, for every original key tested
-  - Fixed some logic that would incorrectly show the percent tested if you're testing expansion keys
+  - Number of tested keys was duplicated on testing expansion keys, for every original
+    key tested
+  - Fixed some logic that would incorrectly show the percent tested if you're testing
+    expansion keys
 
-Version 3.2 - Last Modified October 12, 2011
+Version 3.2 - Released on October 12, 2011
 
   - Updated internal WAR3 Version Byte to 0x1A
   - Removed the Hash_FileTime module, it has no use anymore
@@ -277,7 +277,8 @@ Version 3.2 - Last Modified October 12, 2011
   - GetCDKeyFromListEx()'s argument is now ByRef, and is modified accordingly
   - event_CDKey renamed to handleOtherKeys(), and parameter list changed
   - Completely re-designed each key handler for modEvents.bas, enhancing the code
-  - Maelstrom reports any exausted key lists once they are tested, not before the next connection
+  - Maelstrom reports any exausted key lists once they are tested, not before the
+    next connection
   - Proxy deaths are reported correctly
   - Maelstrom will remove invalid keys on program load, with the exception of Warcraft III keys
   - Maelstrom can now handle over 32,767 connection attempts
@@ -285,30 +286,33 @@ Version 3.2 - Last Modified October 12, 2011
   - Changed all instances of "Index #" with "Socket #"
   - Changed a few messages
   - Account creation functionality has been removed, as it never really worked right
-  - Fixed issue where if you stopped testing keys, then started again, if there are no
-    surplus keys, you weren't able to test what you currently have to test
-  - Added a new feature to track the date on which keys were tested. New config value: AddDateToTested
+  - Fixed issue where if you stopped testing keys, then started again, if there are no surplus
+    keys, you weren't able to test what you currently have to test
+  - Added a new feature to track the date on which keys were tested. New config value: 
+    AddDateToTested
   - Modified how tested keys are counted
   - Using loops now correctly shows how many connections have been attempted, as well as total
   - Updated the readme
   - Removed unused API calls
   - Removed code that isn't used anymore
-  - Clicking the X on the key benchmark window performs the same thing as clicking the Close label
+  - Clicking the X on the key benchmark window performs the same thing as clicking the
+    Close label
 
-Version 3.1 - last updated March 19, 2011
+Version 3.1 - Released on March 19, 2011
 
   - Removed some possible overhead from the perfect key routine PerfectKeyEvaluation()
   - Removed possible bloating from Maelstrom
   - Removed all variables no longer being used
   - Changed the routine of how regular keys are held while testing expansion keys
-  - Upon a config loading error, the Auth key, and the username to the key are recovered as well
-    if they were entered in the config
-  - You can no longer change the socket value while Maelstrom is open, and the "Start" button has
-    been pressed at least once, when the "Reload" button is clicked
+  - Upon a config loading error, the Auth key, and the username to the key are recovered as
+    well if they were entered in the config
+  - You can no longer change the socket value while Maelstrom is open, and the "Start" button
+    has been pressed at least once, when the "Reload" button is clicked
   - Changed the color of the divider bar from brown to dark grey
-  - Using integer in place of boolean for a certain MsgBox call when hitting the "Reload" button
-  - Loading the config has been re-done, centralizing calls, and fixing a nasty loop
-    by providing a blank auth key each time
+  - Using integer in place of boolean for a certain MsgBox call when hitting the
+    "Reload" button
+  - Loading the config has been re-done, centralizing calls, and fixing a nasty loop by
+    providing a blank auth key each time
   - Connection timeout, and Reconnect time, are modified correctly if they are changed when
     "Reload" is clicked
   - Updated internal Version Byte for WAR3 to 0x19
@@ -318,34 +322,36 @@ Version 3.1 - last updated March 19, 2011
       [Override] section in your config and using <product>VerByte=<value>
     - For example: STARVerByte=0E (If the byte were to change to 0x0E)
   - Using the Config type to store the Version Bytes
-  - Using a dictionary to hold the state of each voided/muted/jailed key while
-    testing perfect keys, so its state is remembered when removing the key
-  - Minimize to tray is now implemented, and modified a label name
-    (pbQuit for the quit button)
+  - Using a dictionary to hold the state of each voided/muted/jailed key while testing perfect
+    keys, so its state is remembered when removing the key
+  - Minimize to tray is now implemented, and modified a label name (pbQuit for the
+    quit button)
   - Upon failure to decode keys, they will be removed, and next key tested
   - The version byte is now inserted into C>S 0x50 based on the product
     and not from a stored version byte for that index
   - On invalid password, you are asked if you'd like to continue trying to connect
     (this is because the server possibly failed to validate the password)
-  - If testing expansion keys, original keys are reported in the GUI, but they
-    are not saved until they are swapped out
-  - Internal variable for counting tested regular keys has been implemented
-    for all cases
+  - If testing expansion keys, original keys are reported in the GUI, but they are not saved
+    until they are swapped out
+  - Internal variable for counting tested regular keys has been implemented for all cases
   - Re-arranged a few pieces of code
   - Re-wrote part of S>C 0x50
   - Not using temp variable for NLS pointer
   - Prevented an RTE on an invalid checkrevision procedure
   - Took out GetComputerName(), had no need
 
-Version 3.0 - last updated February 25, 2011
+Version 3.0 - Released on February 25, 2011
 
   - Another major overhaul (Now using modBNLS for packet handling, and Types for BNCS data)
     (This may reduce bloating on a grand scale)
-  - Muted keys are no longer reported as perfect keys (which would report a blank muted key sometimes, thanks Anti-Liberal)
-  - Now using SID_NEWS for reporting Perfect, Voided, Muted, and Jailed keys (It's much more accurate)
-    (Maelstrom still allows accounts to join BNET channels, but this isn't used to check for perfect keys)
+  - Muted keys are no longer reported as perfect keys (which would report a blank muted key
+    sometimes, thanks Anti-Liberal)
+  - Now using SID_NEWS for reporting Perfect, Voided, Muted, and Jailed keys (It's much more
+    accurate) (Maelstrom still allows accounts to join BNET channels, but this isn't used
+    to check for perfect keys)
   - Fixed an issue where a connection to the auth server remained active, and an interruption
-    would return "Unable to check for auth! This program will now close." in the middle of testing
+    would return "Unable to check for auth! This program will now close." in the middle
+    of testing
   - All keys are now read in as uppercase, to prevent any duplicate keys from being reported
   - Minor GUI edits, showing connection attempts as well as proxy deaths
   - Changed the routine of how proxy deaths are reported
@@ -362,38 +368,42 @@ Version 3.0 - last updated February 25, 2011
       - Perfect, In User, Jailed, Muted, Voided, Banned, Other and Invalid
   - Took out the loading of the SortKeys config entry, it had no use
   - Expansion key testing is now possible, although buggy
-  - "Good" keys has been renamed to "Perfect" keys, updating the GUI as well (thanks Anti-Liberal)
-  - Changed the procedure to hand out proxies to sockets, getting rid of
-    a method that used loops to hand them out
+  - "Good" keys has been renamed to "Perfect" keys, updating the GUI as well (thanks
+    Anti-Liberal)
+  - Changed the procedure to hand out proxies to sockets, getting rid of a method that used
+    loops to hand them out
   - Loop feature now works
   - Will modify the socket count if you're testing less keys than you have sockets for
     this applies to proxies too
   - Improved the speed of the status of connecting initial sockets
-  - Perfect keys add to total keys tested per proxy. Made a mistake, and didn't account for that before
+  - Perfect keys add to total keys tested per proxy. Made a mistake, and didn't account for
+    that before
   - Removed the config variable "LoopTillDead"
   - If the TimesToLoopList variable is 0 or below, it is automatically corrected to 1
   - Two GUI edits:
     - Swapped the position of "other product" and "invalid" keys (thanks Anti-Liberal)
-    - Modified the result color of each tested key to match the color on the labels for each          key state (thanks Anti-Liberal)
+    - Modified the result color of each tested key to match the color on the labels for
+      each key state (thanks Anti-Liberal)
   - Will reload CD-Keys if you change the socket value in the config, then hit "Reload."
   - Removed some overhead in S>C 0x50 handler
   - Renamed some constants to reflect "Perfect" instead of "Good" keys
   - Modified the way in which keys are withheld until expansion testing is done
 
-Version 2.0 - December 2010
+Version 2.0 - Released on December 5, 2010
 
   - Alt+F4 handling has been implemented (not available natively without a default toolbar)
   - Added HTTP proxy functionality
   - Major, major overhaul (I stripped the user controls out, and replaced them with classes)
-  - Used SID_NEWS along with the EID_CHANNELJOIN event to report keys able to log onto     battle.net with
-  - Used a Long to handle every index associated with keys (This allows you to test
-    more than 32,767 keys)
+  - Used SID_NEWS along with the EID_CHANNELJOIN event to report keys able to log onto
+    battle.net with
+  - Used a Long to handle every index associated with keys (This allows you to test more
+    than 32,767 keys)
   - Sprnkled FreeMemory calls all around the application to prevent bloating
 
-Version 1.0 - Sometime in August to november 2010
+Version 1.0 - Released on November 21, 2010
 
-  - This allows you to move the forum by grabbing any part of the GUI
-    and moving it around with the mouse
+  - This allows you to move the forum by grabbing any part of the GUI and moving it around
+    with the mouse
   - This tester is built off of PunK's BNHash connection library using user controls
     for sockets
   - This used the default menubar used in VB6 (later removed in 1.0)
