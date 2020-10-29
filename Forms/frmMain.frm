@@ -16,12 +16,12 @@ Begin VB.Form frmMain
    Begin VB.Timer tmrCheckUpdate 
       Enabled         =   0   'False
       Interval        =   450
-      Left            =   1560
-      Top             =   5880
+      Left            =   1200
+      Top             =   5520
    End
    Begin MSWinsockLib.Winsock sckCheckUpdate 
-      Left            =   1560
-      Top             =   5400
+      Left            =   1200
+      Top             =   5040
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -29,23 +29,23 @@ Begin VB.Form frmMain
    Begin VB.Timer tmrWaitLoad 
       Enabled         =   0   'False
       Interval        =   1
-      Left            =   1080
-      Top             =   5400
+      Left            =   720
+      Top             =   5040
    End
    Begin VB.Timer tmrCheckBNLS 
       Enabled         =   0   'False
-      Left            =   1080
-      Top             =   5880
+      Left            =   720
+      Top             =   5520
    End
    Begin VB.Timer tmrBenchmark 
       Enabled         =   0   'False
       Interval        =   1000
-      Left            =   1560
-      Top             =   4920
+      Left            =   1200
+      Top             =   4560
    End
    Begin MSWinsockLib.Winsock sckBNLS 
-      Left            =   1080
-      Top             =   4920
+      Left            =   720
+      Top             =   4560
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -63,8 +63,8 @@ Begin VB.Form frmMain
    End
    Begin MSWinsockLib.Winsock sckBNCS 
       Index           =   0
-      Left            =   600
-      Top             =   4920
+      Left            =   240
+      Top             =   4560
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
@@ -83,14 +83,14 @@ Begin VB.Form frmMain
    Begin VB.Timer tmrCheckFailed 
       Enabled         =   0   'False
       Index           =   0
-      Left            =   600
-      Top             =   5880
+      Left            =   240
+      Top             =   5520
    End
    Begin VB.Timer tmrReconnect 
       Enabled         =   0   'False
       Index           =   0
-      Left            =   600
-      Top             =   5400
+      Left            =   240
+      Top             =   5040
    End
    Begin RichTextLib.RichTextBox rtbChat 
       Height          =   3135
