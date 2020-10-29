@@ -69,7 +69,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         hashFiles = hsr.hashes
         EXEInfoString = String$(crev_max_result, Chr$(0))
   
-        If ((modBNETAPI.decode_hash_cdkey(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0)) = 0)) Then
+        If ((modBNETAPI.kd_quick(.cdKey, .ClientToken, .ServerToken, PubVal(0), ProdVal(0), CDKeyHash(0), 20) = 0)) Then
             closeSocket Index
             frmMain.tmrCheckFailed(Index).Enabled = False
         
@@ -106,7 +106,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
         End If
   
         If (.cdKeyExp <> vbNullString And (.product = "W3XP" Or .product = "D2XP")) Then
-            If (modBNETAPI.decode_hash_cdkey(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1)) = 0) Then
+            If ((modBNETAPI.kd_quick(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1), 20) = 0)) Then
                 closeSocket Index
                 frmMain.tmrCheckFailed(Index).Enabled = False
           

@@ -889,7 +889,7 @@ Public Function Decode(ByVal cdKey As String) As DecodedKey
   
     product = -1
   
-    decode_hash_cdkey cdKey, 0, 0, publicVal, product, vbNullString
+    kd_quick cdKey, 0, 0, publicVal, product, vbNullString, 0
 
     If (product > 0) Then
         Select Case product
