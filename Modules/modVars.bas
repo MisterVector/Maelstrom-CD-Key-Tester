@@ -56,6 +56,7 @@ Public Const CDKEYS_TESTED_DEFAULT_FOLDER     As String = "Tested CD-Keys"
 Public dicGatewayIPs As New Dictionary
 Public requestProduct As String
 Public updateString As String
+Public timesTillClear As Integer
 
 Public Type HashSearchResult
     hashes()     As String

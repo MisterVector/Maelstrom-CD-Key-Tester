@@ -15,11 +15,12 @@ Public Sub AddChat(ParamArray saElements() As Variant)
       
             .SelText = saElements(i + 1) & IIf(i + 1 = UBound(saElements), vbNewLine, vbNullString)
         Next i
-    End With
+    
+        timesTillClear = timesTillClear + 1
   
-    With frmMain.rtbChat
-        If (UBound(Split(.text, vbNewLine)) + 1 >= 100) Then
+        If (timesTillClear >= 100) Then
             .text = vbNullString
+            timesTillClear = 0
         End If
     End With
 End Sub
