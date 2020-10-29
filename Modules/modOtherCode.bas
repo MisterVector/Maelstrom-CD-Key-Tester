@@ -472,20 +472,6 @@ Public Function loadConfig() As Dictionary
         End If
     End If
   
-    tempValue = UCase$(ReadINI("Main", "CheckUpdateOnStartup", "Config.ini"))
-    
-    If (tempValue = vbNullString) Then
-        dicErrors.Add CONFIG_CHECK_UPDATE_ON_STARTUP & "f", DEFAULT_CHECK_UPDATE_ON_STARTUP
-    Else
-        If (tempValue <> "Y" And tempValue <> "N") Then
-            dicErrors.Add CONFIG_CHECK_UPDATE_ON_STARTUP, DEFAULT_CHECK_UPDATE_ON_STARTUP
-        Else
-            If (tempValue = "Y") Then
-                config.checkUpdateOnStartup = True
-            End If
-        End If
-    End If
-  
     tempValue = ReadINI("Main", "W2BNVerByte", "Config.ini")
     error = True
   
@@ -564,7 +550,6 @@ Public Sub writeConfig()
         WriteINI "Main", "SkipFailedProxies", IIf(.skipFailedProxies, "Y", "N"), "Config.ini"
         WriteINI "Main", "AddRealmToProfile", IIf(.addRealmToProfile, "Y", "N"), "Config.ini"
         WriteINI "Main", "SaveWindowPosition", IIf(.saveWindowPosition, "Y", "N"), "Config.ini"
-        WriteINI "Main", "CheckUpdateOnStartup", IIf(.checkUpdateOnStartup, "Y", "N"), "Config.ini"
         WriteINI "Main", "W2BNVerByte", Hex$(.W2BNVerByte), "Config.ini"
         WriteINI "Main", "D2DVVerByte", Hex$(.D2DVVerByte), "Config.ini"
         WriteINI "Main", "WAR3VerByte", Hex$(.WAR3VerByte), "Config.ini"
@@ -584,7 +569,6 @@ Public Sub makeDefaultValues()
     config.skipFailedProxies = DEFAULT_SKIP_FAILED_PROXIES
     config.addRealmToProfile = DEFAULT_ADD_REALM_TO_PROFILE
     config.saveWindowPosition = DEFAULT_SAVE_WINDOW_POSITION
-    config.checkUpdateOnStartup = DEFAULT_CHECK_UPDATE_ON_STARTUP
     
     config.bnlsServer = DEFAULT_BNLS_SERVER
     config.W2BNVerByte = DEFAULT_VERBYTE_W2BN
