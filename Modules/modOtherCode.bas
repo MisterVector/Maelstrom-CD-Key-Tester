@@ -121,8 +121,6 @@ Public Sub setupHashFiles()
     
     hashes.d2xpHashes(0) = App.path & "\Binaries\D2XP\Game.exe"
     
-    hashes.war3Hashes(0) = App.path & "\Binaries\WAR3\Warcraft III.exe"
-    
     hashes.lockdownPath = App.path & "\Lockdown\"
     hashes.checkRevisionInfo = App.path & "\VersionCheck.ini"
 End Sub
@@ -139,8 +137,6 @@ Public Function getHashes(ByVal product As String, Optional lockdownFileName As 
             hashFiles = hashes.d2dvHashes
         Case "D2XP"
             hashFiles = hashes.d2xpHashes
-        Case "WAR3", "W3XP"
-            hashFiles = hashes.war3Hashes
     End Select
   
     If (product = "D2DV" Or product = "D2XP") Then
@@ -194,32 +190,19 @@ Public Sub calculateAvailableSockets()
     End If
 End Sub
 
-Public Function accountIdToReason(ByVal ID As Long, ByVal isWar3 As Boolean) As String
+Public Function accountIdToReason(ByVal ID As Long) As String
     Dim reason As String
 
-    If (isWar3) Then
-        Select Case ID
-            Case &H4: reason = "username already exists."
-            Case &H7: reason = "username is too short or blank."
-            Case &H8: reason = "username contains an illegal character."
-            Case &H9: reason = "username contains an illegal word."
-            Case &HA: reason = "username contains too few alphanumeric characters."
-            Case &HB: reason = "username contains adjacent punctuation characters."
-            Case &HC: reason = "username contains too many punctuation characters."
-            Case Else: reason = "username already exists."
-        End Select
-    Else
-        Select Case ID
-            Case &H1: reason = "username is too short"
-            Case &H2: reason = "username contains invalid characters"
-            Case &H3: reason = "username contained a banned word"
-            Case &H4: reason = "username already exists"
-            Case &H5: reason = "username is still being created"
-            Case &H6: reason = "username does not contain enough alphanumeric characters"
-            Case &H7: reason = "username contained adjacent punctuation characters"
-            Case &H8: reason = "username contained too many punctuation characters"
-        End Select
-    End If
+    Select Case ID
+        Case &H1: reason = "username is too short"
+        Case &H2: reason = "username contains invalid characters"
+        Case &H3: reason = "username contained a banned word"
+        Case &H4: reason = "username already exists"
+        Case &H5: reason = "username is still being created"
+        Case &H6: reason = "username does not contain enough alphanumeric characters"
+        Case &H7: reason = "username contained adjacent punctuation characters"
+        Case &H8: reason = "username contained too many punctuation characters"
+    End Select
 
     accountIdToReason = reason
 End Function
@@ -233,22 +216,10 @@ Public Function loadConfig() As Dictionary
         dicErrors.Add CONFIG_USERNAME, config.name
     End If
     
-    config.nameW3 = ReadINI("Main", "NameW3", "Config.ini")
-    
-    If (Len(config.nameW3) < 3) Then
-        dicErrors.Add CONFIG_USERNAMEW3, config.nameW3
-    End If
-    
     config.password = ReadINI("Main", "Password", "Config.ini")
     
     If (Len(config.password) < 1) Then
         dicErrors.Add CONFIG_PASSWORD, config.password
-    End If
-    
-    config.passwordW3 = ReadINI("Main", "PasswordW3", "Config.ini")
-    
-    If (Len(config.passwordW3) < 1) Then
-        dicErrors.Add CONFIG_PASSWORDW3, config.passwordW3
     End If
     
     config.homeChannel = ReadINI("Main", "HomeChannel", "Config.ini")
@@ -269,7 +240,6 @@ Public Function loadConfig() As Dictionary
         sr = serverToRealm(config.serverIP)
     
         config.ServerRealm = sr.realm
-        config.serverRealmW3 = sr.realmW3
         
         If (config.serverIP = vbNullString) Then
             dicErrors.Add CONFIG_SERVER, config.server
@@ -508,24 +478,6 @@ Public Function loadConfig() As Dictionary
         End If
     End If
   
-    tempValue = ReadINI("Main", "WAR3VerByte", "Config.ini")
-    error = True
-  
-    If (tempValue = vbNullString) Then
-        dicErrors.Add CONFIG_VERBYTE_WAR3 & "f", Hex$(DEFAULT_VERBYTE_WAR3)
-    Else
-        If (IsNumeric("&H" & tempValue)) Then
-            If (("&H" & tempValue) > 0 And ("&H" & tempValue) <= MAX_VERBYTE) Then
-                config.WAR3VerByte = "&H" & tempValue
-                error = False
-            End If
-        End If
-    
-        If (error) Then
-            dicErrors.Add CONFIG_VERBYTE_WAR3, tempValue
-        End If
-    End If
-  
     Set loadConfig = dicErrors
 End Function
 
@@ -533,8 +485,6 @@ Public Sub writeConfig()
     With config
         WriteINI "Main", "Name", .name, "Config.ini"
         WriteINI "Main", "Password", .password, "Config.ini"
-        WriteINI "Main", "NameW3", .nameW3, "Config.ini"
-        WriteINI "Main", "PasswordW3", .passwordW3, "Config.ini"
         WriteINI "Main", "Server", .server, "Config.ini"
         WriteINI "Main", "BNLSServer", .bnlsServer, "Config.ini"
         WriteINI "Main", "HomeChannel", .homeChannel, "Config.ini"
@@ -552,7 +502,6 @@ Public Sub writeConfig()
         WriteINI "Main", "SaveWindowPosition", IIf(.saveWindowPosition, "Y", "N"), "Config.ini"
         WriteINI "Main", "W2BNVerByte", Hex$(.W2BNVerByte), "Config.ini"
         WriteINI "Main", "D2DVVerByte", Hex$(.D2DVVerByte), "Config.ini"
-        WriteINI "Main", "WAR3VerByte", Hex$(.WAR3VerByte), "Config.ini"
     End With
 End Sub
 
@@ -573,7 +522,6 @@ Public Sub makeDefaultValues()
     config.bnlsServer = DEFAULT_BNLS_SERVER
     config.W2BNVerByte = DEFAULT_VERBYTE_W2BN
     config.D2DVVerByte = DEFAULT_VERBYTE_D2DV
-    config.WAR3VerByte = DEFAULT_VERBYTE_WAR3
 End Sub
 
 Public Function IsNumericB(ByVal text As String) As Boolean
@@ -603,8 +551,6 @@ Public Function productToId(ByVal product As String) As Byte
         Case "W2BN": productToId = &H3
         Case "D2DV": productToId = &H4
         Case "D2XP": productToId = &H5
-        Case "WAR3": productToId = &H7
-        Case "W3XP": productToId = &H8
     End Select
 End Function
 
@@ -613,8 +559,6 @@ Public Function idToProduct(ByVal ID As Byte) As String
         Case &H3: idToProduct = "W2BN"
         Case &H4: idToProduct = "D2DV"
         Case &H5: idToProduct = "D2XP"
-        Case &H7: idToProduct = "WAR3"
-        Case &H8: idToProduct = "W3XP"
     End Select
 End Function
 
@@ -665,7 +609,6 @@ Public Function getVerByte(ByVal product As String) As Byte
     Select Case product
         Case "W2BN": getVerByte = config.W2BNVerByte
         Case "D2DV", "D2XP": getVerByte = config.D2DVVerByte
-        Case "WAR3", "W3XP": getVerByte = config.WAR3VerByte
     End Select
 End Function
 
@@ -712,16 +655,12 @@ Public Function serverToRealm(serverIP As String) As ServerRealm
     Select Case foundGateway
         Case "uswest.battle.net", "connect-usw.classic.blizzard.com"
             sr.realm = "USWest"
-            sr.realmW3 = "Lordaeron"
         Case "useast.battle.net", "connect-use.classic.blizzard.com"
             sr.realm = "USEast"
-            sr.realmW3 = "Azeroth"
         Case "europe.battle.net", "connect-eur.classic.blizzard.com"
             sr.realm = "Europe"
-            sr.realmW3 = "Northrend"
         Case "asia.battle.net", "connect-kor.classic.blizzard.com"
             sr.realm = "Asia"
-            sr.realmW3 = "Kalimdor"
     End Select
   
     serverToRealm = sr

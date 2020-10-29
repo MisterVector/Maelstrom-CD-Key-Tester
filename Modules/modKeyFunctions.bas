@@ -19,16 +19,6 @@ Public Type CDKeyType
     D2XPIndex As Long
     D2XPTested As Long
     D2XPTotal As Long
-  
-    WAR3() As String
-    WAR3Index As Long
-    WAR3Tested As Long
-    WAR3Total As Long
-  
-    W3XP() As String
-    W3XPIndex As Long
-    W3XPTested As Long
-    W3XPTotal As Long
 End Type
 Public CDKeys As CDKeyType
 
@@ -38,8 +28,6 @@ Public Type ParsedKeys
     w2bnCount As Long
     d2dvCount As Long
     d2xpCount As Long
-    war3Count As Long
-    w3xpCount As Long
   
     badFiles As Long
     duplicateKeys As Long
@@ -61,7 +49,7 @@ End Type
 Public Sub loadCDKeys()
     Dim arrDefaultKeyFiles() As Variant, pk As ParsedKeys
   
-    arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt", "WAR3.txt", "W3XP.txt")
+    arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt")
   
     totalNonExpKeys = 0
     testedNonExpKeys = 0
@@ -71,32 +59,24 @@ Public Sub loadCDKeys()
     ReDim CDKeys.W2BN(0)
     ReDim CDKeys.D2DV(0)
     ReDim CDKeys.D2XP(0)
-    ReDim CDKeys.WAR3(0)
-    ReDim CDKeys.W3XP(0)
   
     CDKeys.W2BNIndex = -1
     CDKeys.D2DVIndex = -1
     CDKeys.D2XPIndex = -1
-    CDKeys.WAR3Index = -1
-    CDKeys.W3XPIndex = -1
   
     CDKeys.W2BNTested = 0
     CDKeys.D2DVTested = 0
     CDKeys.D2XPTested = 0
-    CDKeys.WAR3Tested = 0
-    CDKeys.W3XPTested = 0
   
     CDKeys.W2BNTotal = 0
     CDKeys.D2DVTotal = 0
     CDKeys.D2XPTotal = 0
-    CDKeys.WAR3Total = 0
-    CDKeys.W3XPTotal = 0
   
-    For i = 26 To 70
+    For i = 26 To 52
         frmMain.lblControl(i).Caption = 0
     Next i
   
-    For i = 94 To 98
+    For i = 94 To 96
         frmMain.lblControl(i).Caption = "0.0%"
     Next i
   
@@ -123,13 +103,10 @@ Public Sub loadCDKeys()
   
     If (pk.dicKeys.count > 0) Then
         Dim w2bnIdx As Long, d2dvIdx As Long, d2xpIdx As Long
-        Dim war3Idx As Long, w3xpIdx As Long
     
         w2bnIdx = 0
         d2dvIdx = 0
         d2xpIdx = 0
-        war3Idx = 0
-        w3xpIdx = 0
     
         If (pk.w2bnCount > 0) Then
             ReDim CDKeys.W2BN(pk.w2bnCount - 1)
@@ -155,22 +132,6 @@ Public Sub loadCDKeys()
             frmMain.lblControl(D2XPTotal).Caption = pk.d2xpCount
         End If
     
-        If (pk.war3Count > 0) Then
-            ReDim CDKeys.WAR3(pk.war3Count - 1)
-            CDKeys.WAR3Index = 0
-            CDKeys.WAR3Total = pk.war3Count
-      
-            frmMain.lblControl(WAR3Total).Caption = pk.war3Count
-        End If
-    
-        If (pk.w3xpCount > 0) Then
-            ReDim CDKeys.W3XP(pk.w3xpCount - 1)
-            CDKeys.W3XPIndex = 0
-            CDKeys.W3XPTotal = pk.w3xpCount
-
-            frmMain.lblControl(W3XPTotal).Caption = pk.w3xpCount
-        End If
-    
         Dim key As Variant, keyProduct As Variant
   
         For Each key In pk.dicKeys.Keys
@@ -186,18 +147,12 @@ Public Sub loadCDKeys()
                 Case "D2XP"
                     CDKeys.D2XP(d2xpIdx) = key
                     d2xpIdx = d2xpIdx + 1
-                Case "WAR3"
-                    CDKeys.WAR3(war3Idx) = key
-                    war3Idx = war3Idx + 1
-                Case "W3XP"
-                    CDKeys.W3XP(w3xpIdx) = key
-                    w3xpIdx = w3xpIdx + 1
             End Select
         Next
     End If
   
-    totalNonExpKeys = (pk.w2bnCount + pk.d2dvCount + pk.war3Count)
-    totalExpKeys = (pk.d2xpCount + pk.w3xpCount)
+    totalNonExpKeys = (pk.w2bnCount + pk.d2dvCount)
+    totalExpKeys = pk.d2xpCount
   
     reportProcessedKeys pk
   
@@ -267,10 +222,6 @@ Public Sub processKeyLine(ByVal keyLine As String, pk As ParsedKeys)
                             pk.d2dvCount = pk.d2dvCount + 1
                         Case "D2XP"
                             pk.d2xpCount = pk.d2xpCount + 1
-                        Case "WAR3"
-                            pk.war3Count = pk.war3Count + 1
-                        Case "W3XP"
-                            pk.w3xpCount = pk.w3xpCount + 1
                     End Select
                 Else
                     pk.invalidKeys = pk.invalidKeys + 1
@@ -363,7 +314,7 @@ Public Function isStandardKeyFilePath(keyFilePath As String) As Boolean
     Dim arrDefaultKeyFiles() As Variant, defaultKeyFilePath As String, pk As ParsedKeys
   
     defaultKeyFilePath = App.path & "\" & CDKEYS_FOLDER
-    arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt", "WAR3.txt", "W3XP.txt")
+    arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt")
 
     For i = 0 To UBound(arrDefaultKeyFiles)
         If (LCase$(defaultKeyFilePath & "\" & arrDefaultKeyFiles(i)) = LCase$(keyFilePath)) Then
@@ -396,12 +347,10 @@ End Sub
 Public Function canTestRegularKeys() As Boolean
     If (CDKeys.W2BNIndex > -1) Then canTestRegularKeys = True
     If (CDKeys.D2DVIndex > -1) Then canTestRegularKeys = True
-    If (CDKeys.WAR3Index > -1) Then canTestRegularKeys = True
 End Function
 
 Public Function canTestExpansion(ByVal product As String) As Boolean
     Select Case product
-        Case "WAR3", "W3XP":    If (CDKeys.W3XPIndex > -1) Then canTestExpansion = True
         Case "D2DV", "D2XP":    If (CDKeys.D2XPIndex > -1) Then canTestExpansion = True
     End Select
 End Function
@@ -447,25 +396,6 @@ Public Function getCDKeyFromList() As FoundKey
         Else
             CDKeys.D2DVIndex = i + 1
         End If
-    ElseIf (CDKeys.WAR3Index > -1) Then
-        For i = CDKeys.WAR3Index To CDKeys.WAR3Total - 1
-            key = CDKeys.WAR3(i)
-      
-            If (key <> vbNullString) Then
-                fk.cdKey = key
-                fk.product = "WAR3"
-                fk.keyIndex = i
-      
-                found = True
-                Exit For
-            End If
-        Next i
-  
-        If (Not found Or i = CDKeys.WAR3Total - 1) Then
-            CDKeys.WAR3Index = -1
-        Else
-            CDKeys.WAR3Index = i + 1
-        End If
     End If
   
     getCDKeyFromList = fk
@@ -498,29 +428,6 @@ Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
                     CDKeys.D2XPIndex = i + 1
                 End If
             End If
-        Case "WAR3", "W3XP"
-            If (CDKeys.W3XPIndex > -1) Then
-                For i = CDKeys.W3XPIndex To CDKeys.W3XPTotal - 1
-                    key = CDKeys.W3XP(i)
-
-                    If (key <> vbNullString) Then
-                        With fk
-                            .cdKey = key
-                            .product = "W3XP"
-                            .keyIndex = i
-                        End With
-          
-                        found = True
-                        Exit For
-                    End If
-                Next i
-      
-                If (Not found Or i = CDKeys.W3XPTotal - 1) Then
-                    CDKeys.W3XPIndex = -1
-                Else
-                    CDKeys.W3XPIndex = i + 1
-                End If
-            End If
     End Select
   
     getCDKeyFromListEx = fk
@@ -531,8 +438,6 @@ Public Sub removeCDKeyByIndex(ByVal keyIndex As Long, ByVal product As String)
         Case "W2BN":    CDKeys.W2BN(keyIndex) = vbNullString
         Case "D2DV":    CDKeys.D2DV(keyIndex) = vbNullString
         Case "D2XP":    CDKeys.D2XP(keyIndex) = vbNullString
-        Case "WAR3":    CDKeys.WAR3(keyIndex) = vbNullString
-        Case "W3XP":    CDKeys.W3XP(keyIndex) = vbNullString
   End Select
 End Sub
 
@@ -543,8 +448,6 @@ Public Sub exportKeyToFile(ByVal key As String, ByVal product As String, State A
         Case "W2BN": dirName = "WarCraft II"
         Case "D2DV": dirName = "Diablo II"
         Case "D2XP": dirName = "Diablo II - Lord of Destruction"
-        Case "WAR3": dirName = "Warcraft III"
-        Case "W3XP": dirName = "Warcraft III - The Frozen Throne"
     End Select
 
     cdKeyFile = App.path & "\"
@@ -607,64 +510,48 @@ Public Function getLabelByKeyState(ByVal product As String, ByVal State As Strin
                 Case "W2BN": labelConstant = W2BNPerfect
                 Case "D2DV": labelConstant = D2DVPerfect
                 Case "D2XP": labelConstant = D2XPPerfect
-                Case "WAR3": labelConstant = WAR3Perfect
-                Case "W3XP": labelConstant = W3XPPerfect
             End Select
         Case "inuse"
             Select Case product
                 Case "W2BN": labelConstant = W2BNInUse
                 Case "D2DV": labelConstant = D2DVInUse
                 Case "D2XP": labelConstant = D2XPInUse
-                Case "WAR3": labelConstant = WAR3InUse
-                Case "W3XP": labelConstant = W3XPInUse
             End Select
         Case "muted"
             Select Case product
                 Case "W2BN": labelConstant = W2BNMuted
                 Case "D2DV": labelConstant = D2DVMuted
                 Case "D2XP": labelConstant = D2XPMuted
-                Case "WAR3": labelConstant = WAR3Muted
-                Case "W3XP": labelConstant = W3XPMuted
             End Select
         Case "voided"
             Select Case product
                 Case "W2BN": labelConstant = W2BNVoided
                 Case "D2DV": labelConstant = D2DVVoided
                 Case "D2XP": labelConstant = D2XPVoided
-                Case "WAR3": labelConstant = WAR3Voided
-                Case "W3XP": labelConstant = W3XPVoided
             End Select
         Case "jailed"
             Select Case product
                 Case "W2BN": labelConstant = W2BNJailed
                 Case "D2DV": labelConstant = D2DVJailed
                 Case "D2XP": labelConstant = D2XPJailed
-                Case "WAR3": labelConstant = WAR3Jailed
-                Case "W3XP": labelConstant = W3XPJailed
             End Select
         Case "other"
             Select Case product
                 Case "W2BN": labelConstant = W2BNOther
                 Case "D2DV": labelConstant = D2DVOther
                 Case "D2XP": labelConstant = D2XPOther
-                Case "WAR3": labelConstant = WAR3Other
-                Case "W3XP": labelConstant = W3XPOther
             End Select
         Case "banned"
             Select Case product
                 Case "W2BN": labelConstant = W2BNBanned
                 Case "D2DV": labelConstant = D2DVBanned
                 Case "D2XP": labelConstant = D2XPBanned
-                Case "WAR3": labelConstant = WAR3Banned
-                Case "W3XP": labelConstant = W3XPBanned
             End Select
         Case "invalid"
             Select Case product
                 Case "W2BN": labelConstant = W2BNInvalid
                 Case "D2DV": labelConstant = D2DVInvalid
                 Case "D2XP": labelConstant = D2XPInvalid
-                Case "WAR3": labelConstant = WAR3Invalid
-                Case "W3XP": labelConstant = W3XPInvalid
             End Select
     End Select
   
@@ -690,16 +577,6 @@ Public Sub postKeysTested(ByVal product As String)
             keysTested = CDKeys.D2XPTested
             keysTotal = CDKeys.D2XPTotal
             lblKeysPercentIndex = D2XPPercent
-        Case "WAR3"
-            CDKeys.WAR3Tested = CDKeys.WAR3Tested + 1
-            keysTested = CDKeys.WAR3Tested
-            keysTotal = CDKeys.WAR3Total
-            lblKeysPercentIndex = WAR3Percent
-        Case "W3XP"
-            CDKeys.W3XPTested = CDKeys.W3XPTested + 1
-            keysTested = CDKeys.W3XPTested
-            keysTotal = CDKeys.W3XPTotal
-            lblKeysPercentIndex = W3XPPercent
     End Select
   
     frmMain.lblControl(lblKeysPercentIndex).Caption = Format$(((keysTested / keysTotal) * 100), "0.0") & "%"
@@ -709,7 +586,7 @@ End Sub
 
 Public Sub sendKeysBack()
     Dim arrProducts() As Variant, product As Variant
-    arrProducts = Array("W2BN", "D2DV", "D2XP", "WAR3", "W3XP")
+    arrProducts = Array("W2BN", "D2DV", "D2XP")
   
     For Each product In arrProducts
         Dim arrCDKeys() As String, hasKeys As Boolean
@@ -730,16 +607,6 @@ Public Sub sendKeysBack()
             Case "D2XP"
                 If (CDKeys.D2XPTotal > 0) Then
                     arrCDKeys = CDKeys.D2XP
-                    hasKeys = True
-                End If
-            Case "WAR3"
-                If (CDKeys.WAR3Total > 0) Then
-                    arrCDKeys = CDKeys.WAR3
-                    hasKeys = True
-                End If
-            Case "W3XP"
-                If (CDKeys.W3XPTotal > 0) Then
-                    arrCDKeys = CDKeys.W3XP
                     hasKeys = True
                 End If
         End Select
@@ -862,18 +729,6 @@ Private Sub repopulateKeyList(ByVal product As String, ByVal key As String)
             If (CDKeys.D2XPIndex = -1) Then
                 CDKeys.D2XPIndex = 0
             End If
-        Case "WAR3"
-            arrKeys = CDKeys.WAR3
-      
-            If (CDKeys.WAR3Index = -1) Then
-                CDKeys.WAR3Index = 0
-            End If
-        Case "W3XP"
-            arrKeys = CDKeys.W3XP
-      
-            If (CDKeys.W3XPIndex = -1) Then
-                CDKeys.W3XPIndex = 0
-            End If
     End Select
   
     For i = 0 To UBound(arrKeys)
@@ -901,12 +756,6 @@ Public Function Decode(ByVal cdKey As String) As DecodedKey
                 dk.successful = True
             Case &HA, &HC, &H19
                 dk.product = "D2XP"
-                dk.successful = True
-            Case &HE, &HF
-                dk.product = "WAR3"
-                dk.successful = True
-            Case &H12, &H13
-                dk.product = "W3XP"
                 dk.successful = True
         End Select
     End If

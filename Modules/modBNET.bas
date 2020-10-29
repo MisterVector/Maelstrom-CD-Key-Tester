@@ -105,7 +105,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
             Exit Sub
         End If
   
-        If (.cdKeyExp <> vbNullString And (.product = "W3XP" Or .product = "D2XP")) Then
+        If (.cdKeyExp <> vbNullString And .product = "D2XP") Then
             If ((modBNETAPI.kd_quick(.cdKeyExp, .ClientToken, .ServerToken, PubVal(1), ProdVal(1), CDKeyHash(1), 20) = 0)) Then
                 closeSocket Index
                 frmMain.tmrCheckFailed(Index).Enabled = False
@@ -186,11 +186,7 @@ Public Sub Recv0x51(Index As Integer)
     FreeMemory
   
     If (statusCode = &H0) Then
-        If (product = "WAR3" Or product = "W3XP") Then
-            Send0x53 Index
-        Else
-            Send0x3A Index
-        End If
+        Send0x3A Index
     Else
         frmMain.tmrCheckFailed(Index).Enabled = False
         closeSocket Index
@@ -333,7 +329,7 @@ Public Sub Recv0x3D(Index As Integer)
         stopTesting vbYellow, "Click ", vbWhite, "Start", vbYellow, " to start testing again."
     Else
         Dim reason As String
-        reason = accountIdToReason(result, False)
+        reason = accountIdToReason(result)
     
         AddChatB vbRed, "Unable to create the account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "!"
         AddChatB vbRed, "Reason: " & reason & "."
@@ -393,114 +389,6 @@ Public Sub Recv0x46(Index As Integer)
     End If
     
     frmMain.tmrReconnect(Index).Enabled = True
-End Sub
-
-Public Sub Send0x52(Index As Integer)
-    Dim saltHash As String: saltHash = Space$(Len(config.nameW3) + 65)
-  
-    nls_account_create BNETData(Index).nls_P, saltHash
-
-    With packet(Index)
-        .InsertNonNTString saltHash
-        .sendPacket &H52
-    End With
-End Sub
-
-Public Sub Recv0x52(Index As Integer)
-    Dim result As Long
-
-    With packet(Index)
-        result = .GetDWORD
-    End With
-  
-    If (result = &H0) Then
-        AddChatB vbGreen, "Created the account ", vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbWhite, "!"
-        stopTesting vbYellow, "Click ", vbWhite, "Start", vbYellow, " to begin testing again."
-    Else
-        Dim reason As String
-        reason = accountIdToReason(result, True)
-  
-        AddChatB vbRed, "Could not create the account ", vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbRed, "!"
-        AddChatB vbRed, "Reason: " & reason & "."
-  
-        stopTesting vbYellow, "Fix the issue with the account and click ", vbWhite, "Start", vbYellow, " again."
-    End If
-End Sub
-
-Public Sub Send0x53(Index As Integer)
-    Dim nls_A As String
-
-    BNETData(Index).nls_P = nls_init(config.nameW3, config.passwordW3)
-
-    If (BNETData(Index).nls_P = 0) Then
-        frmMain.lblStart_EmulateClick
-        MsgBox "NLS made a bad call.", vbOKOnly Or vbCritical, PROGRAM_NAME
-        EndAll
-        Exit Sub
-    End If
-
-    nls_A = Space$(Len(config.nameW3) + 33)
-    
-    If (nls_account_logon(BNETData(Index).nls_P, nls_A) = 0) Then
-        frmMain.lblStart_EmulateClick
-        MsgBox "Unable to create NLS key.", vbOKOnly Or vbCritical, PROGRAM_NAME
-        EndAll
-        Exit Sub
-    End If
-
-    packet(Index).InsertNonNTString left$(nls_A, Len(nls_A) - Len(config.nameW3) - 1)
-    packet(Index).InsertNTString config.nameW3
-    packet(Index).sendPacket &H53
-End Sub
-
-Public Sub Recv0x53(Index As Integer)
-    Select Case packet(Index).GetDWORD
-        Case &H0: Send0x54 Index   'Passed
-        Case &H1: 'Account Not made
-            AddChatB vbWhite, config.nameW3 & "@" & config.serverRealmW3, vbYellow, " does not exist. Maelstrom will create it."
-              
-            For i = 0 To UBound(BNETData)
-                If (i <> Index) Then
-                    closeSocket i
-                    frmMain.tmrCheckFailed(i).Enabled = False
-                    frmMain.tmrReconnect(i).Enabled = False
-                End If
-            Next i
-            
-            Send0x52 Index
-        Case &H5                   'Upgrade...
-        Case Else: Exit Sub
-    End Select
-End Sub
-
-Public Sub Send0x54(Index As Integer)
-    Dim ProofHash As String * 20
-    Dim salt      As String: salt = packet(Index).GetNonNTString(32)
-    Dim ServerKey As String: ServerKey = packet(Index).GetNonNTString(32)
-
-    nls_account_logon_proof BNETData(Index).nls_P, ProofHash, ServerKey, salt
-
-    packet(Index).InsertNonNTString ProofHash
-    packet(Index).sendPacket &H54
-End Sub
-
-Public Sub Recv0x54(Index As Integer)
-    Select Case packet(Index).GetDWORD
-        Case &H0: GoTo Continue
-        Case &H1:
-        Case &H2:
-        Case &HF:
-        Case &HE:
-            GoTo Continue
-    End Select
-    
-    Exit Sub
-Continue:
-
-    nls_free (BNETData(Index).nls_P)        'Unloads the NLS object to avoid overhead
-
-    Send0x14 Index
-    Send0xAC Index
 End Sub
 
 Public Sub Send0x14(Index As Integer)

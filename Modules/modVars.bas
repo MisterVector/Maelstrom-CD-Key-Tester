@@ -9,7 +9,6 @@ Public Const RELEASES_URL                     As String = "https://github.com/Mi
 
 Public Const DEFAULT_VERBYTE_D2DV             As Long = &HE
 Public Const DEFAULT_VERBYTE_W2BN             As Long = &H4F
-Public Const DEFAULT_VERBYTE_WAR3             As Long = &H1E
 
 Public Const DEFAULT_SOCKETS                  As Integer = 250
 Public Const DEFAULT_SOCKETS_PER_PROXY        As Integer = 4
@@ -66,7 +65,6 @@ End Type
 
 Public Type ServerRealm
     realm As String
-    realmW3 As String
 End Type
 
 Public Type ProxiesLoaded
@@ -94,8 +92,6 @@ Public hasConfig As Boolean
 Public Type ConfigData
     name As String
     password As String
-    nameW3 As String
-    passwordW3 As String
     server As String
     bnlsServer As String
     bnlsPort As Long
@@ -118,12 +114,10 @@ Public Type ConfigData
     'These values are generated  by Maelstrom and not loaded from the config
     serverIP As String
     ServerRealm As String
-    serverRealmW3 As String
     
-    'D2XP and W3XP use the same VerByte as their original products
+    'D2XP uses the same VerByte as D2DV
     W2BNVerByte As Long
     D2DVVerByte As Long
-    WAR3VerByte As Long
 End Type
 Public config As ConfigData
 
@@ -173,7 +167,6 @@ Private Type HashDependencies
     w2bnHashes(3)     As String
     d2dvHashes(0)     As String
     d2xpHashes(0)     As String
-    war3Hashes(0)     As String
     lockdownPath      As String
     checkRevisionInfo As String
 End Type

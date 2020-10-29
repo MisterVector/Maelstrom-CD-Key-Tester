@@ -5,13 +5,13 @@ Begin VB.Form frmMain
    BackColor       =   &H007F7F7F&
    BorderStyle     =   0  'None
    Caption         =   " Maelstrom CD-Key Tester"
-   ClientHeight    =   6885
+   ClientHeight    =   6285
    ClientLeft      =   4125
    ClientTop       =   -225
    ClientWidth     =   11610
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6885
+   ScaleHeight     =   6285
    ScaleWidth      =   11610
    Begin VB.Timer tmrCheckUpdate 
       Enabled         =   0   'False
@@ -57,7 +57,7 @@ Begin VB.Form frmMain
       Picture         =   "frmMain.frx":0CCA
       ScaleHeight     =   480
       ScaleWidth      =   480
-      TabIndex        =   68
+      TabIndex        =   49
       Top             =   -15
       Width           =   480
    End
@@ -76,7 +76,7 @@ Begin VB.Form frmMain
       Picture         =   "frmMain.frx":0FEA
       ScaleHeight     =   480
       ScaleWidth      =   480
-      TabIndex        =   26
+      TabIndex        =   19
       Top             =   -15
       Width           =   480
    End
@@ -95,13 +95,14 @@ Begin VB.Form frmMain
    Begin RichTextLib.RichTextBox rtbChat 
       Height          =   3135
       Left            =   120
-      TabIndex        =   25
-      Top             =   3600
+      TabIndex        =   18
+      Top             =   3000
       Width           =   7095
       _ExtentX        =   12515
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -132,7 +133,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   2
       Left            =   120
-      TabIndex        =   89
+      TabIndex        =   67
       Top             =   720
       Width           =   11295
    End
@@ -152,7 +153,7 @@ Begin VB.Form frmMain
       ForeColor       =   &H00FFFFFF&
       Height          =   495
       Left            =   7800
-      TabIndex        =   88
+      TabIndex        =   66
       Top             =   120
       Width           =   2775
    End
@@ -172,8 +173,8 @@ Begin VB.Form frmMain
       ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   7320
-      TabIndex        =   87
-      Top             =   5880
+      TabIndex        =   65
+      Top             =   5280
       Width           =   1815
    End
    Begin VB.Label lblReloadCDKeys 
@@ -192,8 +193,8 @@ Begin VB.Form frmMain
       ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   9360
-      TabIndex        =   86
-      Top             =   5880
+      TabIndex        =   64
+      Top             =   5280
       Width           =   2055
    End
    Begin VB.Label lblConfig 
@@ -212,8 +213,8 @@ Begin VB.Form frmMain
       ForeColor       =   &H00FFFFFF&
       Height          =   615
       Left            =   9720
-      TabIndex        =   85
-      Top             =   6240
+      TabIndex        =   63
+      Top             =   5640
       Width           =   1335
    End
    Begin VB.Label lblControl 
@@ -232,8 +233,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   81
       Left            =   7320
-      TabIndex        =   84
-      Top             =   4440
+      TabIndex        =   62
+      Top             =   3840
       Width           =   2535
    End
    Begin VB.Line Line13 
@@ -241,40 +242,40 @@ Begin VB.Form frmMain
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   5760
-      Y2              =   5760
+      Y1              =   5160
+      Y2              =   5160
    End
    Begin VB.Line Line12 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   11400
       X2              =   7320
-      Y1              =   5400
-      Y2              =   5400
+      Y1              =   4800
+      Y2              =   4800
    End
    Begin VB.Line Line11 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   4320
-      Y2              =   4320
+      Y1              =   3720
+      Y2              =   3720
    End
    Begin VB.Line Line10 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   5040
-      Y2              =   5040
+      Y1              =   4440
+      Y2              =   4440
    End
    Begin VB.Line Line7 
       BorderColor     =   &H00404040&
       BorderWidth     =   3
       X1              =   7320
       X2              =   11400
-      Y1              =   4680
-      Y2              =   4680
+      Y1              =   4080
+      Y2              =   4080
    End
    Begin VB.Label lblControl 
       Alignment       =   2  'Center
@@ -293,9 +294,9 @@ Begin VB.Form frmMain
       ForeColor       =   &H00E0E0E0&
       Height          =   255
       Index           =   80
-      Left            =   10320
-      TabIndex        =   83
-      Top             =   4800
+      Left            =   10200
+      TabIndex        =   61
+      Top             =   4200
       Width           =   135
    End
    Begin VB.Label lblControl 
@@ -316,8 +317,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   79
       Left            =   7320
-      TabIndex        =   82
-      Top             =   4800
+      TabIndex        =   60
+      Top             =   4200
       Width           =   1935
    End
    Begin VB.Label lblControl 
@@ -338,8 +339,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   78
       Left            =   10440
-      TabIndex        =   81
-      Top             =   4800
+      TabIndex        =   59
+      Top             =   4200
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -360,31 +361,9 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   77
       Left            =   9240
-      TabIndex        =   80
-      Top             =   4800
+      TabIndex        =   58
+      Top             =   4200
       Width           =   855
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   64
-      Left            =   4080
-      TabIndex        =   79
-      Top             =   3240
-      Width           =   735
    End
    Begin VB.Label lblControl 
       Alignment       =   1  'Right Justify
@@ -403,8 +382,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   86
       Left            =   10440
-      TabIndex        =   78
-      Top             =   5520
+      TabIndex        =   57
+      Top             =   4920
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -424,8 +403,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   84
       Left            =   10440
-      TabIndex        =   77
-      Top             =   5160
+      TabIndex        =   56
+      Top             =   4560
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -444,8 +423,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   83
       Left            =   7320
-      TabIndex        =   76
-      Top             =   5520
+      TabIndex        =   55
+      Top             =   4920
       Width           =   1935
    End
    Begin VB.Label lblControl 
@@ -465,51 +444,9 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   82
       Left            =   7320
-      TabIndex        =   75
-      Top             =   5160
+      TabIndex        =   54
+      Top             =   4560
       Width           =   1695
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   1  'Right Justify
-      BackStyle       =   0  'Transparent
-      Caption         =   "0.0%"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   98
-      Left            =   10560
-      TabIndex        =   74
-      Top             =   3240
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   1  'Right Justify
-      BackStyle       =   0  'Transparent
-      Caption         =   "0.0%"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   97
-      Left            =   10560
-      TabIndex        =   73
-      Top             =   2880
-      Width           =   735
    End
    Begin VB.Label lblControl 
       Alignment       =   1  'Right Justify
@@ -528,7 +465,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   96
       Left            =   10560
-      TabIndex        =   72
+      TabIndex        =   53
       Top             =   2520
       Width           =   735
    End
@@ -549,7 +486,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   95
       Left            =   10560
-      TabIndex        =   71
+      TabIndex        =   52
       Top             =   2160
       Width           =   735
    End
@@ -570,7 +507,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   0
       Left            =   10440
-      TabIndex        =   70
+      TabIndex        =   51
       Top             =   1440
       Width           =   975
    End
@@ -591,52 +528,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   94
       Left            =   10560
-      TabIndex        =   69
+      TabIndex        =   50
       Top             =   1800
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   63
-      Left            =   3360
-      TabIndex        =   18
-      Top             =   3240
-      Width           =   615
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   62
-      Left            =   2520
-      TabIndex        =   5
-      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -656,7 +549,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   42
       Left            =   8640
-      TabIndex        =   67
+      TabIndex        =   48
       Top             =   2160
       Width           =   735
    End
@@ -677,7 +570,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   30
       Left            =   5880
-      TabIndex        =   66
+      TabIndex        =   47
       Top             =   1800
       Width           =   735
    End
@@ -698,7 +591,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   12
       Left            =   5760
-      TabIndex        =   65
+      TabIndex        =   46
       Top             =   1440
       Width           =   855
    End
@@ -717,30 +610,9 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   255
-      Index           =   69
-      Left            =   8640
-      TabIndex        =   64
-      Top             =   3240
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   255
       Index           =   51
       Left            =   8640
-      TabIndex        =   63
+      TabIndex        =   45
       Top             =   2520
       Width           =   735
    End
@@ -761,50 +633,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   33
       Left            =   8640
-      TabIndex        =   62
+      TabIndex        =   44
       Top             =   1800
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   255
-      Index           =   60
-      Left            =   8640
-      TabIndex        =   61
-      Top             =   2880
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   255
-      Index           =   57
-      Left            =   5880
-      TabIndex        =   60
-      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -824,7 +654,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   48
       Left            =   5880
-      TabIndex        =   59
+      TabIndex        =   43
       Top             =   2520
       Width           =   735
    End
@@ -845,29 +675,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   39
       Left            =   5880
-      TabIndex        =   58
+      TabIndex        =   42
       Top             =   2160
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00FFFFFF&
-      Height          =   255
-      Index           =   66
-      Left            =   5880
-      TabIndex        =   57
-      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -887,7 +696,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   14
       Left            =   8400
-      TabIndex        =   56
+      TabIndex        =   41
       Top             =   1200
       Width           =   1215
    End
@@ -907,7 +716,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   16
       Left            =   9720
-      TabIndex        =   54
+      TabIndex        =   39
       Top             =   1440
       Width           =   615
    End
@@ -928,29 +737,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   52
       Left            =   9465
-      TabIndex        =   53
+      TabIndex        =   38
       Top             =   2520
-      Width           =   975
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   70
-      Left            =   9480
-      TabIndex        =   52
-      Top             =   3240
       Width           =   975
    End
    Begin VB.Label lblControl 
@@ -970,7 +758,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   32
       Left            =   7680
-      TabIndex        =   51
+      TabIndex        =   37
       Top             =   1800
       Width           =   735
    End
@@ -989,30 +777,9 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H00E2E2E2&
       Height          =   255
-      Index           =   61
-      Left            =   9465
-      TabIndex        =   50
-      Top             =   2880
-      Width           =   975
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
       Index           =   43
       Left            =   9465
-      TabIndex        =   49
+      TabIndex        =   36
       Top             =   2160
       Width           =   975
    End
@@ -1033,7 +800,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   31
       Left            =   6840
-      TabIndex        =   48
+      TabIndex        =   35
       Top             =   1800
       Width           =   735
    End
@@ -1054,29 +821,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   50
       Left            =   7665
-      TabIndex        =   47
+      TabIndex        =   34
       Top             =   2520
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   59
-      Left            =   7665
-      TabIndex        =   46
-      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1096,7 +842,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   41
       Left            =   7665
-      TabIndex        =   45
+      TabIndex        =   33
       Top             =   2160
       Width           =   735
    End
@@ -1117,7 +863,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   28
       Left            =   4080
-      TabIndex        =   44
+      TabIndex        =   32
       Top             =   1800
       Width           =   735
    End
@@ -1138,50 +884,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   38
       Left            =   5025
-      TabIndex        =   43
+      TabIndex        =   31
       Top             =   2160
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   56
-      Left            =   5025
-      TabIndex        =   42
-      Top             =   2880
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   65
-      Left            =   5025
-      TabIndex        =   41
-      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1201,7 +905,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   47
       Left            =   5040
-      TabIndex        =   40
+      TabIndex        =   30
       Top             =   2520
       Width           =   735
    End
@@ -1222,50 +926,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   40
       Left            =   6825
-      TabIndex        =   39
+      TabIndex        =   29
       Top             =   2160
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   58
-      Left            =   6825
-      TabIndex        =   38
-      Top             =   2880
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   67
-      Left            =   6825
-      TabIndex        =   37
-      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1285,29 +947,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   29
       Left            =   5025
-      TabIndex        =   36
+      TabIndex        =   28
       Top             =   1800
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   68
-      Left            =   7680
-      TabIndex        =   35
-      Top             =   3240
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1326,7 +967,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   13
       Left            =   6720
-      TabIndex        =   34
+      TabIndex        =   27
       Top             =   1440
       Width           =   855
    End
@@ -1346,7 +987,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   11
       Left            =   5025
-      TabIndex        =   33
+      TabIndex        =   26
       Top             =   1440
       Width           =   735
    End
@@ -1366,7 +1007,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   15
       Left            =   7680
-      TabIndex        =   32
+      TabIndex        =   25
       Top             =   1440
       Width           =   735
    End
@@ -1387,7 +1028,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   49
       Left            =   6840
-      TabIndex        =   31
+      TabIndex        =   24
       Top             =   2520
       Width           =   735
    End
@@ -1407,7 +1048,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   10
       Left            =   4200
-      TabIndex        =   30
+      TabIndex        =   23
       Top             =   1440
       Width           =   615
    End
@@ -1429,7 +1070,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   9
       Left            =   3285
-      TabIndex        =   24
+      TabIndex        =   17
       Top             =   1440
       Width           =   855
    End
@@ -1451,7 +1092,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   8
       Left            =   2505
-      TabIndex        =   23
+      TabIndex        =   16
       Top             =   1440
       Width           =   735
    End
@@ -1471,53 +1112,9 @@ Begin VB.Form frmMain
       EndProperty
       ForeColor       =   &H00E2E2E2&
       Height          =   255
-      Index           =   55
-      Left            =   4080
-      TabIndex        =   17
-      Top             =   2880
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   54
-      Left            =   3360
-      TabIndex        =   16
-      Top             =   2880
-      Width           =   615
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
       Index           =   46
       Left            =   4080
-      TabIndex        =   15
+      TabIndex        =   11
       Top             =   2520
       Width           =   735
    End
@@ -1539,7 +1136,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   45
       Left            =   3360
-      TabIndex        =   14
+      TabIndex        =   10
       Top             =   2520
       Width           =   615
    End
@@ -1561,7 +1158,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   37
       Left            =   4080
-      TabIndex        =   13
+      TabIndex        =   9
       Top             =   2160
       Width           =   735
    End
@@ -1583,7 +1180,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   36
       Left            =   3360
-      TabIndex        =   12
+      TabIndex        =   8
       Top             =   2160
       Width           =   615
    End
@@ -1605,7 +1202,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   34
       Left            =   9465
-      TabIndex        =   11
+      TabIndex        =   7
       Top             =   1800
       Width           =   975
    End
@@ -1627,7 +1224,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   27
       Left            =   3360
-      TabIndex        =   10
+      TabIndex        =   6
       Top             =   1800
       Width           =   660
    End
@@ -1649,7 +1246,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   44
       Left            =   2520
-      TabIndex        =   9
+      TabIndex        =   5
       Top             =   2520
       Width           =   735
    End
@@ -1671,7 +1268,7 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   26
       Left            =   2520
-      TabIndex        =   8
+      TabIndex        =   4
       Top             =   1800
       Width           =   780
    End
@@ -1693,30 +1290,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   35
       Left            =   2520
-      TabIndex        =   7
+      TabIndex        =   3
       Top             =   2160
-      Width           =   735
-   End
-   Begin VB.Label lblControl 
-      Alignment       =   2  'Center
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "0"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E2E2E2&
-      Height          =   255
-      Index           =   53
-      Left            =   2520
-      TabIndex        =   6
-      Top             =   2880
       Width           =   735
    End
    Begin VB.Label lblControl 
@@ -1736,8 +1311,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   72
       Left            =   10560
-      TabIndex        =   55
-      Top             =   4440
+      TabIndex        =   40
+      Top             =   3840
       Width           =   855
    End
    Begin VB.Line Line5 
@@ -1767,24 +1342,6 @@ Begin VB.Form frmMain
       Y1              =   2040
       Y2              =   2040
    End
-   Begin VB.Line Line2 
-      BorderColor     =   &H00404040&
-      BorderWidth     =   3
-      Index           =   13
-      X1              =   120
-      X2              =   11400
-      Y1              =   3480
-      Y2              =   3480
-   End
-   Begin VB.Line Line1 
-      BorderColor     =   &H00404040&
-      BorderWidth     =   3
-      Index           =   12
-      X1              =   120
-      X2              =   11400
-      Y1              =   3120
-      Y2              =   3120
-   End
    Begin VB.Label lblStart 
       BackStyle       =   0  'Transparent
       Caption         =   "Start"
@@ -1800,8 +1357,8 @@ Begin VB.Form frmMain
       ForeColor       =   &H00FFFFFF&
       Height          =   615
       Left            =   7680
-      TabIndex        =   29
-      Top             =   6240
+      TabIndex        =   22
+      Top             =   5640
       Width           =   1095
    End
    Begin VB.Label lblControl 
@@ -1821,8 +1378,8 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   71
       Left            =   7320
-      TabIndex        =   28
-      Top             =   3600
+      TabIndex        =   21
+      Top             =   3000
       Width           =   4095
    End
    Begin VB.Label lblControl 
@@ -1842,7 +1399,7 @@ Begin VB.Form frmMain
       Height          =   495
       Index           =   1
       Left            =   120
-      TabIndex        =   27
+      TabIndex        =   20
       Top             =   120
       Width           =   7695
    End
@@ -1864,8 +1421,8 @@ Begin VB.Form frmMain
       Height          =   360
       Index           =   75
       Left            =   10200
-      TabIndex        =   22
-      Top             =   4080
+      TabIndex        =   15
+      Top             =   3480
       Width           =   135
    End
    Begin VB.Label lblControl 
@@ -1886,8 +1443,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   74
       Left            =   9240
-      TabIndex        =   21
-      Top             =   4080
+      TabIndex        =   14
+      Top             =   3480
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -1908,8 +1465,8 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   76
       Left            =   10440
-      TabIndex        =   20
-      Top             =   4080
+      TabIndex        =   13
+      Top             =   3480
       Width           =   855
    End
    Begin VB.Label lblControl 
@@ -1929,51 +1486,9 @@ Begin VB.Form frmMain
       Height          =   255
       Index           =   73
       Left            =   7320
-      TabIndex        =   19
-      Top             =   4080
+      TabIndex        =   12
+      Top             =   3480
       Width           =   1815
-   End
-   Begin VB.Label lblControl 
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "WarCraft III: TFT"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   7
-      Left            =   120
-      TabIndex        =   4
-      Top             =   3240
-      Width           =   1815
-   End
-   Begin VB.Label lblControl 
-      BackColor       =   &H00DFBF26&
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft III"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   6
-      Left            =   120
-      TabIndex        =   3
-      Top             =   2880
-      Width           =   1215
    End
    Begin VB.Label lblControl 
       BackColor       =   &H00DFBF26&
@@ -2345,9 +1860,6 @@ Private Sub sckBNCS_DataArrival(Index As Integer, ByVal bytesTotal As Long)
             Case &H25:  Recv0x25 Index   'Ping
             Case &H50:  Recv0x50 Index   'Auth info
             Case &H51:  Recv0x51 Index   'Auth check
-            Case &H52:  Recv0x52 Index   'Account creation result
-            Case &H53:  Recv0x53 Index   'NLS Auth account logon
-            Case &H54:  Recv0x54 Index   'NLS Auth account logon proof
             Case &H3A:  Recv0x3A Index   'Logon response 2
             Case &H3D:  Recv0x3D Index   'Create Account 2
             Case &H46:  Recv0x46 Index   'News packet

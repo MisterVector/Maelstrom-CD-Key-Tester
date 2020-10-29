@@ -37,32 +37,10 @@ Public Const D2XPInvalid = 50
 Public Const D2XPOther = 51
 Public Const D2XPTotal = 52
 
-Public Const WAR3Perfect = 53
-Public Const WAR3InUse = 54
-Public Const WAR3Muted = 55
-Public Const WAR3Voided = 56
-Public Const WAR3Jailed = 57
-Public Const WAR3Banned = 58
-Public Const WAR3Invalid = 59
-Public Const WAR3Other = 60
-Public Const WAR3Total = 61
-
-Public Const W3XPPerfect = 62
-Public Const W3XPInUse = 63
-Public Const W3XPMuted = 64
-Public Const W3XPVoided = 65
-Public Const W3XPJailed = 66
-Public Const W3XPBanned = 67
-Public Const W3XPInvalid = 68
-Public Const W3XPOther = 69
-Public Const W3XPTotal = 70
-
 Public Const SCBWPercent = 93
 Public Const W2BNPercent = 94
 Public Const D2DVPercent = 95
 Public Const D2XPPercent = 96
-Public Const WAR3Percent = 97
-Public Const W3XPPercent = 98
 
 Public Const PERCENT_TOTAL = 72
 Public Const KEYS_TESTED = 74
@@ -76,8 +54,6 @@ Public Const KEYS_PER_SECOND = 86
 
 Public Const CONFIG_USERNAME = 0
 Public Const CONFIG_PASSWORD = 1
-Public Const CONFIG_USERNAMEW3 = 2
-Public Const CONFIG_PASSWORDW3 = 3
 Public Const CONFIG_HOME_CHANNEL = 4
 Public Const CONFIG_SOCKETS = 5
 Public Const CONFIG_SOCKETS_PER_PROXY = 6
@@ -88,7 +64,6 @@ Public Const CONFIG_RECONNECT_TIME = 10
 Public Const CONFIG_BNLS_SERVER = 11
 Public Const CONFIG_VERBYTE_W2BN = 13
 Public Const CONFIG_VERBYTE_D2DV = 14
-Public Const CONFIG_VERBYTE_WAR3 = 15
 Public Const CONFIG_CDKEY_PROFILE = 16
 
 Public Const CONFIG_SERVER = 17

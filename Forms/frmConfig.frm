@@ -3,14 +3,14 @@ Begin VB.Form frmConfig
    BackColor       =   &H00404040&
    BorderStyle     =   0  'None
    Caption         =   "Form1"
-   ClientHeight    =   7290
+   ClientHeight    =   6990
    ClientLeft      =   0
    ClientTop       =   0
    ClientWidth     =   9930
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7290
+   ScaleHeight     =   6990
    ScaleWidth      =   9930
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
@@ -29,8 +29,8 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Left            =   240
-      TabIndex        =   17
-      Top             =   5640
+      TabIndex        =   15
+      Top             =   5400
       Width           =   2580
    End
    Begin VB.CheckBox chkSkipFailedProxies 
@@ -48,7 +48,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Left            =   5760
-      TabIndex        =   14
+      TabIndex        =   12
       Top             =   2520
       Width           =   2355
    End
@@ -57,8 +57,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   16
       Left            =   1920
-      TabIndex        =   16
-      Top             =   5280
+      TabIndex        =   14
+      Top             =   5040
       Width           =   3375
    End
    Begin VB.CheckBox chkSaveGoodProxies 
@@ -76,7 +76,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Left            =   5760
-      TabIndex        =   15
+      TabIndex        =   13
       Top             =   2880
       Width           =   2355
    End
@@ -85,8 +85,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   7
       Left            =   3840
-      TabIndex        =   12
-      Top             =   4920
+      TabIndex        =   10
+      Top             =   4680
       Width           =   1455
    End
    Begin VB.CheckBox chkAddDateToTested 
@@ -104,8 +104,8 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Left            =   240
-      TabIndex        =   13
-      Top             =   6000
+      TabIndex        =   11
+      Top             =   5760
       Width           =   2445
    End
    Begin VB.TextBox txtConfig 
@@ -113,17 +113,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   14
       Left            =   9120
-      TabIndex        =   20
-      Top             =   5640
-      Width           =   495
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   15
-      Left            =   9120
-      TabIndex        =   21
-      Top             =   6000
+      TabIndex        =   18
+      Top             =   5400
       Width           =   495
    End
    Begin VB.TextBox txtConfig 
@@ -131,8 +122,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   13
       Left            =   9120
-      TabIndex        =   19
-      Top             =   5280
+      TabIndex        =   17
+      Top             =   5040
       Width           =   495
    End
    Begin VB.TextBox txtConfig 
@@ -140,29 +131,9 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   11
       Left            =   7440
-      TabIndex        =   18
-      Top             =   4920
+      TabIndex        =   16
+      Top             =   4680
       Width           =   2175
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      IMEMode         =   3  'DISABLE
-      Index           =   3
-      Left            =   2640
-      PasswordChar    =   "*"
-      TabIndex        =   3
-      Top             =   2520
-      Width           =   2655
-   End
-   Begin VB.TextBox txtConfig 
-      BackColor       =   &H00E0E0E0&
-      Height          =   285
-      Index           =   2
-      Left            =   2640
-      TabIndex        =   2
-      Top             =   2160
-      Width           =   2655
    End
    Begin VB.TextBox txtConfig 
       BackColor       =   &H00E0E0E0&
@@ -190,8 +161,8 @@ Begin VB.Form frmConfig
       ItemData        =   "frmConfig.frx":0000
       Left            =   2640
       List            =   "frmConfig.frx":0002
-      TabIndex        =   4
-      Top             =   2880
+      TabIndex        =   2
+      Top             =   2160
       Width           =   2655
    End
    Begin VB.TextBox txtConfig 
@@ -199,8 +170,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   4
       Left            =   2640
-      TabIndex        =   7
-      Top             =   3600
+      TabIndex        =   5
+      Top             =   2880
       Width           =   2655
    End
    Begin VB.TextBox txtConfig 
@@ -208,8 +179,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   5
       Left            =   2640
-      TabIndex        =   5
-      Top             =   3240
+      TabIndex        =   3
+      Top             =   2520
       Width           =   735
    End
    Begin VB.TextBox txtConfig 
@@ -217,7 +188,7 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   9
       Left            =   8760
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   1800
       Width           =   855
    End
@@ -226,7 +197,7 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   10
       Left            =   8760
-      TabIndex        =   10
+      TabIndex        =   8
       Top             =   2160
       Width           =   855
    End
@@ -235,7 +206,7 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   8
       Left            =   8760
-      TabIndex        =   8
+      TabIndex        =   6
       Top             =   1440
       Width           =   855
    End
@@ -244,8 +215,8 @@ Begin VB.Form frmConfig
       Height          =   285
       Index           =   6
       Left            =   4560
-      TabIndex        =   6
-      Top             =   3240
+      TabIndex        =   4
+      Top             =   2520
       Width           =   735
    End
    Begin VB.CheckBox chkSaveWindowPosition 
@@ -263,7 +234,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Left            =   5760
-      TabIndex        =   11
+      TabIndex        =   9
       Top             =   3240
       Width           =   2655
    End
@@ -274,7 +245,7 @@ Begin VB.Form frmConfig
       Picture         =   "frmConfig.frx":0004
       ScaleHeight     =   450
       ScaleWidth      =   465
-      TabIndex        =   26
+      TabIndex        =   23
       Top             =   -15
       Width           =   465
    End
@@ -294,8 +265,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   21
       Left            =   240
-      TabIndex        =   46
-      Top             =   5280
+      TabIndex        =   40
+      Top             =   5040
       Width           =   1695
    End
    Begin VB.Label lblConfig 
@@ -314,8 +285,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   11
       Left            =   240
-      TabIndex        =   45
-      Top             =   4920
+      TabIndex        =   39
+      Top             =   4680
       Width           =   3615
    End
    Begin VB.Label lblConfig 
@@ -335,8 +306,8 @@ Begin VB.Form frmConfig
       Height          =   375
       Index           =   19
       Left            =   360
-      TabIndex        =   44
-      Top             =   4200
+      TabIndex        =   38
+      Top             =   3960
       Width           =   4935
    End
    Begin VB.Label lblConfig 
@@ -356,8 +327,8 @@ Begin VB.Form frmConfig
       Height          =   375
       Index           =   3
       Left            =   5760
-      TabIndex        =   43
-      Top             =   4200
+      TabIndex        =   37
+      Top             =   3960
       Width           =   3855
    End
    Begin VB.Label lblConfig 
@@ -376,8 +347,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   18
       Left            =   5760
-      TabIndex        =   42
-      Top             =   5280
+      TabIndex        =   36
+      Top             =   5040
       Width           =   2655
    End
    Begin VB.Label lblConfig 
@@ -396,28 +367,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   17
       Left            =   5760
-      TabIndex        =   41
-      Top             =   5640
-      Width           =   2775
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft III Version Byte:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   16
-      Left            =   5760
-      TabIndex        =   40
-      Top             =   6000
+      TabIndex        =   35
+      Top             =   5400
       Width           =   2775
    End
    Begin VB.Label lblConfig 
@@ -436,8 +387,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   15
       Left            =   5760
-      TabIndex        =   39
-      Top             =   4920
+      TabIndex        =   34
+      Top             =   4680
       Width           =   1575
    End
    Begin VB.Label lblConfig 
@@ -457,7 +408,7 @@ Begin VB.Form frmConfig
       Height          =   375
       Index           =   2
       Left            =   240
-      TabIndex        =   38
+      TabIndex        =   33
       Top             =   840
       Width           =   9375
    End
@@ -477,8 +428,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   1
       Left            =   1440
-      TabIndex        =   37
-      Top             =   2520
+      TabIndex        =   32
+      Top             =   1800
       Width           =   1215
    End
    Begin VB.Label lblConfig 
@@ -497,49 +448,9 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   6
       Left            =   1440
-      TabIndex        =   36
-      Top             =   2160
-      Width           =   1215
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft III Password:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   5
-      Left            =   240
-      TabIndex        =   35
-      Top             =   1800
-      Width           =   2295
-   End
-   Begin VB.Label lblConfig 
-      BackStyle       =   0  'Transparent
-      Caption         =   "Warcraft III Username:"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FFFF&
-      Height          =   255
-      Index           =   4
-      Left            =   240
-      TabIndex        =   34
+      TabIndex        =   31
       Top             =   1440
-      Width           =   2415
+      Width           =   1215
    End
    Begin VB.Label lblConfig 
       BackStyle       =   0  'Transparent
@@ -557,8 +468,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   7
       Left            =   1560
-      TabIndex        =   33
-      Top             =   2880
+      TabIndex        =   30
+      Top             =   2160
       Width           =   855
    End
    Begin VB.Label lblConfig 
@@ -577,8 +488,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   8
       Left            =   600
-      TabIndex        =   32
-      Top             =   3600
+      TabIndex        =   29
+      Top             =   2880
       Width           =   1815
    End
    Begin VB.Label lblConfig 
@@ -597,8 +508,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   9
       Left            =   1440
-      TabIndex        =   31
-      Top             =   3240
+      TabIndex        =   28
+      Top             =   2520
       Width           =   975
    End
    Begin VB.Label lblConfig 
@@ -617,7 +528,7 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   13
       Left            =   5760
-      TabIndex        =   30
+      TabIndex        =   27
       Top             =   1800
       Width           =   2295
    End
@@ -637,7 +548,7 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   14
       Left            =   5760
-      TabIndex        =   29
+      TabIndex        =   26
       Top             =   2160
       Width           =   2535
    End
@@ -657,7 +568,7 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   12
       Left            =   5760
-      TabIndex        =   28
+      TabIndex        =   25
       Top             =   1440
       Width           =   2295
    End
@@ -677,8 +588,8 @@ Begin VB.Form frmConfig
       Height          =   255
       Index           =   10
       Left            =   3480
-      TabIndex        =   27
-      Top             =   3240
+      TabIndex        =   24
+      Top             =   2520
       Width           =   1095
    End
    Begin VB.Label lblRestoreDefaults 
@@ -697,8 +608,8 @@ Begin VB.Form frmConfig
       ForeColor       =   &H00FFFFFF&
       Height          =   495
       Left            =   2280
-      TabIndex        =   23
-      Top             =   6480
+      TabIndex        =   20
+      Top             =   6240
       Width           =   4455
    End
    Begin VB.Label lblOk 
@@ -717,8 +628,8 @@ Begin VB.Form frmConfig
       ForeColor       =   &H00FFFFFF&
       Height          =   495
       Left            =   120
-      TabIndex        =   22
-      Top             =   6480
+      TabIndex        =   19
+      Top             =   6240
       Width           =   1455
    End
    Begin VB.Label lblCancel 
@@ -737,8 +648,8 @@ Begin VB.Form frmConfig
       ForeColor       =   &H00FFFFFF&
       Height          =   495
       Left            =   7920
-      TabIndex        =   24
-      Top             =   6480
+      TabIndex        =   21
+      Top             =   6240
       Width           =   1815
    End
    Begin VB.Label lblConfig 
@@ -758,7 +669,7 @@ Begin VB.Form frmConfig
       Height          =   615
       Index           =   0
       Left            =   120
-      TabIndex        =   25
+      TabIndex        =   22
       Top             =   120
       Width           =   9255
    End
@@ -876,14 +787,10 @@ Private Sub Form_Load()
     
     txtConfig(CONFIG_VERBYTE_W2BN).Tag = HEX_TEXTBOX_IDENTIFIER
     txtConfig(CONFIG_VERBYTE_D2DV).Tag = HEX_TEXTBOX_IDENTIFIER
-    txtConfig(CONFIG_VERBYTE_WAR3).Tag = HEX_TEXTBOX_IDENTIFIER
 
     txtConfig(CONFIG_USERNAME).text = config.name
     txtConfig(CONFIG_PASSWORD).text = config.password
   
-    txtConfig(CONFIG_USERNAMEW3).text = config.nameW3
-    txtConfig(CONFIG_PASSWORDW3).text = config.passwordW3
-    
     If (config.server <> vbNullString) Then
         cmbServer.text = config.server
         cmbServer.AddItem config.server
@@ -925,7 +832,6 @@ Private Sub Form_Load()
     
     txtConfig(CONFIG_VERBYTE_W2BN).text = Hex$(config.W2BNVerByte)
     txtConfig(CONFIG_VERBYTE_D2DV).text = Hex$(config.D2DVVerByte)
-    txtConfig(CONFIG_VERBYTE_WAR3).text = Hex$(config.WAR3VerByte)
 End Sub
 
 Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -982,13 +888,9 @@ Private Sub lblOk_Click()
     sr = serverToRealm(config.server)
     
     config.ServerRealm = sr.realm
-    config.serverRealmW3 = sr.realmW3
     
     config.name = txtConfig(CONFIG_USERNAME).text
     config.password = txtConfig(CONFIG_PASSWORD).text
-    
-    config.nameW3 = txtConfig(CONFIG_USERNAMEW3).text
-    config.passwordW3 = txtConfig(CONFIG_PASSWORDW3).text
     
     config.homeChannel = txtConfig(CONFIG_HOME_CHANNEL).text
     config.sockets = txtConfig(CONFIG_SOCKETS).text
@@ -1002,7 +904,6 @@ Private Sub lblOk_Click()
     
     config.W2BNVerByte = "&H" & txtConfig(CONFIG_VERBYTE_W2BN).text
     config.D2DVVerByte = "&H" & txtConfig(CONFIG_VERBYTE_D2DV).text
-    config.WAR3VerByte = "&H" & txtConfig(CONFIG_VERBYTE_WAR3).text
     
     config.addDateToTested = IIf(chkAddDateToTested.value, True, False)
     config.saveGoodProxies = IIf(chkSaveGoodProxies.value, True, False)
@@ -1055,7 +956,6 @@ Private Sub lblRestoreDefaults_Click()
 
     txtConfig(CONFIG_VERBYTE_W2BN).text = Hex$(DEFAULT_VERBYTE_W2BN)
     txtConfig(CONFIG_VERBYTE_D2DV).text = Hex$(DEFAULT_VERBYTE_D2DV)
-    txtConfig(CONFIG_VERBYTE_WAR3).text = Hex$(DEFAULT_VERBYTE_WAR3)
     
     Dim defaultIndexes() As String
     defaultIndexes = Split(CONFIG_DEFAULT_TEXTBOX_IDXS, " ")
@@ -1128,7 +1028,7 @@ Private Function markFormErrors() As Integer
             hasError = False
       
             Set t = o
-            lenRequire = IIf(t.Index = CONFIG_USERNAME Or t.Index = CONFIG_USERNAMEW3 Or t.Index = CONFIG_BNLS_SERVER, 3, IIf(t.Index = CONFIG_CDKEY_PROFILE, 0, 1))
+            lenRequire = IIf(t.Index = CONFIG_USERNAME Or t.Index = CONFIG_BNLS_SERVER, 3, IIf(t.Index = CONFIG_CDKEY_PROFILE, 0, 1))
 
             If (Len(t.text) < lenRequire) Then
                 t.BackColor = TXT_ERROR_COLOR

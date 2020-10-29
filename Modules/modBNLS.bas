@@ -37,14 +37,6 @@ Public Sub RecvBNLS0x10()
                         config.D2DVVerByte = verByte
                         configName = "D2DVVerByte"
                     End If
-                Case "WAR3"
-                    updated = (verByte <> config.WAR3VerByte)
-                    productName = "Warcraft III"
-                
-                    If (updated) Then
-                        config.WAR3VerByte = verByte
-                        configName = "WAR3VerByte"
-                    End If
             End Select
             
             If (updated) Then
