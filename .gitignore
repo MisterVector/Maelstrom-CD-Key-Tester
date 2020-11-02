@@ -1,4 +1,3 @@
-extra/
 CD-Keys/
 CD-Key Profiles/
 Tested CD-Keys/
@@ -11,3 +10,6 @@ Maelstrom.vbw
 HTTP.txt
 SOCKS4.txt
 SOCKS5.txt
+
+# Extra files related to the project
+extra/
