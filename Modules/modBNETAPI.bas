@@ -9,9 +9,6 @@ Public Declare Sub hash_password Lib "libbnet.dll" (ByVal sPassword As String, B
 Public Declare Function check_revision Lib "VersionCheck.dll" (ByVal ArchiveTime As String, ByVal ArchiveName As String, ByVal Seed As String, ByVal INIFile As String, ByVal INIHeader As String, ByRef Version As Long, ByRef Checksum As Long, ByVal result As String) As Long
 Public Declare Function crev_max_result Lib "VersionCheck.dll" () As Long
 
-Public Declare Sub CheckRevisionMPQ Lib "CheckRevisionMPQ.dll" _
-(ByVal ExeFilePath As String, ByVal formula As String, Checksum As Long, Version As Long, ByVal ExeInfoOutBuffer As String, OutBufferLength As Long)
-
 Public Declare Function kd_quick Lib "bncsutil.dll" _
     (ByVal cdKey As String, ByVal ClientToken As Long, ByVal ServerToken As Long, _
     PublicValue As Long, Product As Long, ByVal HashBuffer As String, ByVal BufferLen As Long) As Long

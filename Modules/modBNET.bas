@@ -143,12 +143,7 @@ Public Sub Send0x51(Index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
             End If
         End If
     
-    
-        If (.product = "D2DV" Or .product = "D2XP") Then
-            modBNETAPI.CheckRevisionMPQ hsr.hashes(0), checksumFormula, EXEchecksum, EXEVersion, EXEInfoString, 255
-        Else
-            modBNETAPI.check_revision mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\VersionCheck.ini", .product, EXEVersion, EXEchecksum, EXEInfoString
-        End If
+        modBNETAPI.check_revision mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\VersionCheck.ini", .product, EXEVersion, EXEchecksum, EXEInfoString
     End With
 
     With packet(Index)
