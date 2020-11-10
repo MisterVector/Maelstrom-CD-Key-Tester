@@ -89,7 +89,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -376,7 +375,7 @@ Begin VB.Form frmMain
    Begin VB.Label lblControl 
       Alignment       =   1  'Right Justify
       BackStyle       =   0  'Transparent
-      Caption         =   "0:00:00"
+      Caption         =   "0:00:00:00"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -389,10 +388,10 @@ Begin VB.Form frmMain
       ForeColor       =   &H00E2E2E2&
       Height          =   255
       Index           =   84
-      Left            =   10440
+      Left            =   9600
       TabIndex        =   56
       Top             =   4560
-      Width           =   975
+      Width           =   1815
    End
    Begin VB.Label lblControl 
       BackStyle       =   0  'Transparent
