@@ -13,6 +13,19 @@ Begin VB.Form frmMain
    LinkTopic       =   "Form1"
    ScaleHeight     =   6285
    ScaleWidth      =   11610
+   Begin VB.Timer tmrCheckUpdate 
+      Enabled         =   0   'False
+      Interval        =   450
+      Left            =   1200
+      Top             =   5520
+   End
+   Begin MSWinsockLib.Winsock sckCheckUpdate 
+      Left            =   1200
+      Top             =   5040
+      _ExtentX        =   741
+      _ExtentY        =   741
+      _Version        =   393216
+   End
    Begin VB.Timer tmrWaitLoad 
       Enabled         =   0   'False
       Interval        =   1
@@ -21,7 +34,7 @@ Begin VB.Form frmMain
    End
    Begin VB.Timer tmrCheckBNLS 
       Enabled         =   0   'False
-      Left            =   240
+      Left            =   720
       Top             =   5520
    End
    Begin VB.Timer tmrBenchmark 
@@ -70,8 +83,8 @@ Begin VB.Form frmMain
    Begin VB.Timer tmrCheckFailed 
       Enabled         =   0   'False
       Index           =   0
-      Left            =   1200
-      Top             =   5040
+      Left            =   240
+      Top             =   5520
    End
    Begin VB.Timer tmrReconnect 
       Enabled         =   0   'False
@@ -1768,7 +1781,9 @@ Private Sub lblStart_MouseMove(Button As Integer, Shift As Integer, X As Single,
 End Sub
 
 Private Sub lblUpdateLabel_Click()
-    ShellExecute Me.hwnd, "open", CHECK_UPDATE_URL, "", "", 4
+    If (sckCheckUpdate.State = sckClosed) Then
+        sckCheckUpdate.Connect "files.codespeak.org", 80
+    End If
 End Sub
 
 Private Sub lblUpdateLabel_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1858,6 +1873,26 @@ Private Sub sckBNCS_Error(Index As Integer, ByVal Number As Integer, Description
     AddChat vbRed, "Socket #" & Index & " error #" & Number & ": " & Description & "."
   
     Call assumeSocketDead(Index)
+End Sub
+
+Private Sub sckCheckUpdate_Connect()
+    sckCheckUpdate.SendData "GET /projects/maelstrom/CurrentVersion.txt HTTP/1.1" & vbCrLf _
+                          & "User-Agent: Maelstrom/" & PROGRAM_VERSION & vbCrLf _
+                          & "Host: files.codespeak.org" & vbCrLf & vbCrLf
+End Sub
+
+Private Sub sckCheckUpdate_DataArrival(ByVal bytesTotal As Long)
+    Dim data As String
+    sckCheckUpdate.GetData data
+    
+    updateString = updateString & data
+    tmrCheckUpdate.Enabled = True
+End Sub
+
+Private Sub sckCheckUpdate_Error(ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
+    MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_NAME
+    tmrCheckUpdate.Enabled = False
+    sckCheckUpdate.Close
 End Sub
 
 Private Sub tmrBenchmark_Timer()
@@ -1987,6 +2022,38 @@ End Sub
 
 Public Sub checkForQuitShortcut(key As Integer, Shift As Integer)
     If (key = 115 And Shift = 4) Then EndAll
+End Sub
+
+Private Sub tmrCheckUpdate_Timer()
+    On Error GoTo err
+  
+    Dim versionToCheck As String, updateMsg As String, msgBoxResult As Integer
+
+    tmrCheckUpdate.Enabled = False
+    versionToCheck = Split(updateString, vbCrLf & vbCrLf)(1)
+
+    If (isNewVersion(versionToCheck)) Then
+        updateMsg = "There is a new update for Maelstrom!" & vbNewLine & vbNewLine & "Your version: " & PROGRAM_VERSION & " new version: " & versionToCheck & vbNewLine & vbNewLine _
+                  & "Would you like to visit the downloads page for updates?"
+    
+        msgBoxResult = MsgBox(updateMsg, vbYesNo Or vbInformation, "New Maelstrom version available!")
+
+        If (msgBoxResult = vbYes) Then
+            ShellExecute 0, "open", RELEASES_URL, vbNullString, vbNullString, 4
+        End If
+    Else
+        MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
+        manualUpdateCheck = False
+    End If
+  
+err:
+    If err.Number > 0 Then
+        err.Clear
+        MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_NAME
+    End If
+
+    updateString = vbNullString
+    sckCheckUpdate.Close
 End Sub
 
 Private Sub tmrWaitLoad_Timer()

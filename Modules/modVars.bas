@@ -5,8 +5,7 @@ Public Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (By
 Public Const PROGRAM_VERSION                  As String = "4.2.3"
 Public Const KEY_TESTER_NAME                  As String = "Key Tester"
 Public Const PROGRAM_NAME                     As String = "Maelstrom CD-Key Tester v" & PROGRAM_VERSION & " by Vector"
-Public Const PROGRAM_SLUG                     As String = "maelstrom-cd-key-tester"
-Public Const CHECK_UPDATE_URL                 As String = "https://www.codespeak.org/distribution/updatecheck/" + PROGRAM_SLUG + "/" & PROGRAM_VERSION
+Public Const RELEASES_URL                     As String = "https://github.com/MisterVector/Maelstrom-CD-Key-Tester-Legacy/releases"
 
 Public Const DEFAULT_VERBYTE_D2DV             As Long = &HE
 Public Const DEFAULT_VERBYTE_W2BN             As Long = &H4F
@@ -55,6 +54,7 @@ Public Const CDKEYS_TESTED_DEFAULT_FOLDER     As String = "Tested CD-Keys"
 
 Public dicGatewayIPs As New Dictionary
 Public requestProduct As String
+Public updateString As String
 Public timesTillClear As Integer
 
 Public Type HashSearchResult
