@@ -1783,6 +1783,7 @@ End Sub
 Private Sub lblUpdateLabel_Click()
     If (sckCheckUpdate.State = sckClosed) Then
         sckCheckUpdate.Connect "files.codespeak.org", 80
+        manualUpdateCheck = True
     End If
 End Sub
 
@@ -2042,8 +2043,10 @@ Private Sub tmrCheckUpdate_Timer()
             ShellExecute 0, "open", RELEASES_URL, vbNullString, vbNullString, 4
         End If
     Else
-        MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
-        manualUpdateCheck = False
+        If (manualUpdateCheck) Then
+            MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
+            manualUpdateCheck = False
+        End If
     End If
   
 err:
@@ -2146,6 +2149,12 @@ Private Sub tmrWaitLoad_Timer()
         lblControl(CDKEY_PROFILE).Caption = "Using CD-Key Profile: " & fullProfileName
     Else
         lblControl(CDKEY_PROFILE).Caption = "CD-Key Profile Not Configured"
+    End If
+    
+    If (config.checkUpdateOnStartup) Then
+        If (sckCheckUpdate.State = sckClosed) Then
+            sckCheckUpdate.Connect "files.codespeak.org", 80
+        End If
     End If
 End Sub
  

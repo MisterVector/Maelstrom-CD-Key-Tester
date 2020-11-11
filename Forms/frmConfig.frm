@@ -14,6 +14,25 @@ Begin VB.Form frmConfig
    ScaleWidth      =   9930
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
+   Begin VB.CheckBox chkCheckUpdateOnStartup 
+      BackColor       =   &H00404040&
+      Caption         =   "Check for Update on Startup"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000FFFF&
+      Height          =   375
+      Left            =   5760
+      TabIndex        =   47
+      Top             =   3600
+      Width           =   3255
+   End
    Begin VB.CheckBox chkAddRealmToProfile 
       BackColor       =   &H00404040&
       Caption         =   "Add Realm To Profile"
@@ -711,6 +730,20 @@ Private Sub chkAddRealmToProfile_MouseMove(Button As Integer, Shift As Integer, 
     Call moveEntireForm(Me, Button)
 End Sub
 
+Private Sub chkCheckUpdateOnStartup_Click()
+    If (chkCheckUpdateOnStartup.BackColor <> FRM_BACK_COLOR) Then
+        chkCheckUpdateOnStartup.BackColor = FRM_BACK_COLOR
+    End If
+End Sub
+
+Private Sub chkCheckUpdateOnStartup__KeyDown(keyCode As Integer, Shift As Integer)
+    Call checkForQuitShortcut(Me, keyCode, Shift)
+End Sub
+
+Private Sub chkCheckUpdateOnStartup_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Call moveEntireForm(Me, Button)
+End Sub
+
 Private Sub chkSaveGoodProxies_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
@@ -823,6 +856,7 @@ Private Sub Form_Load()
     chkSkipFailedProxies.value = IIf(config.skipFailedProxies, 1, 0)
     chkAddRealmToProfile.value = IIf(config.addRealmToProfile, 1, 0)
     chkSaveWindowPosition.value = IIf(config.saveWindowPosition, 1, 0)
+    chkCheckUpdateOnStartup.value = IIf(config.checkUpdateOnStartup, 1, 0)
   
     If (chkSkipFailedProxies.value = 0) Then
         chkSaveGoodProxies.Enabled = False
@@ -910,6 +944,7 @@ Private Sub lblOk_Click()
     config.skipFailedProxies = IIf(chkSkipFailedProxies.value, True, False)
     config.addRealmToProfile = IIf(chkAddRealmToProfile.value, True, False)
     config.saveWindowPosition = IIf(chkSaveWindowPosition.value, True, False)
+    config.checkUpdateOnStartup = IIf(chkCheckUpdateOnStartup.value, True, False)
     
     writeConfig
     
@@ -969,6 +1004,7 @@ Private Sub lblRestoreDefaults_Click()
     chkSkipFailedProxies.value = IIf(DEFAULT_SKIP_FAILED_PROXIES, 1, 0)
     chkAddRealmToProfile.value = IIf(DEFAULT_ADD_REALM_TO_PROFILE, 1, 0)
     chkSaveWindowPosition.value = IIf(DEFAULT_SAVE_WINDOW_POSITION, 1, 0)
+    chkCheckUpdateOnStartup.value = IIf(DEFAULT_CHECK_UPDATE_ON_STARTUP, 1, 0)
     
     If (chkAddDateToTested.BackColor <> FRM_BACK_COLOR) Then
         chkAddDateToTested.BackColor = FRM_BACK_COLOR
@@ -988,6 +1024,10 @@ Private Sub lblRestoreDefaults_Click()
     
     If (chkSaveWindowPosition.BackColor <> FRM_BACK_COLOR) Then
         chkSaveWindowPosition.BackColor = FRM_BACK_COLOR
+    End If
+    
+    If (chkCheckUpdateOnStartup.BackColor <> FRM_BACK_COLOR) Then
+        chkCheckUpdateOnStartup.BackColor = FRM_BACK_COLOR
     End If
     
     chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.value = 1, True, False)
@@ -1146,6 +1186,9 @@ Public Sub markErrorLocations(ByVal errors As Dictionary)
         ElseIf (txtControlIdx = CONFIG_SAVE_WINDOW_POSITION) Then
             chkSaveWindowPosition.value = IIf(value, 1, 0)
             chkSaveWindowPosition.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
+        ElseIf (txtControlIdx = CONFIG_CHECK_UPDATE_ON_STARTUP) Then
+            chkCheckUpdateOnStartup.value = IIf(value, 1, 0)
+            chkCheckUpdateOnStartup.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         Else
             txtConfig(txtControlIdx).text = value
             txtConfig(txtControlIdx).BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_ERROR_COLOR)
