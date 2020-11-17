@@ -262,8 +262,7 @@ End Sub
 Public Sub Send0x3A(index As Integer)
     Dim HashCode As String * 20
     
-    double_hash_password config.Password, BNETData(index).ClientToken, _
-                        BNETData(index).ServerToken, HashCode
+    HashCode = doubleHashPassword(config.Password, BNETData(index).ClientToken, BNETData(index).ServerToken)
     
     With packet(index)
         .InsertDWORD BNETData(index).ClientToken
@@ -304,7 +303,7 @@ End Sub
 Public Sub Send0x3D(index As Integer)
     Dim password_hash As String * 20
   
-    hash_password config.Password, password_hash
+    password_hash = hashPassword(config.Password)
 
     With packet(index)
         .InsertNonNTString password_hash
