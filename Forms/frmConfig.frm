@@ -29,7 +29,7 @@ Begin VB.Form frmConfig
       ForeColor       =   &H0000FFFF&
       Height          =   375
       Left            =   5760
-      TabIndex        =   47
+      TabIndex        =   41
       Top             =   3600
       Width           =   3255
    End
@@ -712,7 +712,7 @@ Private Sub chkAddDateToTested_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkAddDateToTested_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub chkAddDateToTested_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -726,7 +726,7 @@ Private Sub chkAddRealmToProfile_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkAddRealmToProfile_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub chkAddRealmToProfile_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -740,7 +740,7 @@ Private Sub chkCheckUpdateOnStartup__KeyDown(keyCode As Integer, Shift As Intege
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkCheckUpdateOnStartup_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub chkCheckUpdateOnStartup_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -748,7 +748,7 @@ Private Sub chkSaveGoodProxies_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkSaveGoodProxies_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub chkSaveGoodProxies_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -762,7 +762,7 @@ Private Sub chkSkipFailedProxies_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkSkipFailedProxies_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub chkSkipFailedProxies_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -771,14 +771,14 @@ Private Sub chkSkipFailedProxies_Click()
         chkSkipFailedProxies.BackColor = FRM_BACK_COLOR
     End If
   
-    chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.value = 1, True, False)
+    chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.Value = 1, True, False)
 End Sub
 
 Private Sub chkSaveWindowPosition_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub chkSaveWindowPosition_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub chkSaveWindowPosition_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -829,7 +829,7 @@ Private Sub Form_Load()
         cmbServer.AddItem config.server
     End If
   
-    For Each gateway In dicGatewayIPs.Keys
+    For Each gateway In dicGatewayIPs.keys
         Dim IP As Variant, IPs As Variant
     
         IPs = dicGatewayIPs.Item(gateway)
@@ -851,14 +851,14 @@ Private Sub Form_Load()
     txtConfig(CONFIG_RECONNECT_TIME).text = config.reconnectTime
     txtConfig(CONFIG_CDKEY_PROFILE).text = config.cdKeyProfile
     
-    chkAddDateToTested.value = IIf(config.addDateToTested, 1, 0)
-    chkSaveGoodProxies.value = IIf(config.saveGoodProxies, 1, 0)
-    chkSkipFailedProxies.value = IIf(config.skipFailedProxies, 1, 0)
-    chkAddRealmToProfile.value = IIf(config.addRealmToProfile, 1, 0)
-    chkSaveWindowPosition.value = IIf(config.saveWindowPosition, 1, 0)
-    chkCheckUpdateOnStartup.value = IIf(config.checkUpdateOnStartup, 1, 0)
+    chkAddDateToTested.Value = IIf(config.addDateToTested, 1, 0)
+    chkSaveGoodProxies.Value = IIf(config.saveGoodProxies, 1, 0)
+    chkSkipFailedProxies.Value = IIf(config.skipFailedProxies, 1, 0)
+    chkAddRealmToProfile.Value = IIf(config.addRealmToProfile, 1, 0)
+    chkSaveWindowPosition.Value = IIf(config.saveWindowPosition, 1, 0)
+    chkCheckUpdateOnStartup.Value = IIf(config.checkUpdateOnStartup, 1, 0)
   
-    If (chkSkipFailedProxies.value = 0) Then
+    If (chkSkipFailedProxies.Value = 0) Then
         chkSaveGoodProxies.Enabled = False
     End If
   
@@ -868,7 +868,7 @@ Private Sub Form_Load()
     txtConfig(CONFIG_VERBYTE_D2DV).text = Hex$(config.D2DVVerByte)
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -877,7 +877,7 @@ Private Sub Form_Unload(Cancel As Integer)
 
     If (Not hasConfig) Then
         Dim msgBoxResult As Integer
-        msgBoxResult = MsgBox("Are you sure you want to cancel without a valid configuration?", vbYesNo Or vbQuestion, PROGRAM_NAME)
+        msgBoxResult = MsgBox("Are you sure you want to cancel without a valid configuration?", vbYesNo Or vbQuestion, PROGRAM_TITLE)
   
         If (msgBoxResult = vbNo) Then Cancel = 1
     End If
@@ -889,15 +889,15 @@ Private Sub lblCancel_Click()
     Unload Me
 End Sub
 
-Private Sub lblCancel_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblCancel_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblConfig_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblConfig_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblOk_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblOk_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -939,12 +939,12 @@ Private Sub lblOk_Click()
     config.W2BNVerByte = "&H" & txtConfig(CONFIG_VERBYTE_W2BN).text
     config.D2DVVerByte = "&H" & txtConfig(CONFIG_VERBYTE_D2DV).text
     
-    config.addDateToTested = IIf(chkAddDateToTested.value, True, False)
-    config.saveGoodProxies = IIf(chkSaveGoodProxies.value, True, False)
-    config.skipFailedProxies = IIf(chkSkipFailedProxies.value, True, False)
-    config.addRealmToProfile = IIf(chkAddRealmToProfile.value, True, False)
-    config.saveWindowPosition = IIf(chkSaveWindowPosition.value, True, False)
-    config.checkUpdateOnStartup = IIf(chkCheckUpdateOnStartup.value, True, False)
+    config.addDateToTested = IIf(chkAddDateToTested.Value, True, False)
+    config.saveGoodProxies = IIf(chkSaveGoodProxies.Value, True, False)
+    config.skipFailedProxies = IIf(chkSkipFailedProxies.Value, True, False)
+    config.addRealmToProfile = IIf(chkAddRealmToProfile.Value, True, False)
+    config.saveWindowPosition = IIf(chkSaveWindowPosition.Value, True, False)
+    config.checkUpdateOnStartup = IIf(chkCheckUpdateOnStartup.Value, True, False)
     
     writeConfig
     
@@ -999,12 +999,12 @@ Private Sub lblRestoreDefaults_Click()
         txtConfig(defaultIndexes(i)).BackColor = TXT_BACK_COLOR
     Next i
   
-    chkAddDateToTested.value = IIf(DEFAULT_ADD_DATE_TO_TESTED, 1, 0)
-    chkSaveGoodProxies.value = IIf(DEFAULT_SAVE_GOOD_PROXIES, 1, 0)
-    chkSkipFailedProxies.value = IIf(DEFAULT_SKIP_FAILED_PROXIES, 1, 0)
-    chkAddRealmToProfile.value = IIf(DEFAULT_ADD_REALM_TO_PROFILE, 1, 0)
-    chkSaveWindowPosition.value = IIf(DEFAULT_SAVE_WINDOW_POSITION, 1, 0)
-    chkCheckUpdateOnStartup.value = IIf(DEFAULT_CHECK_UPDATE_ON_STARTUP, 1, 0)
+    chkAddDateToTested.Value = IIf(DEFAULT_ADD_DATE_TO_TESTED, 1, 0)
+    chkSaveGoodProxies.Value = IIf(DEFAULT_SAVE_GOOD_PROXIES, 1, 0)
+    chkSkipFailedProxies.Value = IIf(DEFAULT_SKIP_FAILED_PROXIES, 1, 0)
+    chkAddRealmToProfile.Value = IIf(DEFAULT_ADD_REALM_TO_PROFILE, 1, 0)
+    chkSaveWindowPosition.Value = IIf(DEFAULT_SAVE_WINDOW_POSITION, 1, 0)
+    chkCheckUpdateOnStartup.Value = IIf(DEFAULT_CHECK_UPDATE_ON_STARTUP, 1, 0)
     
     If (chkAddDateToTested.BackColor <> FRM_BACK_COLOR) Then
         chkAddDateToTested.BackColor = FRM_BACK_COLOR
@@ -1030,10 +1030,10 @@ Private Sub lblRestoreDefaults_Click()
         chkCheckUpdateOnStartup.BackColor = FRM_BACK_COLOR
     End If
     
-    chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.value = 1, True, False)
+    chkSaveGoodProxies.Enabled = IIf(chkSkipFailedProxies.Value = 1, True, False)
 End Sub
 
-Private Sub lblRestoreDefaults_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblRestoreDefaults_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1041,7 +1041,7 @@ Private Sub pbQuit_KeyDown(keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
-Private Sub pbQuit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub pbQuit_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1154,12 +1154,12 @@ End Function
 Public Sub markErrorLocations(ByVal errors As Dictionary)
     Dim errorLocation As Variant
   
-    For Each errorLocation In errors.Keys
-        Dim str As String, txtControlIdx As Integer, isFill As Boolean, value As String
+    For Each errorLocation In errors.keys
+        Dim str As String, txtControlIdx As Integer, isFill As Boolean, Value As String
         isFill = False
     
         str = errorLocation
-        value = errors.Item(errorLocation)
+        Value = errors.Item(errorLocation)
     
         If (Right$(str, 1) = "f") Then
             txtControlIdx = left$(str, Len(str) - 1)
@@ -1169,28 +1169,28 @@ Public Sub markErrorLocations(ByVal errors As Dictionary)
         End If
     
         If (txtControlIdx = CONFIG_SERVER) Then
-            cmbServer.text = value
+            cmbServer.text = Value
             cmbServer.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_ERROR_COLOR)
         ElseIf (txtControlIdx = CONFIG_ADD_DATE_TO_TESTED) Then
-            chkAddDateToTested.value = IIf(value, 1, 0)
+            chkAddDateToTested.Value = IIf(Value, 1, 0)
             chkAddDateToTested.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         ElseIf (txtControlIdx = CONFIG_SAVE_GOOD_PROXIES) Then
-            chkSaveGoodProxies.value = IIf(value, 1, 0)
+            chkSaveGoodProxies.Value = IIf(Value, 1, 0)
             chkSaveGoodProxies.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         ElseIf (txtControlIdx = CONFIG_SKIP_FAILED_PROXIES) Then
-            chkSkipFailedProxies.value = IIf(value, 1, 0)
+            chkSkipFailedProxies.Value = IIf(Value, 1, 0)
             chkSkipFailedProxies.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         ElseIf (txtControlIdx = CONFIG_ADD_REALM_TO_PROFILE) Then
-            chkAddRealmToProfile.value = IIf(value, 1, 0)
+            chkAddRealmToProfile.Value = IIf(Value, 1, 0)
             chkAddRealmToProfile.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         ElseIf (txtControlIdx = CONFIG_SAVE_WINDOW_POSITION) Then
-            chkSaveWindowPosition.value = IIf(value, 1, 0)
+            chkSaveWindowPosition.Value = IIf(Value, 1, 0)
             chkSaveWindowPosition.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         ElseIf (txtControlIdx = CONFIG_CHECK_UPDATE_ON_STARTUP) Then
-            chkCheckUpdateOnStartup.value = IIf(value, 1, 0)
+            chkCheckUpdateOnStartup.Value = IIf(Value, 1, 0)
             chkCheckUpdateOnStartup.BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_WARN_COLOR)
         Else
-            txtConfig(txtControlIdx).text = value
+            txtConfig(txtControlIdx).text = Value
             txtConfig(txtControlIdx).BackColor = IIf(isFill, TXT_FILL_COLOR, TXT_ERROR_COLOR)
         End If
     Next

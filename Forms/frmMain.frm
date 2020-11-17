@@ -89,7 +89,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -1556,7 +1555,7 @@ Sub minimize_to_tray()
     nid.uFlags = NIF_ICON Or NIF_TIP Or NIF_MESSAGE
     nid.uCallBackMessage = WM_MOUSEMOVE
     nid.hIcon = Me.Icon ' the icon will be your Form1 project icon
-    nid.szTip = PROGRAM_NAME & vbNullChar
+    nid.szTip = PROGRAM_TITLE & vbNullChar
     Shell_NotifyIcon NIM_ADD, nid
 End Sub
 
@@ -1568,19 +1567,19 @@ Private Sub Form_Load()
     Dim top As Long, left As Long, tempValue As String
 
     AddChat vbYellow, "Welcome to Maelstrom CD-Key Tester ", vbWhite, "v" & PROGRAM_VERSION, vbYellow, " by Vector."
-    lblControl(1).Caption = PROGRAM_NAME
+    lblControl(1).Caption = PROGRAM_TITLE
   
     tmrWaitLoad.Enabled = True
 End Sub
 
-Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Dim msg As Long
     Dim sFilter As String
-    msg = X / Screen.TwipsPerPixelX
+    msg = x / Screen.TwipsPerPixelX
   
     Select Case msg
         Case WM_LBUTTONDOWN
@@ -1600,11 +1599,11 @@ Private Sub lblConfig_Click()
     lblStart.Enabled = False
 End Sub
 
-Private Sub lblConfig_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblConfig_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblControl_MouseDown(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblControl_MouseDown(Index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
     moveEntireForm Me, Button
 End Sub
 
@@ -1621,7 +1620,7 @@ Private Sub lblReloadCDKeys_Click()
     calculateAvailableSockets
 End Sub
 
-Private Sub lblReloadCDKeys_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblReloadCDKeys_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1649,7 +1648,7 @@ Private Sub lblReloadProxies_Click()
     calculateAvailableSockets
 End Sub
 
-Private Sub lblReloadProxies_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblReloadProxies_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1658,7 +1657,7 @@ Private Sub lblStart_Click()
         stopTesting vbYellow, "Testing stopped. Click ", vbWhite, "Start", vbYellow, " to test again."
     Else
         If (Not hasConfig) Then
-            MsgBox "Cannot start without a valid config.", vbOKOnly Or vbExclamation, PROGRAM_NAME
+            MsgBox "Cannot start without a valid config.", vbOKOnly Or vbExclamation, PROGRAM_TITLE
             Exit Sub
         End If
   
@@ -1667,12 +1666,12 @@ Private Sub lblStart_Click()
       
             msg = IIf(totalNonExpKeys = 0, "There are no keys available to test", "All non-expansion keys have been tested")
     
-            MsgBox msg & ".", vbOKOnly Or vbInformation, PROGRAM_NAME
+            MsgBox msg & ".", vbOKOnly Or vbInformation, PROGRAM_TITLE
             Exit Sub
         End If
   
         If (socketsAvailable = 0) Then
-            MsgBox "There are no sockets available for testing.", vbOKOnly Or vbInformation, PROGRAM_NAME
+            MsgBox "There are no sockets available for testing.", vbOKOnly Or vbInformation, PROGRAM_TITLE
             Exit Sub
         End If
   
@@ -1764,17 +1763,17 @@ Private Sub lblStart_Click()
     End If
 End Sub
 
-Private Sub lblStart_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblStart_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
 Private Sub lblUpdateLabel_Click()
     If (Not checkProgramUpdate(True)) Then
-        MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_NAME
+        MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_TITLE
     End If
 End Sub
 
-Private Sub lblUpdateLabel_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub lblUpdateLabel_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1782,7 +1781,7 @@ Private Sub pbMinimize_Click()
     minimize_to_tray
 End Sub
 
-Private Sub pbMinimize_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub pbMinimize_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1790,7 +1789,7 @@ Private Sub pbQuit_Click()
     EndAll
 End Sub
 
-Private Sub pbQuit_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub pbQuit_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1998,7 +1997,7 @@ Private Sub tmrWaitLoad_Timer()
     initializeGatewayList
   
     If (dicGatewayIPs.count) = 0 Then
-        MsgBox "Unable to contact the Battle.Net servers. Maelstrom cannot continue.", vbOKOnly Or vbCritical, PROGRAM_NAME
+        MsgBox "Unable to contact the Battle.Net servers. Maelstrom cannot continue.", vbOKOnly Or vbCritical, PROGRAM_TITLE
         EndAll
   
         Exit Sub
@@ -2012,7 +2011,7 @@ Private Sub tmrWaitLoad_Timer()
         makeDefaultValues
     
         MsgBox "No default config found. A default config will be created for you." & vbNewLine _
-            & "The config window will open with default values.", vbOKOnly Or vbInformation, PROGRAM_NAME
+            & "The config window will open with default values.", vbOKOnly Or vbInformation, PROGRAM_TITLE
 
         frmConfig.Show
     Else
@@ -2023,7 +2022,7 @@ Private Sub tmrWaitLoad_Timer()
             lblStart.Enabled = False
     
             MsgBox "There were issues while loading the configuration. The config" & vbNewLine _
-                & "window will now be opened so the issues can be corrected.", vbOKOnly Or vbExclamation, PROGRAM_NAME
+                & "window will now be opened so the issues can be corrected.", vbOKOnly Or vbExclamation, PROGRAM_TITLE
   
             frmConfig.markErrorLocations dicErrors
             frmConfig.Show
@@ -2086,7 +2085,7 @@ Private Sub tmrWaitLoad_Timer()
     
     If (config.checkUpdateOnStartup) Then
         If (Not checkProgramUpdate(False)) Then
-            MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_NAME
+            MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_TITLE
         End If
     End If
 End Sub

@@ -200,7 +200,7 @@ Public Sub Recv0x51(Index As Integer)
             Case &H100
                 frmMain.lblStart_EmulateClick
             
-                msgBoxResult = MsgBox("The hashes for " & product & " are out of date. ", vbOKOnly Or vbExclamation, PROGRAM_NAME)
+                msgBoxResult = MsgBox("The hashes for " & product & " are out of date. ", vbOKOnly Or vbExclamation, PROGRAM_TITLE)
     
                 Exit Sub
             Case &H101
@@ -223,7 +223,7 @@ Public Sub Recv0x51(Index As Integer)
             'Case &H102
                 'frmMain.lblStart_EmulateClick
           
-                'msgBoxResult = MsgBox("The hashes for " & product & " are too new.", vbOKOnly Or vbExclamation, PROGRAM_NAME)
+                'msgBoxResult = MsgBox("The hashes for " & product & " are too new.", vbOKOnly Or vbExclamation, PROGRAM_TITLE)
     
                 'Exit Sub
         End Select
