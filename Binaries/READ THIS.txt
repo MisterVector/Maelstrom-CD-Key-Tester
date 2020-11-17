@@ -1,6 +1,5 @@
 You need to provide the hashes for each game you wish to test here. You can check
-http://files.codespeak.org/downloads/hashes for a list of game hashes to download.
+https://davnit.net/battle-net-resources/ which will have a listing of hashes you
+can download for the games you want to test for.
 
 Just place the hash files in their corresponding folders, and you should be good.
-
-These folders were initially made purposefully blank.
