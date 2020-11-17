@@ -15,7 +15,7 @@ Public Const DEFAULT_VERBYTE_W2BN             As Long = &H4F
 
 Public Const DEFAULT_SOCKETS                  As Integer = 250
 Public Const DEFAULT_SOCKETS_PER_PROXY        As Integer = 4
-Public Const DEFAULT_BNLS_SERVER              As String = "jbls.codespeak.org"
+Public Const DEFAULT_BNLS_SERVER              As String = "jbls.davnit.net"
 Public Const DEFAULT_BNLS_PORT                As Integer = 9367
 Public Const DEFAULT_EXP_TESTS_PER_REG_KEY    As Integer = 8
 Public Const DEFAULT_TEST_COUNT_PER_PROXY     As Integer = 25
