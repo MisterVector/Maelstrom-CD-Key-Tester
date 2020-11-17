@@ -876,7 +876,7 @@ Public Function checkProgramUpdate(ByVal manualUpdateCheck As Boolean) As Boolea
         Version = jsonContents.Item("version")
         
         If (releaseTime > requestReleaseTime) Then
-            updateMsg = "There is a new update for Maelstrom CD-Key Tester!" & vbNewLine & vbNewLine & "Your version: " & PROGRAM_VERSION & " new version: " & Version & vbNewLine & vbNewLine _
+            updateMsg = "There is a new update for " & PROGRAM_NAME & "!" & vbNewLine & vbNewLine & "Your version: " & PROGRAM_VERSION & " new version: " & Version & vbNewLine & vbNewLine _
                       & "Would you like to view the changelog and download the latest update?"
         
             msgBoxResult = MsgBox(updateMsg, vbYesNo Or vbInformation, "New version for " & PROGRAM_TITLE)

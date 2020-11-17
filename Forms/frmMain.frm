@@ -89,6 +89,7 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
+      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
@@ -1566,7 +1567,7 @@ End Sub
 Private Sub Form_Load()
     Dim top As Long, left As Long, tempValue As String
 
-    AddChat vbYellow, "Welcome to Maelstrom CD-Key Tester ", vbWhite, "v" & PROGRAM_VERSION, vbYellow, " by Vector."
+    AddChat vbYellow, "Welcome to " & PROGRAM_NAME & " ", vbWhite, "v" & PROGRAM_VERSION, vbYellow, " by Vector."
     lblControl(1).Caption = PROGRAM_TITLE
   
     tmrWaitLoad.Enabled = True
