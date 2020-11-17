@@ -647,7 +647,7 @@ End Sub
 Public Function serverToRealm(serverIP As String) As ServerRealm
     Dim foundGateway As String, gateway As Variant, sr As ServerRealm
   
-    For Each gateway In dicGatewayIPs.Keys
+    For Each gateway In dicGatewayIPs.keys
         If (gateway = serverIP) Then
             foundGateway = gateway
             Exit For
@@ -685,7 +685,7 @@ End Function
 Public Function isValidServerAddress(address As String) As Boolean
     Dim realm As Variant
   
-    For Each gateway In dicGatewayIPs.Keys
+    For Each gateway In dicGatewayIPs.keys
         If (address = gateway) Then
             isValidServerAddress = True
             Exit Function
@@ -849,18 +849,51 @@ Public Function P_split(sIP As String) As String
     Next i
 End Function
 
-Public Function isNewVersion(checkVersion As String) As Boolean
-    Dim currentVersionParts() As String, versionParts() As String
-    Dim currentVersionPoints As Long, versionPoints As Long
-    Dim updated As Boolean
-  
-    currentVersionParts = Split(PROGRAM_VERSION, ".")
-    versionParts = Split(checkVersion, ".")
+Public Function checkProgramUpdate(ByVal manualUpdateCheck As Boolean) As Boolean
+    On Error GoTo err
     
-    currentVersionPoints = ((currentVersionParts(0) * 1000000) + (currentVersionParts(1) * 1000) _
-                         + currentVersionParts(2))
+    Dim text As String, status As Integer, requestReleaseTime As Date, releaseTime As Date, requestVersion As String, Version As String
+    Dim jsonResponse As Dictionary, jsonContents As Dictionary
+    Dim updateMsg As String, msgBoxResult As Integer
+    Dim xml As Object
     
-    versionPoints = ((versionParts(0) * 1000000) + (versionParts(1) * 1000) + versionParts(2))
+    Set xml = CreateObject("MSXML2.XMLHTTP")
 
-    isNewVersion = (versionPoints > currentVersionPoints)
+    xml.Open "GET", PROGRAM_UPDATE_URL, False
+    xml.send
+    
+    text = xml.responseText
+    
+    Set jsonResponse = JSON.parse(text)
+    status = jsonResponse.Item("status")
+    
+    If (status = 1) Then
+        Set jsonContents = jsonResponse.Item("contents")
+        
+        requestReleaseTime = jsonContents.Item("request_release_time")
+        requestVeresion = jsonContents.Item("request_version")
+        releaseTime = jsonContents.Item("release_time")
+        Version = jsonContents.Item("version")
+        
+        If (releaseTime > requestReleaseTime) Then
+            updateMsg = "There is a new update for Maelstrom CD-Key Tester!" & vbNewLine & vbNewLine & "Your version: " & PROGRAM_VERSION & " new version: " & Version & vbNewLine & vbNewLine _
+                      & "Would you like to view the changelog and download the latest update?"
+        
+            msgBoxResult = MsgBox(updateMsg, vbYesNo Or vbInformation, "New version for " & PROGRAM_NAME)
+    
+            If (msgBoxResult = vbYes) Then
+                ShellExecute 0, "open", UPDATE_SUMMARY_URL, vbNullString, vbNullString, 4
+            End If
+        Else
+            If (manualUpdateCheck) Then
+                MsgBox "There is no new version at this time.", vbOKOnly Or vbInformation, PROGRAM_NAME
+            End If
+        End If
+        
+        checkProgramUpdate = True
+        Exit Function
+    End If
+
+err:
+    Set xml = Nothing
 End Function

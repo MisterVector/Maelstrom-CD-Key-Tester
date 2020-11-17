@@ -5,7 +5,9 @@ Public Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (By
 Public Const PROGRAM_VERSION                  As String = "4.2.3"
 Public Const KEY_TESTER_NAME                  As String = "Key Tester"
 Public Const PROGRAM_NAME                     As String = "Maelstrom CD-Key Tester v" & PROGRAM_VERSION & " by Vector"
-Public Const RELEASES_URL                     As String = "https://github.com/MisterVector/Maelstrom-CD-Key-Tester-Legacy/releases"
+Public Const PROGRAM_SLUG                     As String = "maelstrom-cd-key-tester"
+Public Const PROGRAM_UPDATE_URL               As String = "https://distribution.codespeak.org/data_handler.php?query=check_program_version&slug=" & PROGRAM_SLUG & "&current_version=" & PROGRAM_VERSION
+Public Const UPDATE_SUMMARY_URL               As String = "https://www.codespeak.org/distribution/updatesummary/" & PROGRAM_SLUG & "/" & PROGRAM_VERSION
 
 Public Const DEFAULT_VERBYTE_D2DV             As Long = &HE
 Public Const DEFAULT_VERBYTE_W2BN             As Long = &H4F
@@ -89,8 +91,6 @@ Public proxies As New clsProxy
 Public hasProxies As Boolean
 Public hasKeys As Boolean
 Public hasConfig As Boolean
-
-Public manualUpdateCheck As Boolean
 
 Public Type ConfigData
     name As String
