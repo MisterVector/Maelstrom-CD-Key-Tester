@@ -94,8 +94,8 @@ Public hasKeys As Boolean
 Public hasConfig As Boolean
 
 Public Type ConfigData
-    name As String
-    password As String
+    Name As String
+    Password As String
     server As String
     bnlsServer As String
     bnlsPort As Long
@@ -137,9 +137,9 @@ Public Type BNETDataType
     ClientToken     As Long
     
     ' Data for Battle.Net
-    cdKey          As String
+    CDKey          As String
     cdKeyIndex     As Long
-    product        As String
+    Product        As String
     proxyIP        As String
     proxyPort      As Long
     proxyIndex     As Long

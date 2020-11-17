@@ -12,14 +12,14 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Private IP As String
-Private port As Long
-Private version As String
-Private Index As Long
+Private Port As Long
+Private Version As String
+Private index As Long
 Private currentlyUsing As Integer
 Private deathMarks As Integer
 
-Public Sub setIP(s As String)
-    IP = s
+Public Sub setIP(S As String)
+    IP = S
 End Sub
 
 Public Function getIP() As String
@@ -27,27 +27,27 @@ Public Function getIP() As String
 End Function
 
 Public Function setPort(p As Long)
-    port = p
+    Port = p
 End Function
 
 Public Function getPort() As Long
-    getPort = port
+    getPort = Port
 End Function
 
-Public Sub setVersion(s As String)
-    version = s
+Public Sub setVersion(S As String)
+    Version = S
 End Sub
 
 Public Function getVersion() As String
-    getVersion = version
+    getVersion = Version
 End Function
 
 Public Sub setIndex(i As Long)
-    Index = i
+    index = i
 End Sub
 
 Public Function getIndex() As Long
-    getIndex = Index
+    getIndex = index
 End Function
 
 Public Sub incrementCurrentlyUsing()

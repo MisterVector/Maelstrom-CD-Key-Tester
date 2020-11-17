@@ -36,13 +36,13 @@ Public Type ParsedKeys
 End Type
 
 Public Type DecodedKey
-    product As String
+    Product As String
     successful As Boolean
 End Type
 
 Public Type FoundKey
-    cdKey As String
-    product As String
+    CDKey As String
+    Product As String
     keyIndex As Long
 End Type
 
@@ -134,7 +134,7 @@ Public Sub loadCDKeys()
     
         Dim key As Variant, keyProduct As Variant
   
-        For Each key In pk.dicKeys.Keys
+        For Each key In pk.dicKeys.keys
             keyProduct = pk.dicKeys.Item(key)
       
             Select Case keyProduct
@@ -213,9 +213,9 @@ Public Sub processKeyLine(ByVal keyLine As String, pk As ParsedKeys)
                 dk = Decode(cleanKey)
         
                 If (dk.successful) Then
-                    pk.dicKeys.Add cleanKey, dk.product
+                    pk.dicKeys.Add cleanKey, dk.Product
         
-                    Select Case dk.product
+                    Select Case dk.Product
                         Case "W2BN"
                             pk.w2bnCount = pk.w2bnCount + 1
                         Case "D2DV"
@@ -349,8 +349,8 @@ Public Function canTestRegularKeys() As Boolean
     If (CDKeys.D2DVIndex > -1) Then canTestRegularKeys = True
 End Function
 
-Public Function canTestExpansion(ByVal product As String) As Boolean
-    Select Case product
+Public Function canTestExpansion(ByVal Product As String) As Boolean
+    Select Case Product
         Case "D2DV", "D2XP":    If (CDKeys.D2XPIndex > -1) Then canTestExpansion = True
     End Select
 End Function
@@ -363,8 +363,8 @@ Public Function getCDKeyFromList() As FoundKey
             key = CDKeys.W2BN(i)
       
             If (key <> vbNullString) Then
-                fk.cdKey = key
-                fk.product = "W2BN"
+                fk.CDKey = key
+                fk.Product = "W2BN"
                 fk.keyIndex = i
       
                 found = True
@@ -382,8 +382,8 @@ Public Function getCDKeyFromList() As FoundKey
             key = CDKeys.D2DV(i)
       
             If (key <> vbNullString) Then
-                fk.cdKey = key
-                fk.product = "D2DV"
+                fk.CDKey = key
+                fk.Product = "D2DV"
                 fk.keyIndex = i
       
                 found = True
@@ -401,10 +401,10 @@ Public Function getCDKeyFromList() As FoundKey
     getCDKeyFromList = fk
 End Function
 
-Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
+Public Function getCDKeyFromListEx(ByVal Product As String) As FoundKey
     Dim fk As FoundKey, found As Boolean, key As String, i As Long
 
-    Select Case product
+    Select Case Product
         Case "D2DV", "D2XP"
             If (CDKeys.D2XPIndex > -1) Then
                 For i = CDKeys.D2XPIndex To CDKeys.D2XPTotal - 1
@@ -412,8 +412,8 @@ Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
           
                     If (key <> vbNullString) Then
                         With fk
-                            .cdKey = key
-                            .product = "D2XP"
+                            .CDKey = key
+                            .Product = "D2XP"
                             .keyIndex = i
                         End With
             
@@ -433,18 +433,18 @@ Public Function getCDKeyFromListEx(ByVal product As String) As FoundKey
     getCDKeyFromListEx = fk
 End Function
 
-Public Sub removeCDKeyByIndex(ByVal keyIndex As Long, ByVal product As String)
-    Select Case product
+Public Sub removeCDKeyByIndex(ByVal keyIndex As Long, ByVal Product As String)
+    Select Case Product
         Case "W2BN":    CDKeys.W2BN(keyIndex) = vbNullString
         Case "D2DV":    CDKeys.D2DV(keyIndex) = vbNullString
         Case "D2XP":    CDKeys.D2XP(keyIndex) = vbNullString
   End Select
 End Sub
 
-Public Sub exportKeyToFile(ByVal key As String, ByVal product As String, State As String, Optional ByVal inUseName As String = vbNullString)
+Public Sub exportKeyToFile(ByVal key As String, ByVal Product As String, State As String, Optional ByVal inUseName As String = vbNullString)
     Dim dirName As String, cdKeyFile As String, stateString As String
   
-    Select Case product
+    Select Case Product
         Case "W2BN": dirName = "WarCraft II"
         Case "D2DV": dirName = "Diablo II"
         Case "D2XP": dirName = "Diablo II - Lord of Destruction"
@@ -501,54 +501,54 @@ Public Sub exportKeyToFile(ByVal key As String, ByVal product As String, State A
     Close #1
 End Sub
 
-Public Function getLabelByKeyState(ByVal product As String, ByVal State As String) As Integer
+Public Function getLabelByKeyState(ByVal Product As String, ByVal State As String) As Integer
     Dim labelConstant As Integer
 
     Select Case LCase$(State)
         Case "perfect"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNPerfect
                 Case "D2DV": labelConstant = D2DVPerfect
                 Case "D2XP": labelConstant = D2XPPerfect
             End Select
         Case "inuse"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNInUse
                 Case "D2DV": labelConstant = D2DVInUse
                 Case "D2XP": labelConstant = D2XPInUse
             End Select
         Case "muted"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNMuted
                 Case "D2DV": labelConstant = D2DVMuted
                 Case "D2XP": labelConstant = D2XPMuted
             End Select
         Case "voided"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNVoided
                 Case "D2DV": labelConstant = D2DVVoided
                 Case "D2XP": labelConstant = D2XPVoided
             End Select
         Case "jailed"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNJailed
                 Case "D2DV": labelConstant = D2DVJailed
                 Case "D2XP": labelConstant = D2XPJailed
             End Select
         Case "other"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNOther
                 Case "D2DV": labelConstant = D2DVOther
                 Case "D2XP": labelConstant = D2XPOther
             End Select
         Case "banned"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNBanned
                 Case "D2DV": labelConstant = D2DVBanned
                 Case "D2XP": labelConstant = D2XPBanned
             End Select
         Case "invalid"
-            Select Case product
+            Select Case Product
                 Case "W2BN": labelConstant = W2BNInvalid
                 Case "D2DV": labelConstant = D2DVInvalid
                 Case "D2XP": labelConstant = D2XPInvalid
@@ -558,10 +558,10 @@ Public Function getLabelByKeyState(ByVal product As String, ByVal State As Strin
     getLabelByKeyState = labelConstant
 End Function
 
-Public Sub postKeysTested(ByVal product As String)
+Public Sub postKeysTested(ByVal Product As String)
     Dim keysTested As Long, keysTotal As Long, lblKeysPercentIndex As Integer
   
-    Select Case product
+    Select Case Product
         Case "W2BN"
             CDKeys.W2BNTested = CDKeys.W2BNTested + 1
             keysTested = CDKeys.W2BNTested
@@ -585,15 +585,15 @@ Public Sub postKeysTested(ByVal product As String)
 End Sub
 
 Public Sub sendKeysBack()
-    Dim arrProducts() As Variant, product As Variant
+    Dim arrProducts() As Variant, Product As Variant
     arrProducts = Array("W2BN", "D2DV", "D2XP")
   
-    For Each product In arrProducts
+    For Each Product In arrProducts
         Dim arrCDKeys() As String, hasKeys As Boolean
     
         hasKeys = False
     
-        Select Case product
+        Select Case Product
             Case "W2BN"
                 If (CDKeys.W2BNTotal > 0) Then
                     arrCDKeys = CDKeys.W2BN
@@ -612,7 +612,7 @@ Public Sub sendKeysBack()
         End Select
     
         If (hasKeys) Then
-            Open App.path & "\" & CDKEYS_FOLDER & "\" & product & ".txt" For Output As #1
+            Open App.path & "\" & CDKEYS_FOLDER & "\" & Product & ".txt" For Output As #1
                 For i = 0 To UBound(arrCDKeys)
                     If (arrCDKeys(i) <> vbNullString) Then
                         Print #1, arrCDKeys(i)
@@ -626,7 +626,7 @@ End Sub
 Public Sub wipeCDKeysFromTesting()
     For i = 0 To loadedSockets - 1
         With BNETData(i)
-            .cdKey = vbNullString
+            .CDKey = vbNullString
             .cdKeyExp = vbNullString
             
             .cdKeyIndex = 0
@@ -635,7 +635,7 @@ Public Sub wipeCDKeysFromTesting()
             .numTested = 0
             .TestedEXP = 0
             
-            .product = vbNullString
+            .Product = vbNullString
             .productRegular = vbNullString
             .productExpansion = vbNullString
             
@@ -646,19 +646,19 @@ Public Sub wipeCDKeysFromTesting()
     Next i
 End Sub
 
-Public Function assignKeys(Index As Integer) As Boolean
-    With BNETData(Index)
-        If (.cdKey = vbNullString) Then
+Public Function assignKeys(index As Integer) As Boolean
+    With BNETData(index)
+        If (.CDKey = vbNullString) Then
             If (canTestRegularKeys()) Then
                 Dim fk As FoundKey
       
                 fk = getCDKeyFromList()
         
-                .cdKey = fk.cdKey
+                .CDKey = fk.CDKey
                 .cdKeyIndex = fk.keyIndex
         
-                .product = fk.product
-                .productRegular = fk.product
+                .Product = fk.Product
+                .productRegular = fk.Product
 
                 .isExpansion = False
             Else
@@ -666,15 +666,15 @@ Public Function assignKeys(Index As Integer) As Boolean
                 Exit Function
             End If
         Else
-            If (canTestExpansion(.product)) Then
+            If (canTestExpansion(.Product)) Then
                 Dim fkEx As FoundKey
-                fkEx = getCDKeyFromListEx(.product)
+                fkEx = getCDKeyFromListEx(.Product)
 
-                .cdKeyExp = fkEx.cdKey
+                .cdKeyExp = fkEx.CDKey
                 .cdKeyExpIndex = fkEx.keyIndex
 
-                .product = fkEx.product
-                .productExpansion = fkEx.product
+                .Product = fkEx.Product
+                .productExpansion = fkEx.Product
 
                 .isExpansion = True
             Else
@@ -689,11 +689,11 @@ End Function
 Public Sub restoreKeysToList()
     For i = 0 To UBound(BNETData)
         With BNETData(i)
-            If (.cdKey <> vbNullString And .product <> vbNullString) Then
-                repopulateKeyList .product, .cdKey
+            If (.CDKey <> vbNullString And .Product <> vbNullString) Then
+                repopulateKeyList .Product, .CDKey
         
-              .cdKey = vbNullString
-              .product = vbNullString
+              .CDKey = vbNullString
+              .Product = vbNullString
               .productRegular = vbNullString
             End If
       
@@ -707,10 +707,10 @@ Public Sub restoreKeysToList()
     Next i
 End Sub
 
-Private Sub repopulateKeyList(ByVal product As String, ByVal key As String)
+Private Sub repopulateKeyList(ByVal Product As String, ByVal key As String)
     Dim arrKeys() As String
   
-    Select Case product
+    Select Case Product
         Case "W2BN"
             arrKeys = CDKeys.W2BN
       
@@ -739,23 +739,23 @@ Private Sub repopulateKeyList(ByVal product As String, ByVal key As String)
     Next i
 End Sub
 
-Public Function Decode(ByVal cdKey As String) As DecodedKey
-    Dim publicVal As Long, product As Long, dk As DecodedKey
+Public Function Decode(ByVal CDKey As String) As DecodedKey
+    Dim publicVal As Long, Product As Long, dk As DecodedKey
   
-    product = -1
+    Product = -1
   
-    kd_quick cdKey, 0, 0, publicVal, product, vbNullString, 0
+    kd_quick CDKey, 0, 0, publicVal, Product, vbNullString, 0
 
-    If (product > 0) Then
-        Select Case product
+    If (Product > 0) Then
+        Select Case Product
             Case &H4
-                dk.product = "W2BN"
+                dk.Product = "W2BN"
                 dk.successful = True
             Case &H6, &H7, &H18
-                dk.product = "D2DV"
+                dk.Product = "D2DV"
                 dk.successful = True
             Case &HA, &HC, &H19
-                dk.product = "D2XP"
+                dk.Product = "D2XP"
                 dk.successful = True
         End Select
     End If

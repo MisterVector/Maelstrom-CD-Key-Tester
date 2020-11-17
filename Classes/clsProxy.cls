@@ -30,12 +30,12 @@ Public Sub setProxies(proxies() As clsProxyType)
     proxyIndex = 0
 End Sub
 
-Public Sub decrementProxyUse(Index As Long)
-    arrProxies(Index).decrementCurrentlyUsing
+Public Sub decrementProxyUse(index As Long)
+    arrProxies(index).decrementCurrentlyUsing
 End Sub
 
-Public Sub onProxyFail(Index As Long)
-    With arrProxies(Index)
+Public Sub onProxyFail(index As Long)
+    With arrProxies(index)
         Dim numMarks
         numMarks = .getDeathMarks()
     
@@ -135,40 +135,40 @@ End Sub
  
 Public Sub saveGoodProxies()
     Dim dicSocks4 As New Dictionary, dicHttp As New Dictionary
-    Dim IP As String, port As Long, version As String
+    Dim IP As String, Port As Long, Version As String
   
     For i = 0 To UBound(arrProxies)
         If (arrProxies(i).getIP() <> vbNullString) Then
             IP = arrProxies(i).getIP()
-            port = arrProxies(i).getPort()
-            version = arrProxies(i).getVersion()
+            Port = arrProxies(i).getPort()
+            Version = arrProxies(i).getVersion()
     
             If (arrProxies(i).getVersion() = "SOCKS4") Then
-                dicSocks4.Add IP, port
+                dicSocks4.Add IP, Port
             End If
       
             If (arrProxies(i).getVersion() = "HTTP") Then
-                dicHttp.Add IP, port
+                dicHttp.Add IP, Port
             End If
         End If
     Next i
   
     If (dicSocks4.count > 0) Then
         Open App.path & "\SOCKS4.txt" For Output As #1
-            For Each key In dicSocks4.Keys
-                port = dicSocks4.Item(key)
+            For Each key In dicSocks4.keys
+                Port = dicSocks4.Item(key)
 
-                Print #1, key & ":" & port
+                Print #1, key & ":" & Port
             Next
         Close #1
     End If
   
     If (dicHttp.count > 0) Then
         Open App.path & "\HTTP.txt" For Output As #1
-            For Each key In dicHttp.Keys
-                port = dicHttp.Item(key)
+            For Each key In dicHttp.keys
+                Port = dicHttp.Item(key)
         
-                Print #1, key & ":" & port
+                Print #1, key & ":" & Port
             Next
         Close #1
     End If

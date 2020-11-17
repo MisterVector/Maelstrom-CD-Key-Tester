@@ -20,7 +20,7 @@ Public Function loadProxies() As ProxiesLoaded
   
     For i = 0 To UBound(proxyVersions)
         Dim proxyVersion As String, proxyFile As String
-  
+
         proxyVersion = proxyVersions(i)
         proxyFile = App.path & "\" & proxyVersion & ".txt"
   
@@ -44,14 +44,14 @@ Public Function loadProxies() As ProxiesLoaded
                     tProxies(ii) = Trim$(tProxies(ii))
                     
                     If (InStr(tProxies(ii), ":")) Then
-                        Dim IP As String, port As String, parts() As String
+                        Dim IP As String, Port As String, parts() As String
                         
                         parts = Split(tProxies(ii), ":")
                         IP = parts(0)
-                        port = parts(1)
+                        Port = parts(1)
                         
-                        If (IsNumeric(port) And IsNumeric(Replace(IP, ".", vbNullString))) Then
-                            If (port <= 65535 And port > 0) Then
+                        If (IsNumeric(Port) And IsNumeric(Replace(IP, ".", vbNullString))) Then
+                            If (Port <= 65535 And Port > 0) Then
                                 If (Not dicTemp.Exists(IP)) Then
                                     If (proxyCount = MAX_PROXIES) Then
                                         pl.maxProxiesReached = True
@@ -60,7 +60,7 @@ Public Function loadProxies() As ProxiesLoaded
                       
                                     Dim proxyLine As String
                         
-                                    proxyLine = IP & "|" & port & "|" & proxyVersion & "|" & proxyIndex
+                                    proxyLine = IP & "|" & Port & "|" & proxyVersion & "|" & proxyIndex
                                     proxyIndex = proxyIndex + 1
                                     dicTemp.Add IP, proxyLine
                         
@@ -87,16 +87,16 @@ Public Function loadProxies() As ProxiesLoaded
         ReDim arrProxies(dicTemp.count - 1)
     
         For Each p In dicTemp.Items
-            Dim data() As String
-            data = Split(p, "|")
+            Dim Data() As String
+            Data = Split(p, "|")
     
             Set arrProxies(idx) = New clsProxyType
     
             With arrProxies(idx)
-                .setIP (data(0))
-                .setPort (data(1))
-                .setVersion (data(2))
-                .setIndex (data(3))
+                .setIP (Data(0))
+                .setPort (Data(1))
+                .setVersion (Data(2))
+                .setIndex (Data(3))
             End With
       
             idx = idx + 1
@@ -125,11 +125,11 @@ Public Sub setupHashFiles()
     hashes.checkRevisionInfo = App.path & "\VersionCheck.ini"
 End Sub
 
-Public Function getHashes(ByVal product As String, Optional lockdownFileName As String = vbNullString) As HashSearchResult
+Public Function getHashes(ByVal Product As String, Optional lockdownFileName As String = vbNullString) As HashSearchResult
     Dim hashFiles() As String, isLockdown As Boolean
-    Dim result As HashSearchResult
+    Dim Result As HashSearchResult
   
-    Select Case product
+    Select Case Product
         Case "W2BN"
             hashFiles = hashes.w2bnHashes
             isLockdown = True
@@ -139,34 +139,34 @@ Public Function getHashes(ByVal product As String, Optional lockdownFileName As 
             hashFiles = hashes.d2xpHashes
     End Select
   
-    If (product = "D2DV" Or product = "D2XP") Then
+    If (Product = "D2DV" Or Product = "D2XP") Then
         If (Dir$(hashes.checkRevisionInfo) = vbNullString) Then
-            result.errorMessage = "missing VersionCheck.ini"
-            getHashes = result
+            Result.errorMessage = "missing VersionCheck.ini"
+            getHashes = Result
             Exit Function
         End If
     End If
   
     For i = 0 To UBound(hashFiles)
         If (Dir$(hashFiles(i)) = vbNullString) Then
-        result.errorMessage = "missing hash files for " & product
-        getHashes = result
+        Result.errorMessage = "missing hash files for " & Product
+        getHashes = Result
         Exit Function
         End If
     Next i
   
     If (isLockdown And Len(lockdownFileName) >= 8 And LCase$(left$(lockdownFileName, 8)) = "lockdown") Then
         If (Dir$(hashes.lockdownPath & lockdownFileName) = vbNullString) Then
-        result.errorMessage = "missing lockdown files for " & product
-        getHashes = result
+        Result.errorMessage = "missing lockdown files for " & Product
+        getHashes = Result
         Exit Function
         End If
     End If
   
-    result.hashes = hashFiles
-    result.hashesExist = True
+    Result.hashes = hashFiles
+    Result.hashesExist = True
 
-    getHashes = result
+    getHashes = Result
 End Function
 
 Public Sub calculateAvailableSockets()
@@ -210,16 +210,16 @@ End Function
 Public Function loadConfig() As Dictionary
     Dim dicErrors As New Dictionary, tempValue As String, error As Boolean
     
-    config.name = ReadINI("Main", "Name", "Config.ini")
+    config.Name = ReadINI("Main", "Name", "Config.ini")
     
-    If (Len(config.name) < 3) Then
-        dicErrors.Add CONFIG_USERNAME, config.name
+    If (Len(config.Name) < 3) Then
+        dicErrors.Add CONFIG_USERNAME, config.Name
     End If
     
-    config.password = ReadINI("Main", "Password", "Config.ini")
+    config.Password = ReadINI("Main", "Password", "Config.ini")
     
-    If (Len(config.password) < 1) Then
-        dicErrors.Add CONFIG_PASSWORD, config.password
+    If (Len(config.Password) < 1) Then
+        dicErrors.Add CONFIG_PASSWORD, config.Password
     End If
     
     config.homeChannel = ReadINI("Main", "HomeChannel", "Config.ini")
@@ -497,8 +497,8 @@ End Function
 
 Public Sub writeConfig()
     With config
-        WriteINI "Main", "Name", .name, "Config.ini"
-        WriteINI "Main", "Password", .password, "Config.ini"
+        WriteINI "Main", "Name", .Name, "Config.ini"
+        WriteINI "Main", "Password", .Password, "Config.ini"
         WriteINI "Main", "Server", .server, "Config.ini"
         WriteINI "Main", "BNLSServer", .bnlsServer, "Config.ini"
         WriteINI "Main", "HomeChannel", .homeChannel, "Config.ini"
@@ -562,8 +562,8 @@ Public Function IsNumericB(ByVal text As String) As Boolean
     End If
 End Function
 
-Public Function productToId(ByVal product As String) As Byte
-    Select Case product
+Public Function productToId(ByVal Product As String) As Byte
+    Select Case Product
         Case "W2BN": productToId = &H3
         Case "D2DV": productToId = &H4
         Case "D2XP": productToId = &H5
@@ -571,7 +571,7 @@ Public Function productToId(ByVal product As String) As Byte
 End Function
 
 Public Function idToProduct(ByVal ID As Byte) As String
-    Select Case product
+    Select Case Product
         Case &H3: idToProduct = "W2BN"
         Case &H4: idToProduct = "D2DV"
         Case &H5: idToProduct = "D2XP"
@@ -616,13 +616,13 @@ Public Sub setupConnectionData(ByVal newSockets As Integer)
     frmMain.tmrCheckBNLS.Interval = config.checkFailure
 End Sub
 
-Public Sub markSocketDead(ByVal Index As Integer)
+Public Sub markSocketDead(ByVal index As Integer)
     socketsAvailable = socketsAvailable - 1
     frmMain.lblControl(SOCKETS_AVAILABLE).Caption = frmMain.lblControl(SOCKETS_AVAILABLE).Caption - 1
 End Sub
 
-Public Function getVerByte(ByVal product As String) As Byte
-    Select Case product
+Public Function getVerByte(ByVal Product As String) As Byte
+    Select Case Product
         Case "W2BN": getVerByte = config.W2BNVerByte
         Case "D2DV", "D2XP": getVerByte = config.D2DVVerByte
     End Select
@@ -682,11 +682,11 @@ Public Function serverToRealm(serverIP As String) As ServerRealm
     serverToRealm = sr
 End Function
 
-Public Function isValidServerAddress(address As String) As Boolean
+Public Function isValidServerAddress(Address As String) As Boolean
     Dim realm As Variant
   
     For Each gateway In dicGatewayIPs.keys
-        If (address = gateway) Then
+        If (Address = gateway) Then
             isValidServerAddress = True
             Exit Function
         Else
@@ -694,7 +694,7 @@ Public Function isValidServerAddress(address As String) As Boolean
             IPs = dicGatewayIPs.Item(gateway)
     
             For Each IP In IPs
-                If (address = IP) Then
+                If (Address = IP) Then
                     isValidServerAddress = True
                     Exit Function
                 End If
@@ -827,10 +827,10 @@ Public Sub checkForQuitShortcut(fm As Form, key As Integer, Shift As Integer)
     End If
 End Sub
 
-Public Function portToBytes(port As Long) As String
+Public Function portToBytes(Port As Long) As String
     Dim pLong As PortLong, pBytes As PortBytes
 
-    pLong.n = port
+    pLong.n = Port
     
     LSet pBytes = pLong
     

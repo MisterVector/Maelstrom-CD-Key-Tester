@@ -32,28 +32,28 @@ Public Sub Skip(Bytes As Long)
     sLen = sLen + Bytes
 End Sub
 
-Public Sub InsertByte(ByVal value As Byte)
-    sOut = sOut & Chr$(value)
+Public Sub InsertByte(ByVal Value As Byte)
+    sOut = sOut & Chr$(Value)
 End Sub
 
-Public Sub InsertWORD(ByVal value As Integer)
+Public Sub InsertWORD(ByVal Value As Integer)
     Dim NewValue As String * 2
-    CopyMemory ByVal NewValue, value, 2
+    CopyMemory ByVal NewValue, Value, 2
     sOut = sOut & NewValue
 End Sub
 
-Public Sub InsertDWORD(ByVal value As Long)
+Public Sub InsertDWORD(ByVal Value As Long)
     Dim NewValue As String * 4
-    CopyMemory ByVal NewValue, value, 4
+    CopyMemory ByVal NewValue, Value, 4
     sOut = sOut & NewValue
 End Sub
 
-Public Sub InsertNTString(ByVal value As String)
-    sOut = sOut & value & vbNullChar
+Public Sub InsertNTString(ByVal Value As String)
+    sOut = sOut & Value & vbNullChar
 End Sub
 
-Public Sub InsertNonNTString(ByVal value As String)
-    sOut = sOut & value
+Public Sub InsertNonNTString(ByVal Value As String)
+    sOut = sOut & Value
 End Sub
 
 Public Sub sendPacket(ID As Byte)

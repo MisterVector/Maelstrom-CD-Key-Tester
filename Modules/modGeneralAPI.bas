@@ -1,12 +1,12 @@
 Attribute VB_Name = "modGeneralAPI"
-Private Declare Function FileTimeToLocalFileTime Lib "Kernel32" (lpFileTime As FILETIME, lpLocalFileTime As FILETIME) As Long
-Private Declare Function FileTimeToSystemTime Lib "Kernel32" (lpFileTime As FILETIME, lpSystemTime As SYSTEMTIME) As Long
+Private Declare Function FileTimeToLocalFileTime Lib "kernel32" (lpFileTime As FILETIME, lpLocalFileTime As FILETIME) As Long
+Private Declare Function FileTimeToSystemTime Lib "kernel32" (lpFileTime As FILETIME, lpSystemTime As SYSTEMTIME) As Long
 
-Private Declare Function GetCurrentProcess Lib "Kernel32" () As Long
+Private Declare Function GetCurrentProcess Lib "kernel32" () As Long
 Private Declare Function EmptyWorkingSet Lib "psapi.dll" (ByVal hProcess As Long) As Long
-Private Declare Function SetProcessWorkingSetSize Lib "Kernel32" (ByVal hProcess As Long, ByVal dwMinimumWorkingSetSize As Long _
+Private Declare Function SetProcessWorkingSetSize Lib "kernel32" (ByVal hProcess As Long, ByVal dwMinimumWorkingSetSize As Long _
                                                                 , ByVal dwMaximumWorkingSetSize As Long) As Long
-Public Declare Sub CopyMemory Lib "Kernel32" Alias "RtlMoveMemory" (ByRef Destination As Any, ByRef Source As Any, ByVal numbytes As Long)
+Public Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (ByRef Destination As Any, ByRef Source As Any, ByVal numbytes As Long)
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
 Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwnd As Long, ByVal lpszOp As String, ByVal lpszFile As String, ByVal lpszParams As String, ByVal LpszDir As String, ByVal FsShowCmd As Long) As Long
 

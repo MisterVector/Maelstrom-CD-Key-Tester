@@ -69,7 +69,7 @@ End Property
 Public Property Get toString() As String
    ' The internal string:
    If m_iPos > 0 Then
-      toString = Left$(m_sString, m_iPos \ 2)
+      toString = left$(m_sString, m_iPos \ 2)
    End If
 End Property
 
@@ -142,7 +142,7 @@ Public Sub Insert(ByVal iIndex As Long, ByRef sThis As String)
    
    ' is iIndex within bounds?
    If (iIndex * 2 > m_iPos) Then
-      Err.Raise 9
+      err.Raise 9
    Else
    
       lLen = LenB(sThis)
@@ -176,11 +176,11 @@ Public Sub Remove(ByVal iIndex As Long, ByVal lLen As Long)
 
    ' is iIndex within bounds?
    If (iIndex * 2 > m_iPos) Then
-      Err.Raise 9
+      err.Raise 9
    Else
       ' is there sufficient length?
       If ((iIndex + lLen) * 2 > m_iPos) Then
-         Err.Raise 9
+         err.Raise 9
       Else
          ' Need to copy characters from iIndex*2 to m_iPos back by lLen chars:
          lSrc = UnsignedAdd(StrPtr(m_sString), (iIndex + lLen) * 2)
@@ -218,7 +218,7 @@ Public Sub HeapMinimize()
       Do While (iLen - m_iPos) > m_iChunkSize
          iLen = iLen - m_iChunkSize
       Loop
-      m_sString = Left$(m_sString, iLen \ 2)
+      m_sString = left$(m_sString, iLen \ 2)
       m_iLen = iLen
    End If
    
