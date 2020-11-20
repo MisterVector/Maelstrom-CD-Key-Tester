@@ -916,12 +916,7 @@ Private Sub lblOk_Click()
     
     config.server = cmbServer.text
     config.serverIP = getProperGateway(config.server)
-    
-    Dim sr As ServerRealm
-    
-    sr = serverToRealm(config.server)
-    
-    config.ServerRealm = sr.realm
+    config.ServerRealm = serverToRealm(config.server)
     
     config.name = txtConfig(CONFIG_USERNAME).text
     config.password = txtConfig(CONFIG_PASSWORD).text

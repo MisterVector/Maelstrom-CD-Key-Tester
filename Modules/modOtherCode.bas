@@ -234,12 +234,7 @@ Public Function loadConfig() As Dictionary
         dicErrors.Add CONFIG_SERVER, config.server
     Else
         config.serverIP = getProperGateway(config.server)
-    
-        Dim sr As ServerRealm
-    
-        sr = serverToRealm(config.serverIP)
-    
-        config.ServerRealm = sr.realm
+        config.ServerRealm = serverToRealm(config.serverIP)
         
         If (config.serverIP = vbNullString) Then
             dicErrors.Add CONFIG_SERVER, config.server
@@ -644,8 +639,8 @@ Public Sub initializeGatewayList()
     Next
 End Sub
 
-Public Function serverToRealm(serverIP As String) As ServerRealm
-    Dim foundGateway As String, gateway As Variant, sr As ServerRealm
+Public Function serverToRealm(serverIP As String) As String
+    Dim foundGateway As String, gateway As Variant, realm As String
   
     For Each gateway In dicGatewayIPs.keys
         If (gateway = serverIP) Then
@@ -670,16 +665,16 @@ Public Function serverToRealm(serverIP As String) As ServerRealm
 
     Select Case foundGateway
         Case "uswest.battle.net", "connect-usw.classic.blizzard.com"
-            sr.realm = "USWest"
+            realm = "USWest"
         Case "useast.battle.net", "connect-use.classic.blizzard.com"
-            sr.realm = "USEast"
+            realm = "USEast"
         Case "europe.battle.net", "connect-eur.classic.blizzard.com"
-            sr.realm = "Europe"
+            realm = "Europe"
         Case "asia.battle.net", "connect-kor.classic.blizzard.com"
-            sr.realm = "Asia"
+            realm = "Asia"
     End Select
   
-    serverToRealm = sr
+    serverToRealm = realm
 End Function
 
 Public Function isValidServerAddress(Address As String) As Boolean

@@ -67,10 +67,6 @@ Public Type HashSearchResult
     errorMessage As String
 End Type
 
-Public Type ServerRealm
-    realm As String
-End Type
-
 Public Type ProxiesLoaded
     loadedCount As Long
     maxProxiesReached As Boolean
