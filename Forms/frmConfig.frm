@@ -3,14 +3,14 @@ Begin VB.Form frmConfig
    BackColor       =   &H00404040&
    BorderStyle     =   0  'None
    Caption         =   "Form1"
-   ClientHeight    =   6990
+   ClientHeight    =   7350
    ClientLeft      =   0
    ClientTop       =   0
    ClientWidth     =   9930
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6990
+   ScaleHeight     =   7350
    ScaleWidth      =   9930
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
@@ -49,7 +49,7 @@ Begin VB.Form frmConfig
       Height          =   375
       Left            =   240
       TabIndex        =   15
-      Top             =   5400
+      Top             =   5760
       Width           =   2580
    End
    Begin VB.CheckBox chkSkipFailedProxies 
@@ -77,7 +77,7 @@ Begin VB.Form frmConfig
       Index           =   16
       Left            =   1920
       TabIndex        =   14
-      Top             =   5040
+      Top             =   5400
       Width           =   3375
    End
    Begin VB.CheckBox chkSaveGoodProxies 
@@ -105,7 +105,7 @@ Begin VB.Form frmConfig
       Index           =   7
       Left            =   3840
       TabIndex        =   10
-      Top             =   4680
+      Top             =   5040
       Width           =   1455
    End
    Begin VB.CheckBox chkAddDateToTested 
@@ -124,7 +124,7 @@ Begin VB.Form frmConfig
       Height          =   375
       Left            =   240
       TabIndex        =   11
-      Top             =   5760
+      Top             =   6120
       Width           =   2445
    End
    Begin VB.TextBox txtConfig 
@@ -151,7 +151,7 @@ Begin VB.Form frmConfig
       Index           =   11
       Left            =   7440
       TabIndex        =   16
-      Top             =   4680
+      Top             =   5040
       Width           =   2175
    End
    Begin VB.TextBox txtConfig 
@@ -285,7 +285,7 @@ Begin VB.Form frmConfig
       Index           =   21
       Left            =   240
       TabIndex        =   40
-      Top             =   5040
+      Top             =   5400
       Width           =   1695
    End
    Begin VB.Label lblConfig 
@@ -305,7 +305,7 @@ Begin VB.Form frmConfig
       Index           =   11
       Left            =   240
       TabIndex        =   39
-      Top             =   4680
+      Top             =   5040
       Width           =   3615
    End
    Begin VB.Label lblConfig 
@@ -326,7 +326,7 @@ Begin VB.Form frmConfig
       Index           =   19
       Left            =   360
       TabIndex        =   38
-      Top             =   3960
+      Top             =   4320
       Width           =   4935
    End
    Begin VB.Label lblConfig 
@@ -347,7 +347,7 @@ Begin VB.Form frmConfig
       Index           =   3
       Left            =   5760
       TabIndex        =   37
-      Top             =   3960
+      Top             =   4320
       Width           =   3855
    End
    Begin VB.Label lblConfig 
@@ -367,7 +367,7 @@ Begin VB.Form frmConfig
       Index           =   18
       Left            =   5760
       TabIndex        =   36
-      Top             =   5040
+      Top             =   5400
       Width           =   2655
    End
    Begin VB.Label lblConfig 
@@ -387,7 +387,7 @@ Begin VB.Form frmConfig
       Index           =   17
       Left            =   5760
       TabIndex        =   35
-      Top             =   5400
+      Top             =   5760
       Width           =   2775
    End
    Begin VB.Label lblConfig 
@@ -407,7 +407,7 @@ Begin VB.Form frmConfig
       Index           =   15
       Left            =   5760
       TabIndex        =   34
-      Top             =   4680
+      Top             =   5040
       Width           =   1575
    End
    Begin VB.Label lblConfig 
@@ -628,7 +628,7 @@ Begin VB.Form frmConfig
       Height          =   495
       Left            =   2280
       TabIndex        =   20
-      Top             =   6240
+      Top             =   6600
       Width           =   4455
    End
    Begin VB.Label lblOk 
@@ -648,7 +648,7 @@ Begin VB.Form frmConfig
       Height          =   495
       Left            =   120
       TabIndex        =   19
-      Top             =   6240
+      Top             =   6600
       Width           =   1455
    End
    Begin VB.Label lblCancel 
@@ -668,7 +668,7 @@ Begin VB.Form frmConfig
       Height          =   495
       Left            =   7920
       TabIndex        =   21
-      Top             =   6240
+      Top             =   6600
       Width           =   1815
    End
    Begin VB.Label lblConfig 
