@@ -210,16 +210,16 @@ End Function
 Public Function loadConfig() As Dictionary
     Dim dicErrors As New Dictionary, tempValue As String, error As Boolean
     
-    config.Name = ReadINI("Main", "Name", "Config.ini")
+    config.name = ReadINI("Main", "Name", "Config.ini")
     
-    If (Len(config.Name) < 3) Then
-        dicErrors.Add CONFIG_USERNAME, config.Name
+    If (Len(config.name) < 3) Then
+        dicErrors.Add CONFIG_USERNAME, config.name
     End If
     
-    config.Password = ReadINI("Main", "Password", "Config.ini")
+    config.password = ReadINI("Main", "Password", "Config.ini")
     
-    If (Len(config.Password) < 1) Then
-        dicErrors.Add CONFIG_PASSWORD, config.Password
+    If (Len(config.password) < 1) Then
+        dicErrors.Add CONFIG_PASSWORD, config.password
     End If
     
     config.homeChannel = ReadINI("Main", "HomeChannel", "Config.ini")
@@ -492,8 +492,8 @@ End Function
 
 Public Sub writeConfig()
     With config
-        WriteINI "Main", "Name", .Name, "Config.ini"
-        WriteINI "Main", "Password", .Password, "Config.ini"
+        WriteINI "Main", "Name", .name, "Config.ini"
+        WriteINI "Main", "Password", .password, "Config.ini"
         WriteINI "Main", "Server", .server, "Config.ini"
         WriteINI "Main", "BNLSServer", .bnlsServer, "Config.ini"
         WriteINI "Main", "HomeChannel", .homeChannel, "Config.ini"

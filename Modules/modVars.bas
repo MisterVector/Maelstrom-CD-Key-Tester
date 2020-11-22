@@ -90,8 +90,8 @@ Public hasKeys As Boolean
 Public hasConfig As Boolean
 
 Public Type ConfigData
-    Name As String
-    Password As String
+    name As String
+    password As String
     server As String
     bnlsServer As String
     bnlsPort As Long

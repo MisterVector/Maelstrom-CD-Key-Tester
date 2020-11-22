@@ -18,8 +18,8 @@ Private index As Long
 Private currentlyUsing As Integer
 Private deathMarks As Integer
 
-Public Sub setIP(S As String)
-    IP = S
+Public Sub setIP(s As String)
+    IP = s
 End Sub
 
 Public Function getIP() As String
@@ -34,8 +34,8 @@ Public Function getPort() As Long
     getPort = Port
 End Function
 
-Public Sub setVersion(S As String)
-    Version = S
+Public Sub setVersion(s As String)
+    Version = s
 End Sub
 
 Public Function getVersion() As String

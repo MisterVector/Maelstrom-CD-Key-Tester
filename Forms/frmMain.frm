@@ -1604,7 +1604,7 @@ Private Sub lblConfig_MouseMove(Button As Integer, Shift As Integer, x As Single
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblControl_MouseDown(Index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
+Private Sub lblControl_MouseDown(index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
     moveEntireForm Me, Button
 End Sub
 
@@ -1689,7 +1689,7 @@ Private Sub lblStart_Click()
             Dim canUseCDKey As Boolean, canUseProxy As Boolean
             Dim needsCDKey As Boolean, needsProxy As Boolean
       
-            canUseCDKey = (BNETData(i).cdKey <> vbNullString)
+            canUseCDKey = (BNETData(i).CDKey <> vbNullString)
       
             If (Not canUseCDKey) Then
                 needsCDKey = True
@@ -1710,9 +1710,9 @@ Private Sub lblStart_Click()
                     fk = getCDKeyFromList()
           
                     With BNETData(i)
-                        .cdKey = fk.cdKey
-                        .product = fk.product
-                        .productRegular = fk.product
+                        .CDKey = fk.CDKey
+                        .Product = fk.Product
+                        .productRegular = fk.Product
                         .cdKeyIndex = fk.keyIndex
                     End With
                 End If
@@ -1729,12 +1729,12 @@ Private Sub lblStart_Click()
                     End With
                 End If
         
-                Dim IP As String, port As Long
+                Dim IP As String, Port As Long
             
                 IP = BNETData(i).proxyIP
-                port = BNETData(i).proxyPort
+                Port = BNETData(i).proxyPort
     
-                AddChat vbYellow, "Socket #" & i & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
+                AddChat vbYellow, "Socket #" & i & ": Attempting to connect to ", vbWhite, IP & ":" & Port, vbYellow, "."
                 tmrCheckFailed(i).Enabled = True
                 connectSocket i
             Else
@@ -1803,64 +1803,64 @@ Private Sub sckBNLS_Connect()
 End Sub
 
 Private Sub sckBNLS_DataArrival(ByVal bytesTotal As Long)
-    Dim data As String, pID As Byte, pLen As Long
+    Dim Data As String, pID As Byte, pLen As Long
   
-    sckBNLS.GetData data
+    sckBNLS.GetData Data
   
-    CopyMemory pLen, ByVal Mid$(data, 1, 2), 2
-    pID = Asc(Mid$(data, 3, 1))
+    CopyMemory pLen, ByVal Mid$(Data, 1, 2), 2
+    pID = Asc(Mid$(Data, 3, 1))
   
-    bnlsPacket.SetData Mid$(data, 4)
+    bnlsPacket.SetData Mid$(Data, 4)
   
     Select Case pID
         Case &H10: RecvBNLS0x10
     End Select
 End Sub
 
-Private Sub sckBNCS_Connect(Index As Integer)
-    Select Case BNETData(Index).proxyVersion
-        Case "SOCKS4":  sckBNCS(Index).SendData Chr$(&H4) & Chr$(&H1) & Chr$(&H17) & Chr$(&HE0) & P_split(LCase$(config.serverIP)) & vbNullString & Chr$(&H0)
-        Case "SOCKS5":  sckBNCS(Index).SendData Chr$(&H5) & Chr$(&H1) & Chr$(&H0)
-        Case "HTTP":    sckBNCS(Index).SendData "CONNECT " & config.serverIP & ":6112 HTTP/1.1" & vbCrLf & vbCrLf
+Private Sub sckBNCS_Connect(index As Integer)
+    Select Case BNETData(index).proxyVersion
+        Case "SOCKS4":  sckBNCS(index).SendData Chr$(&H4) & Chr$(&H1) & Chr$(&H17) & Chr$(&HE0) & P_split(LCase$(config.serverIP)) & vbNullString & Chr$(&H0)
+        Case "SOCKS5":  sckBNCS(index).SendData Chr$(&H5) & Chr$(&H1) & Chr$(&H0)
+        Case "HTTP":    sckBNCS(index).SendData "CONNECT " & config.serverIP & ":6112 HTTP/1.1" & vbCrLf & vbCrLf
   End Select
 End Sub
 
-Private Sub sckBNCS_DataArrival(Index As Integer, ByVal bytesTotal As Long)
-    Dim data As String, pID As Byte, pLen As Long
+Private Sub sckBNCS_DataArrival(index As Integer, ByVal bytesTotal As Long)
+    Dim Data As String, pID As Byte, pLen As Long
 
-    sckBNCS(Index).GetData data
-    If (IsProxyPacket(Index, data)) Then Exit Sub
+    sckBNCS(index).GetData Data
+    If (IsProxyPacket(index, Data)) Then Exit Sub
   
-    If (Asc(left$(data, 1)) <> &HFF) Then
-        assumeSocketDead Index
+    If (Asc(left$(Data, 1)) <> &HFF) Then
+        assumeSocketDead index
         Exit Sub
     End If
   
-    Do While (Len(data) > 3)
-        pID = Asc(Mid$(data, 2, 1))
-        CopyMemory pLen, ByVal Mid$(data, 3, 2), 2
+    Do While (Len(Data) > 3)
+        pID = Asc(Mid$(Data, 2, 1))
+        CopyMemory pLen, ByVal Mid$(Data, 3, 2), 2
         If (pLen < 4) Then Exit Sub
   
-        packet(Index).SetData Mid$(data, 5, pLen)
+        packet(index).SetData Mid$(Data, 5, pLen)
 
         Select Case pID
-            Case &H25:  Recv0x25 Index   'Ping
-            Case &H50:  Recv0x50 Index   'Auth info
-            Case &H51:  Recv0x51 Index   'Auth check
-            Case &H3A:  Recv0x3A Index   'Logon response 2
-            Case &H3D:  Recv0x3D Index   'Create Account 2
-            Case &H46:  Recv0x46 Index   'News packet
-            Case &HA:   Recv0x0A Index   'Enter chat
+            Case &H25:  Recv0x25 index   'Ping
+            Case &H50:  Recv0x50 index   'Auth info
+            Case &H51:  Recv0x51 index   'Auth check
+            Case &H3A:  Recv0x3A index   'Logon response 2
+            Case &H3D:  Recv0x3D index   'Create Account 2
+            Case &H46:  Recv0x46 index   'News packet
+            Case &HA:   Recv0x0A index   'Enter chat
         End Select
   
-        data = Mid$(data, pLen + 1)
+        Data = Mid$(Data, pLen + 1)
     Loop
 End Sub
 
-Private Sub sckBNCS_Error(Index As Integer, ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
-    AddChat vbRed, "Socket #" & Index & " error #" & Number & ": " & Description & "."
+Private Sub sckBNCS_Error(index As Integer, ByVal Number As Integer, Description As String, ByVal Scode As Long, ByVal Source As String, ByVal HelpFile As String, ByVal HelpContext As Long, CancelDisplay As Boolean)
+    AddChat vbRed, "Socket #" & index & " error #" & Number & ": " & Description & "."
   
-    Call assumeSocketDead(Index)
+    Call assumeSocketDead(index)
 End Sub
 
 Private Sub tmrBenchmark_Timer()
@@ -1878,50 +1878,50 @@ Private Sub tmrCheckBNLS_Timer()
     stopTesting vbYellow, "Check your BNLS server and try again."
 End Sub
 
-Private Sub tmrCheckFailed_Timer(Index As Integer)
-    Call assumeSocketDead(Index)
+Private Sub tmrCheckFailed_Timer(index As Integer)
+    Call assumeSocketDead(index)
 End Sub
 
-Public Sub assumeSocketDead(Index As Integer)
-    tmrCheckFailed(Index).Enabled = False
-    closeSocket Index
+Public Sub assumeSocketDead(index As Integer)
+    tmrCheckFailed(index).Enabled = False
+    closeSocket index
       
-    AddChat vbRed, "Socket #" & Index & ": Connection to ", vbWhite, BNETData(Index).proxyIP & ":" & BNETData(Index).proxyPort, vbRed, " failed!"
+    AddChat vbRed, "Socket #" & index & ": Connection to ", vbWhite, BNETData(index).proxyIP & ":" & BNETData(index).proxyPort, vbRed, " failed!"
       
     If (config.skipFailedProxies) Then
-        proxies.onProxyFail BNETData(Index).proxyIndex
+        proxies.onProxyFail BNETData(index).proxyIndex
     End If
       
-    BNETData(Index).proxyIP = vbNullString
-    BNETData(Index).proxyPort = 0
-    BNETData(Index).proxyVersion = vbNullString
-    BNETData(Index).proxyIndex = 0
-    BNETData(Index).numTested = 0
-    BNETData(Index).acceptedAuth = False
+    BNETData(index).proxyIP = vbNullString
+    BNETData(index).proxyPort = 0
+    BNETData(index).proxyVersion = vbNullString
+    BNETData(index).proxyIndex = 0
+    BNETData(index).numTested = 0
+    BNETData(index).acceptedAuth = False
     
     If (proxies.canAcquireProxy()) Then
-        Dim IP As String, port As Long, Version As String, proxyIndex As Long, pType As clsProxyType
+        Dim IP As String, Port As Long, Version As String, proxyIndex As Long, pType As clsProxyType
         Set pType = proxies.getProxy()
     
         With pType
             IP = .getIP()
-            port = .getPort()
+            Port = .getPort()
             Version = .getVersion()
             proxyIndex = .getIndex()
         End With
     
-        BNETData(Index).proxyIP = IP
-        BNETData(Index).proxyPort = port
-        BNETData(Index).proxyVersion = Version
-        BNETData(Index).proxyIndex = proxyIndex
+        BNETData(index).proxyIP = IP
+        BNETData(index).proxyPort = Port
+        BNETData(index).proxyVersion = Version
+        BNETData(index).proxyIndex = proxyIndex
 
-        AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
+        AddChat vbYellow, "Socket #" & index & ": Attempting to connect to ", vbWhite, IP & ":" & Port, vbYellow, "."
     
-        connectSocket Index
-        tmrCheckFailed(Index).Enabled = True
+        connectSocket index
+        tmrCheckFailed(index).Enabled = True
     Else
-        AddChat vbRed, "Socket #" & Index & ": The proxy list has run out."
-        markSocketDead Index
+        AddChat vbRed, "Socket #" & index & ": The proxy list has run out."
+        markSocketDead index
   
         If (socketsAvailable = 0) Then
             AddChat vbYellow, "All proxies have been used up."
@@ -1930,40 +1930,40 @@ Public Sub assumeSocketDead(Index As Integer)
     End If
 End Sub
 
-Private Sub tmrReconnect_Timer(Index As Integer)
+Private Sub tmrReconnect_Timer(index As Integer)
     Dim attemptConnection As Boolean, reportConnection As Boolean
   
-    tmrReconnect(Index).Enabled = False
+    tmrReconnect(index).Enabled = False
   
-    If (config.testCountPerProxy > 0 And BNETData(Index).numTested = config.testCountPerProxy) Then
-        AddChat vbYellow, "Socket #" & Index & ": Max tests for this proxy reached."
+    If (config.testCountPerProxy > 0 And BNETData(index).numTested = config.testCountPerProxy) Then
+        AddChat vbYellow, "Socket #" & index & ": Max tests for this proxy reached."
     
-        BNETData(Index).numTested = 0
-        proxies.decrementProxyUse BNETData(Index).proxyIndex
+        BNETData(index).numTested = 0
+        proxies.decrementProxyUse BNETData(index).proxyIndex
     
         If (proxies.canAcquireProxy()) Then
-            Dim IP As String, port As Long, Version As String, proxyIndex As Long
+            Dim IP As String, Port As Long, Version As String, proxyIndex As Long
             Dim pType As clsProxyType
             Set pType = proxies.getProxy()
       
             With pType
                 IP = .getIP()
-                port = .getPort()
+                Port = .getPort()
                 Version = .getVersion()
                 proxyIndex = .getIndex()
             End With
     
-            BNETData(Index).proxyIP = IP
-            BNETData(Index).proxyPort = port
-            BNETData(Index).proxyVersion = Version
-            BNETData(Index).proxyIndex = proxyIndex
+            BNETData(index).proxyIP = IP
+            BNETData(index).proxyPort = Port
+            BNETData(index).proxyVersion = Version
+            BNETData(index).proxyIndex = proxyIndex
     
             attemptConnection = True
             reportConnection = True
         Else
-            closeSocket Index
-            AddChat vbRed, "Socket #" & Index & ": The proxy list has run out."
-            markSocketDead Index
+            closeSocket index
+            AddChat vbRed, "Socket #" & index & ": The proxy list has run out."
+            markSocketDead index
   
             If (socketsAvailable = 0) Then
                 AddChat vbYellow, "All connections have been attempted."
@@ -1972,19 +1972,19 @@ Private Sub tmrReconnect_Timer(Index As Integer)
             End If
         End If
     Else
-        IP = BNETData(Index).proxyIP
-        port = BNETData(Index).proxyPort
+        IP = BNETData(index).proxyIP
+        Port = BNETData(index).proxyPort
   
         attemptConnection = True
     End If
 
     If (attemptConnection) Then
         If (reportConnection) Then
-            AddChat vbYellow, "Socket #" & Index & ": Attempting to connect to ", vbWhite, IP & ":" & port, vbYellow, "."
+            AddChat vbYellow, "Socket #" & index & ": Attempting to connect to ", vbWhite, IP & ":" & Port, vbYellow, "."
         End If
     
-        connectSocket Index
-        tmrCheckFailed(Index).Enabled = True
+        connectSocket index
+        tmrCheckFailed(index).Enabled = True
     End If
 End Sub
 

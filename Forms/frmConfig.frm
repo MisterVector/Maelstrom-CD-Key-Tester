@@ -893,7 +893,7 @@ Private Sub lblCancel_MouseMove(Button As Integer, Shift As Integer, x As Single
     Call moveEntireForm(Me, Button)
 End Sub
 
-Private Sub lblConfig_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
+Private Sub lblConfig_MouseMove(index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
     Call moveEntireForm(Me, Button)
 End Sub
 
@@ -1044,13 +1044,13 @@ Private Sub pbQuit_Click()
     Unload Me
 End Sub
 
-Private Sub txtConfig_Change(Index As Integer)
-    If (txtConfig(Index).BackColor <> TXT_BACK_COLOR) Then
-        txtConfig(Index).BackColor = TXT_BACK_COLOR
+Private Sub txtConfig_Change(index As Integer)
+    If (txtConfig(index).BackColor <> TXT_BACK_COLOR) Then
+        txtConfig(index).BackColor = TXT_BACK_COLOR
     End If
 End Sub
 
-Private Sub txtConfig_KeyDown(Index As Integer, keyCode As Integer, Shift As Integer)
+Private Sub txtConfig_KeyDown(index As Integer, keyCode As Integer, Shift As Integer)
     Call checkForQuitShortcut(Me, keyCode, Shift)
 End Sub
 
@@ -1063,7 +1063,7 @@ Private Function markFormErrors() As Integer
             hasError = False
       
             Set t = o
-            lenRequire = IIf(t.Index = CONFIG_USERNAME Or t.Index = CONFIG_BNLS_SERVER, 3, IIf(t.Index = CONFIG_CDKEY_PROFILE, 0, 1))
+            lenRequire = IIf(t.index = CONFIG_USERNAME Or t.index = CONFIG_BNLS_SERVER, 3, IIf(t.index = CONFIG_CDKEY_PROFILE, 0, 1))
 
             If (Len(t.text) < lenRequire) Then
                 t.BackColor = TXT_ERROR_COLOR
@@ -1076,23 +1076,23 @@ Private Function markFormErrors() As Integer
                     If (IsNumericB(t.text)) Then
                         Dim minNumber As Integer, maxNumber As Integer
 
-                        If (t.Index = CONFIG_TEST_COUNT_PER_PROXY) Then
+                        If (t.index = CONFIG_TEST_COUNT_PER_PROXY) Then
                             minNumber = 0
                         Else
                             minNumber = 1
                         End If
 
-                        If (t.Index = CONFIG_SOCKETS) Then
+                        If (t.index = CONFIG_SOCKETS) Then
                             maxNumber = MAX_SOCKETS
-                        ElseIf (t.Index = CONFIG_SOCKETS_PER_PROXY) Then
+                        ElseIf (t.index = CONFIG_SOCKETS_PER_PROXY) Then
                             maxNumber = MAX_SOCKETS_PER_PROXY
-                        ElseIf (t.Index = CONFIG_EXP_TESTS_PER_REG_KEY) Then
+                        ElseIf (t.index = CONFIG_EXP_TESTS_PER_REG_KEY) Then
                             maxNumber = MAX_EXP_TESTS_PER_REG_KEY
-                        ElseIf (t.Index = CONFIG_TEST_COUNT_PER_PROXY) Then
+                        ElseIf (t.index = CONFIG_TEST_COUNT_PER_PROXY) Then
                             maxNumber = MAX_TEST_COUNT_PER_PROXY
-                        ElseIf (t.Index = CONFIG_RECONNECT_TIME) Then
+                        ElseIf (t.index = CONFIG_RECONNECT_TIME) Then
                           maxNumber = MAX_RECONNECT_TIME
-                        ElseIf (t.Index = CONFIG_CHECK_FAILURE) Then
+                        ElseIf (t.index = CONFIG_CHECK_FAILURE) Then
                             maxNumber = MAX_CHECK_FAILURE
                         End If
 

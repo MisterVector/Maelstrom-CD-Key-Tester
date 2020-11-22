@@ -10,20 +10,20 @@ Public Declare Function kd_quick Lib "bncsutil.dll" _
 ' [!] You should use doubleHashPassword and hashPassword instead of their
 '     _Raw counterparts.  (See below for those functions.)
 Public Declare Sub doubleHashPassword_Raw Lib "bncsutil.dll" Alias "doubleHashPassword" _
-    (ByVal Password As String, ByVal ClientToken As Long, ByVal ServerToken As Long, _
+    (ByVal password As String, ByVal ClientToken As Long, ByVal ServerToken As Long, _
     ByVal outBuffer As String)
 Public Declare Sub hashPassword_Raw Lib "bncsutil.dll" Alias "hashPassword" _
-    (ByVal Password As String, ByVal outBuffer As String)
+    (ByVal password As String, ByVal outBuffer As String)
 
 'OLS Password Hashing
-Public Function doubleHashPassword(Password As String, ByVal ClientToken&, ByVal ServerToken&) As String
+Public Function doubleHashPassword(password As String, ByVal ClientToken&, ByVal ServerToken&) As String
     Dim Hash As String * 20
-    doubleHashPassword_Raw Password, ClientToken, ServerToken, Hash
+    doubleHashPassword_Raw password, ClientToken, ServerToken, Hash
     doubleHashPassword = Hash
 End Function
 
-Public Function hashPassword(Password As String) As String
+Public Function hashPassword(password As String) As String
     Dim Hash As String * 20
-    hashPassword_Raw Password, Hash
+    hashPassword_Raw password, Hash
     hashPassword = Hash
 End Function

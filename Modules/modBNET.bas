@@ -262,13 +262,13 @@ End Sub
 Public Sub Send0x3A(index As Integer)
     Dim HashCode As String * 20
     
-    HashCode = doubleHashPassword(config.Password, BNETData(index).ClientToken, BNETData(index).ServerToken)
+    HashCode = doubleHashPassword(config.password, BNETData(index).ClientToken, BNETData(index).ServerToken)
     
     With packet(index)
         .InsertDWORD BNETData(index).ClientToken
         .InsertDWORD BNETData(index).ServerToken
         .InsertNonNTString HashCode
-        .InsertNTString config.Name
+        .InsertNTString config.name
         .sendPacket &H3A
     End With
 End Sub
@@ -279,7 +279,7 @@ Public Sub Recv0x3A(index As Integer)
             Send0x14 index
             Send0xAC index
         Case &H1: 'Creating account
-            AddChatB vbWhite, config.Name & "@" & config.ServerRealm, vbYellow, " does not exist. Maelstrom will create it."
+            AddChatB vbWhite, config.name & "@" & config.ServerRealm, vbYellow, " does not exist. Maelstrom will create it."
     
             For i = 0 To UBound(BNETData)
                 If (i <> index) Then
@@ -292,10 +292,10 @@ Public Sub Recv0x3A(index As Integer)
             Send0x3D index
         Case &H2: 'Bad password
     
-            AddChat vbRed, "Invalid password for ", vbWhite, config.Name & "@" & config.ServerRealm, vbRed, "."
+            AddChat vbRed, "Invalid password for ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "."
             stopTesting vbYellow, "Change the password and then click ", vbWhite, "Start", vbYellow, " again."
         Case &H6: 'Account closed
-            AddChat vbRed, "The account ", vbWhite, config.Name & "@" & config.ServerRealm, vbRed, " has been banned."
+            AddChat vbRed, "The account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, " has been banned."
             stopTesting vbYellow, "Change the account name and then click ", vbWhite, "Start", vbYellow, " again."
     End Select
 End Sub
@@ -303,11 +303,11 @@ End Sub
 Public Sub Send0x3D(index As Integer)
     Dim password_hash As String * 20
   
-    password_hash = hashPassword(config.Password)
+    password_hash = hashPassword(config.password)
 
     With packet(index)
         .InsertNonNTString password_hash
-        .InsertNTString config.Name
+        .InsertNTString config.name
         .sendPacket &H3D
     End With
 End Sub
@@ -320,13 +320,13 @@ Public Sub Recv0x3D(index As Integer)
     End With
   
     If (Result = &H0) Then
-        AddChatB vbGreen, "Created the account ", vbWhite, config.Name & "@" & config.ServerRealm, vbGreen, "!"
+        AddChatB vbGreen, "Created the account ", vbWhite, config.name & "@" & config.ServerRealm, vbGreen, "!"
         stopTesting vbYellow, "Click ", vbWhite, "Start", vbYellow, " to start testing again."
     Else
         Dim reason As String
         reason = accountIdToReason(Result)
     
-        AddChatB vbRed, "Unable to create the account ", vbWhite, config.Name & "@" & config.ServerRealm, vbRed, "!"
+        AddChatB vbRed, "Unable to create the account ", vbWhite, config.name & "@" & config.ServerRealm, vbRed, "!"
         AddChatB vbRed, "Reason: " & reason & "."
   
         stopTesting vbYellow, "Fix the issue with the account and click ", vbWhite, "Start", vbYellow, " again."
@@ -393,7 +393,7 @@ End Sub
 
 Public Sub Send0xAC(index As Integer)
     With packet(index)
-        .InsertNTString config.Name
+        .InsertNTString config.name
         .InsertByte &H0
         .sendPacket &HA
 

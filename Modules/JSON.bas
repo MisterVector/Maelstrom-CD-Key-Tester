@@ -204,7 +204,7 @@ Private Function parseString(ByRef str As String, ByRef index As Long) As String
                Case "u"
                   index = index + 1
                   Code = Mid(str, index, 4)
-                  SB.Append ChrW(val("&h" + Code))
+                  SB.Append ChrW(Val("&h" + Code))
                   index = index + 4
             End Select
          Case quote
@@ -504,7 +504,7 @@ Private Function multiArray(aBD, iBC, sPS, ByRef sPT)   ' Array BoDy, Integer Ba
          If i < iDU Then SB.Append ","
       Next
       SB.Append "]"
-      sPT = Left(sPT, iBC - 2)
+      sPT = left(sPT, iBC - 2)
    End If
    err.Clear
    multiArray = SB.toString
