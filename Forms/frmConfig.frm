@@ -133,7 +133,7 @@ Begin VB.Form frmConfig
       Index           =   14
       Left            =   9120
       TabIndex        =   18
-      Top             =   5400
+      Top             =   5760
       Width           =   495
    End
    Begin VB.TextBox txtConfig 
@@ -142,7 +142,7 @@ Begin VB.Form frmConfig
       Index           =   13
       Left            =   9120
       TabIndex        =   17
-      Top             =   5040
+      Top             =   5400
       Width           =   495
    End
    Begin VB.TextBox txtConfig 
