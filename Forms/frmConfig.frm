@@ -1106,7 +1106,6 @@ Private Function markFormErrors() As Integer
                     If (hasError) Then
                         t.BackColor = TXT_ERROR_COLOR
                         errors = errors + 1
-                        Exit For
                     End If
                 End If
 
@@ -1122,7 +1121,6 @@ Private Function markFormErrors() As Integer
                     If (hasError) Then
                         t.BackColor = TXT_ERROR_COLOR
                         errors = errors + 1
-                        Exit For
                     End If
                 End If
             End If
