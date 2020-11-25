@@ -906,7 +906,10 @@ Private Sub lblOk_Click()
     
     errors = markFormErrors()
     
-    If (errors > 0) Then Exit Sub
+    If (errors > 0) Then
+        MsgBox "Errors were encountered when saving configuration. Correct the errors highlighted and then click OK again.", vbOKOnly, PROGRAM_TITLE
+        Exit Sub
+    End If
     
     oldProfile = config.cdKeyProfile
     
