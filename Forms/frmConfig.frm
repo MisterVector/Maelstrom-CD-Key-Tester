@@ -1073,6 +1073,8 @@ Private Function markFormErrors() As Integer
 
             If (Not hasError) Then
                 If (t.Tag = NUMERIC_TEXTBOX_IDENTIFIER) Then
+                    hasError = True
+
                     If (IsNumericB(t.text)) Then
                         Dim minNumber As Integer, maxNumber As Integer
 
