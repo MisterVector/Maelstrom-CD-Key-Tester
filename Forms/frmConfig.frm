@@ -902,7 +902,7 @@ Private Sub lblOk_MouseMove(Button As Integer, Shift As Integer, x As Single, Y 
 End Sub
 
 Private Sub lblOk_Click()
-    Dim errors As Integer, oldProfile As String
+    Dim errors As Integer, oldProfile As String, oldSocketsPerProxy As Integer, resetUsing As Boolean
     
     errors = markFormErrors()
     
@@ -912,6 +912,7 @@ Private Sub lblOk_Click()
     End If
     
     oldProfile = config.cdKeyProfile
+    oldSocketsPerProxy = config.socketsPerProxy
     
     If (config.addRealmToProfile) Then
         oldProfile = oldProfile & " @ " & config.ServerRealm
@@ -946,10 +947,19 @@ Private Sub lblOk_Click()
     
     writeConfig
     
+    If (oldSocketsPerProxy <> config.socketsPerProxy) Then
+        proxies.setConnectionsPerProxy config.socketsPerProxy
+        resetUsing = True
+    End If
+
     If (hasTestedThisSession And loadedSockets <> config.sockets) Then
         hasTestedThisSession = False
       
         restoreKeysToList
+        resetUsing = True
+    End If
+  
+    If (resetUsing) Then
         proxies.resetProxies
     End If
   
@@ -957,7 +967,7 @@ Private Sub lblOk_Click()
         AddChat vbWhite, config.sockets, vbYellow, " sockets have been loaded. (", vbWhite, config.socketsPerProxy, vbYellow, " per proxy)"
         calculateAvailableSockets
     End If
-  
+      
     setupConnectionData config.sockets
   
     If (config.cdKeyProfile <> vbNullString) Then
