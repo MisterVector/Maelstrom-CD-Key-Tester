@@ -221,9 +221,10 @@ Public Sub Recv0x51(index As Integer)
             
                 Exit Sub
             Case &H102
-                frmMain.lblStart_EmulateClick
-          
-                msgBoxResult = MsgBox("The hashes for " & Product & " are too new.", vbOKOnly Or vbExclamation, PROGRAM_TITLE)
+                ' Most likely a false positive, so reconnect this socket
+                AddChat vbRed, "Index #" & index & " invalid EXE info result from seed. Reconnecting..."
+        
+                frmMain.tmrReconnect(index).Enabled = True
     
                 Exit Sub
         End Select
