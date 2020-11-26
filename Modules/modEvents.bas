@@ -157,8 +157,7 @@ Public Sub handleOtherKeys(index As Integer, ID As Long, ByVal inUse As String)
     
     With BNETData(index)
         Select Case ID
-            Case &H102, &H200, &H202, &H203, &H210, &H212
-                ' 0x102 = Older Version (treated as other product)
+            Case &H200, &H202, &H203, &H210, &H212
                 ' 0x200 = invalid key
                 ' 0x202 = banned key
                 ' 0x203 = other product
@@ -170,7 +169,7 @@ Public Sub handleOtherKeys(index As Integer, ID As Long, ByVal inUse As String)
                 Select Case ID
                     Case &H200, &H210: keyState = "Invalid": color = TEXT_INVALID
                     Case &H202, &H212: keyState = "Banned": color = TEXT_BANNED
-                    Case &H102, &H203, &H213: keyState = "Other": color = TEXT_OTHER
+                    Case &H203, &H213: keyState = "Other": color = TEXT_OTHER
                 End Select
 
                 If (.isExpansion) Then
