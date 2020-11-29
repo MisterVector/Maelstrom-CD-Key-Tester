@@ -60,6 +60,7 @@ Public dicGatewayIPs As New Dictionary
 Public requestProduct As String
 Public updateString As String
 Public timesTillClear As Integer
+Public loadedFromCSDSClient As Boolean
 
 Public Type HashSearchResult
     hashes()     As String

@@ -1570,6 +1570,10 @@ Private Sub Form_Load()
     AddChat vbYellow, "Welcome to " & PROGRAM_NAME & " ", vbWhite, "v" & PROGRAM_VERSION, vbYellow, " by Vector."
     lblControl(1).Caption = PROGRAM_TITLE
   
+    If (InStr(Command, "--csds-launch") > 0) Then
+        loadedFromCSDSClient = True
+    End If
+  
     tmrWaitLoad.Enabled = True
 End Sub
 
@@ -1769,6 +1773,11 @@ Private Sub lblStart_MouseMove(Button As Integer, Shift As Integer, x As Single,
 End Sub
 
 Private Sub lblUpdateLabel_Click()
+    If (loadedFromCSDSClient) Then
+        MsgBox "Cannot check update as Maelstrom was loaded by the Code Speak Distribution Client!", vbOKOnly Or vbExclamation, PROGRAM_TITLE
+        Exit Sub
+    End If
+
     If (Not checkProgramUpdate(True)) Then
         MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_TITLE
     End If
@@ -2084,7 +2093,7 @@ Private Sub tmrWaitLoad_Timer()
         lblControl(CDKEY_PROFILE).Caption = "CD-Key Profile Not Configured"
     End If
     
-    If (config.checkUpdateOnStartup) Then
+    If (config.checkUpdateOnStartup And Not loadedFromCSDSClient) Then
         If (Not checkProgramUpdate(False)) Then
             MsgBox "Unable to check for update!", vbOKOnly Or vbExclamation, PROGRAM_TITLE
         End If
