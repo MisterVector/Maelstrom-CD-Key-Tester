@@ -1,3 +1,48 @@
+Version 4.3.0 - Released on November 29, 2020
+
+  - Potentially fixed a small issue when getting rejected by SOCKS4 proxies
+  - Small improvement when loading proxy files
+  - Added support for 26-digit Diablo II keys
+  - Implemented SOCKS5 proxy support
+  - Clicking and moving the main form around is now possible when clicking the
+    Reload Proxies, Reload CD-Keys and Config labels
+  - When reloading proxies, existing proxies are removed from the active sockets
+  - If loading in keys by dumping a series of folders in the CD-Keys folder and
+    any of the subfolders contains the files W2BN.txt, D2DV.txt or D2XP.txt, none
+    of those files would be deleted
+  - Fixed an issue where some proxies won't get the correct Battle.Net IP
+    from Maelstrom when connecting
+  - Fixed an issue where the number of hours since testing started would not be
+    calculated correctly in certain cases
+  - Slight performance tweak when determining when to clear the text screen
+  - Removed broken Warcraft III support
+  - Dropped CheckRevisionMPQ.dll and updated VersionCheck.dll to be used instead for
+    Diablo II CD-Key testing. This should also get rid of the version out of date
+    errors encountered when testing Diablo II CD-Keys as this should be more
+    up to date
+  - Added support for displaying days in time elapsed
+  - The updater now uses the Code Speak Distribution System to check for a new
+    update. When you click the "Yes" button to indicate you want to update, you
+    will now be taken to the Code Speak website with a special page showing the
+    changes since your version and the latest
+  - Updated Binaries/READ THIS.txt including a new URL
+  - Updated the default BNLS server to jbls.davnit.net
+  - The libbnet.dll library has been dropped as BNCSUtil.dll has replaced it
+  - Fixed a run-time error while saving the configuration with invalid values entered
+  - Fixed an issue where not all invalid configuration values will be highlighted in
+    the configuration form when the program loads with errors or the configuration is
+    attempted to be saved
+  - When attempting to save the configuration with invalid values, a message box will
+    pop up specifying that there are errors and to correct them before clicking
+    OK again
+  - Updated the readme for new changes and some fixes
+  - Fixed an issue where changing the "sockets per proxy" setting in the configuration
+    had no immediate effect
+  - Reversed a change from Maelstrom 4.2.0 that treated the "Hashes for W2BN are too new"
+    issue as coming from certain Warcraft II keys. This is incorrect, and instead the
+    socket that produced this error is reconnected
+  - Update check will be disabled if Maelstrom is loaded by the Code Speak Distribution System
+
 Version 4.2.3 - Released on February 15, 2019
 
   - Fixed update check code
