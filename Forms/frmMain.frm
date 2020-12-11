@@ -6,8 +6,8 @@ Begin VB.Form frmMain
    BorderStyle     =   0  'None
    Caption         =   " Maelstrom CD-Key Tester"
    ClientHeight    =   6285
-   ClientLeft      =   4125
-   ClientTop       =   -225
+   ClientLeft      =   8805
+   ClientTop       =   3510
    ClientWidth     =   11610
    Icon            =   "frmMain.frx":0000
    LinkTopic       =   "Form1"
@@ -89,7 +89,6 @@ Begin VB.Form frmMain
       _ExtentY        =   5530
       _Version        =   393217
       BackColor       =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       TextRTF         =   $"frmMain.frx":15C5
