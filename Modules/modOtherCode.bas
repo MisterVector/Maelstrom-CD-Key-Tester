@@ -855,6 +855,7 @@ Public Function checkProgramUpdate(ByVal manualUpdateCheck As Boolean) As Boolea
     Set xml = CreateObject("MSXML2.XMLHTTP")
 
     xml.Open "GET", PROGRAM_UPDATE_URL, False
+    xml.setRequestHeader "User-Agent", "MaelstromCDKeyTester/" & PROGRAM_VERSION
     xml.send
     
     text = xml.responseText
