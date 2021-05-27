@@ -1,3 +1,11 @@
+Version 4.3.2 - Released on May 26, 2020
+
+  - A custom user agent is once again sent when checking for updates
+    - Went missing after a previous change to the update check code
+  - Due to a change in the update check process, Maelstrom has been 
+    updated to handle a new date format when checking for a
+    new version
+
 Version 4.3.1 - Released on December 10, 2020
 
   - The changelog was missing the changes for version 4.3.0
