@@ -1,4 +1,4 @@
-Version 4.3.2 - Released on May 26, 2020
+Version 4.3.2 - Released on May 26, 2021
 
   - A custom user agent is once again sent when checking for updates
     - Went missing after a previous change to the update check code
