@@ -1,3 +1,14 @@
+Version 4.3.3 - Released on August 20, 2021
+
+  - Fixed an error while testing with products in certain cases (invalid filetime)
+  - Instead of wiping the key files when Maelstrom loads the keys, they will
+    instead be wiped before Maelstrom writes back the unused keys before closing
+    which prevents an issue where Maelstrom encounters a runtime error, closes
+    and then the CD-Key folder is completely empty
+  - If an invalid MPQ filename is encountered while testing keys for a certain
+    product, testing will stop
+  - Updated the readme
+
 Version 4.3.2 - Released on May 26, 2021
 
   - A custom user agent is once again sent when checking for updates
