@@ -33,9 +33,12 @@ Public Sub Recv0x50(index As Integer)
     tempFT.dwLowDateTime = packet(index).GetDWORD
     tempFT.dwHighDateTime = packet(index).GetDWORD
     
-    mpqFileTime = GetFTTime(tempFT)
     mpqFileName = packet(index).getNTString
-    
+
+    If (tempFT.dwLowDateTime > 0 And tempFT.dwHighDateTime > 0) Then
+        mpqFileTime = GetFTTime(tempFT)
+    End If
+
     checksumFormula = packet(index).getNTString
     
     Send0x51 index, mpqFileTime, mpqFileName, checksumFormula
@@ -145,7 +148,7 @@ Public Sub Send0x51(index As Integer, ByVal mpqFileTime As String, ByVal mpqFile
     
         modBNETAPI.check_revision mpqFileTime, IIf(lockdownFileName <> vbNullString, lockdownFileName, mpqFileName), checksumFormula, App.path & "\VersionCheck.ini", .Product, EXEVersion, EXEchecksum, exeInfoString
     End With
-
+    
     With packet(index)
         .InsertDWORD BNETData(index).ClientToken
         .InsertDWORD EXEVersion
