@@ -35,6 +35,12 @@ Public Sub Recv0x50(index As Integer)
     
     mpqFileName = packet(index).getNTString
 
+    If (Right(mpqFileName, 5) = "_.mpq") Then
+        AddChat vbRed, "Bad MPQ filename while using product: " & BNETData(index).Product
+        stopTesting vbRed, "Testing has been stopped."
+        Exit Sub
+    End If
+
     If (tempFT.dwLowDateTime > 0 And tempFT.dwHighDateTime > 0) Then
         mpqFileTime = GetFTTime(tempFT)
     End If
