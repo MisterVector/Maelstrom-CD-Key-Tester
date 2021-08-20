@@ -846,7 +846,7 @@ End Function
 
 Public Function makeCompatibleDate(ByVal dateTimeString As String) As Date
     dateTimeString = Replace(dateTimeString, "T", " ")
-    dateTimeString = Replace(dateTimeString, "Z", "")
+    dateTimeString = Replace(dateTimeString, "Z", vbNullString)
     
     makeCompatibleDate = dateTimeString
 End Function
