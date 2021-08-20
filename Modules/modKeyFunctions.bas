@@ -90,17 +90,6 @@ Public Sub loadCDKeys()
         loadKeysFromFiles f, pk
     End If
   
-    For i = 0 To UBound(arrDefaultKeyFiles)
-        Dim keyFile As String
-    
-        keyFile = App.path & "\" & CDKEYS_FOLDER & "\" & arrDefaultKeyFiles(i)
-  
-        If (Dir$(keyFile) = vbNullString) Then
-            Open keyFile For Output As #1
-            Close #1
-        End If
-    Next i
-  
     If (pk.dicKeys.count > 0) Then
         Dim w2bnIdx As Long, d2dvIdx As Long, d2xpIdx As Long
     
@@ -170,7 +159,6 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
 
     For Each sf In keyFolder.SubFolders
         loadKeysFromFiles sf, pk
-        sf.Delete True
     Next
   
     Dim f As File
@@ -192,10 +180,23 @@ Public Sub loadKeysFromFiles(ByVal keyFolder As Folder, pk As ParsedKeys)
                 pk.badFiles = pk.badFiles + 1
             End If
         End If
-    
-        If (Not isStandardKeyFilePath(f.path)) Then
-            f.Delete True
-        End If
+    Next
+End Sub
+
+Public Sub deleteAllKeyFiles(ByVal keyFolder As Folder)
+    On Error Resume Next
+
+    Dim sf As Folder
+
+    For Each sf In keyFolder.SubFolders
+        deleteAllKeyFiles sf
+        sf.Delete True
+    Next
+  
+    Dim f As File
+  
+    For Each f In keyFolder.Files
+        f.Delete True
     Next
 End Sub
 
@@ -308,22 +309,6 @@ Public Function isSanitizedKey(ByVal key As String) As Boolean
     Next i
 
     isSanitizedKey = True
-End Function
-
-Public Function isStandardKeyFilePath(keyFilePath As String) As Boolean
-    Dim arrDefaultKeyFiles() As Variant, defaultKeyFilePath As String, pk As ParsedKeys
-  
-    defaultKeyFilePath = App.path & "\" & CDKEYS_FOLDER
-    arrDefaultKeyFiles = Array("W2BN.txt", "D2DV.txt", "D2XP.txt")
-
-    For i = 0 To UBound(arrDefaultKeyFiles)
-        If (LCase$(defaultKeyFilePath & "\" & arrDefaultKeyFiles(i)) = LCase$(keyFilePath)) Then
-            isStandardKeyFilePath = True
-            Exit Function
-        End If
-    Next i
-  
-    isStandardKeyFilePath = False
 End Function
 
 Public Sub reportProcessedKeys(pk As ParsedKeys)
@@ -586,7 +571,12 @@ End Sub
 
 Public Sub sendKeysBack()
     Dim arrProducts() As Variant, Product As Variant
+    Dim fso As New FileSystemObject, f As Folder
+    
     arrProducts = Array("W2BN", "D2DV", "D2XP")
+    Set f = fso.GetFolder(CDKEYS_FOLDER)
+  
+    deleteAllKeyFiles f
   
     For Each Product In arrProducts
         Dim arrCDKeys() As String, hasKeys As Boolean
@@ -611,15 +601,15 @@ Public Sub sendKeysBack()
                 End If
         End Select
     
+        Open App.path & "\" & CDKEYS_FOLDER & "\" & Product & ".txt" For Output As #1
         If (hasKeys) Then
-            Open App.path & "\" & CDKEYS_FOLDER & "\" & Product & ".txt" For Output As #1
-                For i = 0 To UBound(arrCDKeys)
-                    If (arrCDKeys(i) <> vbNullString) Then
-                        Print #1, arrCDKeys(i)
-                    End If
-                Next i
-            Close #1
+            For i = 0 To UBound(arrCDKeys)
+                If (arrCDKeys(i) <> vbNullString) Then
+                    Print #1, arrCDKeys(i)
+                End If
+            Next i
         End If
+        Close #1
     Next
 End Sub
 
